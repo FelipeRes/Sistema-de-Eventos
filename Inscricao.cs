@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sistema_de_Eventos.Exceptions;
 
 namespace Sistema_de_Eventos {
     public class Inscricao {
@@ -12,10 +11,7 @@ namespace Sistema_de_Eventos {
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
         private Pessoa pessoa;
-        public Pessoa Pessoa { get { return pessoa; }set { pessoa = value; } }
-
-        private Evento evento;
-        public Evento Evento { get { return evento; } set { evento = value; } }
+        public Pessoa PessoaInscrita { get { return pessoa; } }
 
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
@@ -39,36 +35,25 @@ namespace Sistema_de_Eventos {
                 return valor;
             }
         }
-        public Inscricao(/*Evento evento, Pessoa pessoa*/) {
-            //Evento = evento;
-            //Pessoa = pessoa;
+        public Inscricao(Pessoa pessoa) {
+            this.pessoa = pessoa;
         }
 
         public void AdicionarAtividade(Atividade atividade) {
             if (!listaDeAtividades.Contains(atividade) && !pagamento) {
-                try {
-                    atividade.AdicionarInscritos(this);
-                    listaDeAtividades.Add(atividade);
-                }catch(NumeroMaximoDeInscritosException e) {
-
-                }
-            } else {
-                throw new AtividadeRepetida();
+                atividade.AdicionarInscritos(this);
+                listaDeAtividades.Add(atividade);
             }
         }
         public void RemoverAtividade(Atividade atividade) {
             if (listaDeAtividades.Contains(atividade) && !pagamento) {
                 listaDeAtividades.Remove(atividade);
                 atividade.RemoverInscritos(this);
-            } else {
-                throw new AtividadeRepetida();
             }
         }
         public void AdicionarCuponDeDesconto(Cupom cupom) {
             if (!pagamento) {
                 listaDeCupons.Add(cupom);
-            }else {
-                throw new CuponRepetido();
             }
         }
         public void FinalizarInscricao() {

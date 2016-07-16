@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    class Program {
-        static void Main(string[] args) {
-            Console.ReadKey();
+    public class Aplicacao {
+        public static void Main() {
+
         }
     }
 }
