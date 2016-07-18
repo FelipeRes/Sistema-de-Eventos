@@ -1,0 +1,8 @@
+Este são todos arquivos da Solução. Ela inclui os dois projetos que é o projeto modelo e o projeto de teste.
+Versão do Projeto:
+Microsoft Visual Studio Express 2015 for Windowns Desktop
+Version 14.0.25123.00 Update 2
+
+Microsoft .NET Framework
+Version 4.6
+

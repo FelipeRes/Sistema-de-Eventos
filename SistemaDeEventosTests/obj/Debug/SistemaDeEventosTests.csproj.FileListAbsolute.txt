@@ -1,0 +1,7 @@
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\SistemaDeEventosTests.dll
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\SistemaDeEventosTests.pdb
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\Sistema de Eventos.exe
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\Sistema de Eventos.pdb
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\obj\Debug\SistemaDeEventosTests.csprojResolveAssemblyReference.cache
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\obj\Debug\SistemaDeEventosTests.dll
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\obj\Debug\SistemaDeEventosTests.pdb
