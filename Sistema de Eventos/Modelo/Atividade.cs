@@ -20,6 +20,18 @@ namespace Sistema_de_Eventos {
 
         public int QuantidadeDeInscritos { get {return inscritos.Count; } }
 
+        public int QuantidadeDeInscritosPagos {
+            get {
+                int quantidadePagos =0;
+                for (int i = 0; i < QuantidadeDeInscritos; i++) {
+                    if (inscritos[i].Pagamento) {
+                        quantidadePagos++;
+                    }
+                }
+                return quantidadePagos;
+            }
+        }
+
         private double preco;
         public double Preco { get { return preco; } set { preco = value; } }
 
@@ -27,8 +39,12 @@ namespace Sistema_de_Eventos {
         public string Local { get { return local; } set { local = value; } }
 
         private int quantidadeMaximaPessoas;
-        public int QuantidadeMaximaPessoas { get { return quantidadeMaximaPessoas; } set { quantidadeMaximaPessoas = value; } }
-
+        public int QuantidadeMaximaPessoas { get { return quantidadeMaximaPessoas; } set {
+                if (value >= QuantidadeDeInscritosPagos) {
+                    quantidadeMaximaPessoas = value;
+                }
+            }
+        }
         public Atividade(Evento evento, int quantidade) {
             this.evento = evento;
             evento.AdicionarAtividade(this);
