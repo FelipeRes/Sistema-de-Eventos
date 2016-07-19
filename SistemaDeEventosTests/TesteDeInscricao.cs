@@ -138,7 +138,17 @@ namespace SistemaDeEventosTests {
             } catch {
 
             }
-
+        }
+        [TestMethod]
+        public void inscrever_em_pelo_menos_uma_atividade() {
+            inscricao = new Inscricao(evento, new Pessoa());
+            evento.Estado = EstadoDoEvento.Aberto;
+            try {
+                inscricao.FinalizarInscricao();
+                Assert.Fail();
+            } catch (Exception e){
+                Assert.AreEqual("Voce deve se inscrever em ao menos uma atividade", e.Message);
+            }
         }
     }
 }

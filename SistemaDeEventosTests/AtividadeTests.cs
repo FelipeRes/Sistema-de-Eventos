@@ -40,35 +40,43 @@ namespace Sistema_de_Eventos.Tests {
         }
         [TestMethod()]
         public void diminuir_quantidade_de_inscritos_quando_ja_tem_inscritos_pagos() {
-            Atividade atividade = new Atividade(new Evento(), 4);
+            Atividade atividade = new Atividade(evento, 4);
+
             Inscricao joao = new Inscricao(evento, new Pessoa());
+            joao.AdicionarAtividade(atividade);
             joao.FinalizarInscricao();
+
             Inscricao maria = new Inscricao(evento, new Pessoa());
+            maria.AdicionarAtividade(atividade);
             maria.FinalizarInscricao();
+
             Inscricao jose = new Inscricao(evento, new Pessoa());
+            jose.AdicionarAtividade(atividade);
             jose.FinalizarInscricao();
+
             Inscricao antonio = new Inscricao(evento, new Pessoa());
-            atividade.AdicionarInscritos(joao);
-            atividade.AdicionarInscritos(maria);
-            atividade.AdicionarInscritos(jose);
-            atividade.AdicionarInscritos(antonio);
+            antonio.AdicionarAtividade(atividade);
+            antonio.FinalizarInscricao();
+            
             atividade.QuantidadeMaximaPessoas = 2;
             Assert.AreEqual(4, atividade.QuantidadeMaximaPessoas);
         }
         [TestMethod()]
         public void diminuir_quantidade_de_inscritos_quando_ja_tem_inscritos_pagos_mas_nao_vai_diminuir_tanto() {
-            Atividade atividade = new Atividade(new Evento(), 5);
+            Atividade atividade = new Atividade(evento, 5);
+
             Inscricao joao = new Inscricao(evento, new Pessoa());
+            joao.AdicionarAtividade(atividade);
             joao.FinalizarInscricao();
+
             Inscricao maria = new Inscricao(evento, new Pessoa());
+            maria.AdicionarAtividade(atividade);
             maria.FinalizarInscricao();
+
             Inscricao jose = new Inscricao(evento, new Pessoa());
+            jose.AdicionarAtividade(atividade);
             jose.FinalizarInscricao();
-            Inscricao antonio = new Inscricao(evento, new Pessoa());
-            atividade.AdicionarInscritos(joao);
-            atividade.AdicionarInscritos(maria);
-            atividade.AdicionarInscritos(jose);
-            atividade.AdicionarInscritos(antonio);
+
             atividade.QuantidadeMaximaPessoas = 3;
             Assert.AreEqual(3, atividade.QuantidadeMaximaPessoas);
         }

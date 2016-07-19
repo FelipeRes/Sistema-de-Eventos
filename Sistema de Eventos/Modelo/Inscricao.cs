@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace Sistema_de_Eventos {
     public class Inscricao {
@@ -71,10 +72,15 @@ namespace Sistema_de_Eventos {
             }
         }
         public void FinalizarInscricao() {
-            if (evento.Estado == EstadoDoEvento.Aberto) { 
+            if (evento.Estado == EstadoDoEvento.Aberto) {
+                if (listaDeAtividades.Count > 0) { 
                 pagamento = true;
-                for(int i = 0; i < listaDeCupons.Count; i++) {
+                for (int i = 0; i < listaDeCupons.Count; i++) {
                     listaDeCupons[i].Invalidar();
+                }
+                evento.EnviarNotificacao("Inscricao Realizada com sucesso");
+                } else {
+                    throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }
             } else {
                 throw new Exception("Inscricao encerrada");

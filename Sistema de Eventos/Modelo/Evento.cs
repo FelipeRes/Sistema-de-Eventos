@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace Sistema_de_Eventos {
     public class Evento {
+
         private string nome;
         public string Nome { get { return nome; } set { this.nome = value; } }
+
         private EstadoDoEvento estadoEvento;
         public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
+
         public List<Atividade> ListaDeAtividades = new List<Atividade>();
+
+        private Notificacao notificacao;
+        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
 
         public Evento() {
             Estado = EstadoDoEvento.Aberto;
@@ -29,8 +36,11 @@ namespace Sistema_de_Eventos {
             } else {
                 throw new Exception("Atividade nao existe");
             }
+        }
 
-
+        public void EnviarNotificacao(String menssagem) {
+            notificacao = new Notificacao(new NotificacaoEmail());
+            notificacao.EnviarNotificacao(menssagem);
         }
     }
 }
