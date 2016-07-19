@@ -15,10 +15,14 @@ namespace Sistema_de_Eventos {
             ListaDeAtividades = new List<Atividade>();
         }
         public void AdicionarAtividade(Atividade atividade) {
-            ListaDeAtividades.Add(atividade);
+            if (!ListaDeAtividades.Contains(atividade)) {
+                ListaDeAtividades.Add(atividade);
+            }
         }
         public void RemoverAtividade(Atividade atividade) {
-            ListaDeAtividades.Remove(atividade);
+            if (ListaDeAtividades.Contains(atividade)) {
+                ListaDeAtividades.Remove(atividade);
+            }
         }
         
     }

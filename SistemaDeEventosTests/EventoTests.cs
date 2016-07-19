@@ -21,6 +21,14 @@ namespace Sistema_de_Eventos.Tests {
             evento.RemoverAtividade(evento.ListaDeAtividades[0]);
             Assert.AreEqual(3, evento.ListaDeAtividades.Count);
         }
-   
+        [TestMethod()]
+        public void adicao_de_atividade_pelo_contrutor_da_atividade() {
+            Atividade atividade1 = new Atividade(evento, 3);
+            Atividade atividade2 = new Atividade(evento, 3);
+            Atividade atividade3 = new Atividade(evento, 3);
+            Assert.AreEqual(3, evento.ListaDeAtividades.Count);
+        }
+
+
     }
 }

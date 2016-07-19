@@ -76,5 +76,13 @@ namespace SistemaDeEventosTests {
             inscrito4.AdicionarAtividade(atividade);
             Assert.AreEqual(atividade.QuantidadeMaximaPessoas, atividade.QuantidadeDeInscritos);
         }
+        [TestMethod]
+        public void valor_da_inscricao_com_cupom_de_desconto_por_porcentagem() {
+            Atividade atividade = new Atividade(evento, 3);
+            atividade.Preco = 90;
+            inscricao.AdicionarAtividade(atividade);
+            inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoPorcentagem()));
+            Assert.AreEqual(9, inscricao.ValorComDesconto);
+        }
     }
 }

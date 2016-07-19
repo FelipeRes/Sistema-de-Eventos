@@ -31,6 +31,7 @@ namespace Sistema_de_Eventos {
 
         public Atividade(Evento evento, int quantidade) {
             this.evento = evento;
+            evento.AdicionarAtividade(this);
             QuantidadeMaximaPessoas = quantidade;
         }
         public void AdicionarInscritos(Inscricao inscricao) {

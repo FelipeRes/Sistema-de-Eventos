@@ -47,6 +47,7 @@
     <Compile Include="Modelo\Atividade.cs" />
     <Compile Include="Modelo\Cupom.cs" />
     <Compile Include="Modelo\DescontoEstudante.cs" />
+    <Compile Include="Modelo\DescontoPorcentagem.cs" />
     <Compile Include="Modelo\Evento.cs" />
     <Compile Include="Modelo\Inscricao.cs" />
     <Compile Include="Modelo\Pessoa.cs" />
