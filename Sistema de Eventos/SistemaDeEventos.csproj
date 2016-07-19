@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
+    <Compile Include="EstadoDoEvento.cs" />
     <Compile Include="Modelo\Descontavel.cs" />
     <Compile Include="Modelo\Atividade.cs" />
     <Compile Include="Modelo\Cupom.cs" />

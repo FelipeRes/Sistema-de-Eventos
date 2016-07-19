@@ -7,7 +7,7 @@ namespace Sistema_de_Eventos {
         private List<Inscricao> inscritos = new List<Inscricao>();
 
         private Evento evento;
-        private Evento EventoDaAtividade { get { return evento; }}
+        public Evento EventoDaAtividade { get { return evento; }}
 
         private string nome;
         public string Nome { get { return nome; } set {nome = value; } }
