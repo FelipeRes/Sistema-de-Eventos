@@ -84,5 +84,13 @@ namespace SistemaDeEventosTests {
             inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoPorcentagem()));
             Assert.AreEqual(9, inscricao.ValorComDesconto);
         }
+        [TestMethod]
+        public void adiciona_inscrito_repetido() {
+            Atividade atividade = new Atividade(evento, 3);
+            Inscricao jose = new Inscricao(new Pessoa());
+            atividade.AdicionarInscritos(jose);
+            atividade.AdicionarInscritos(jose);
+            Assert.AreEqual(atividade.QuantidadeDeInscritos, 1);
+        }
     }
 }

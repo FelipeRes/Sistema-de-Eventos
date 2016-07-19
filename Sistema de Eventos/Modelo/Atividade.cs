@@ -51,7 +51,7 @@ namespace Sistema_de_Eventos {
             QuantidadeMaximaPessoas = quantidade;
         }
         public void AdicionarInscritos(Inscricao inscricao) {
-            if (QuantidadeDeInscritos < QuantidadeMaximaPessoas) {
+            if (QuantidadeDeInscritos < QuantidadeMaximaPessoas && !inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
             }
         }
