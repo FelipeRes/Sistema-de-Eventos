@@ -12,11 +12,11 @@ namespace Sistema_de_Eventos.Tests {
         Evento evento = new Evento();
         [TestMethod()]
         public void quantidade_de_atividades_no_evento() {
-            evento.AdicionarAtividade(new Atividade(evento, 3));
-            evento.AdicionarAtividade(new Atividade(evento, 3));
-            evento.AdicionarAtividade(new Atividade(evento, 3));
-            evento.AdicionarAtividade(new Atividade(evento, 3));
-            evento.AdicionarAtividade(new Atividade(evento, 3));
+            Atividade atividade1 = new Atividade(evento, 3);
+            Atividade atividade2 = new Atividade(evento, 3);
+            Atividade atividade3 = new Atividade(evento, 3);
+            Atividade atividade4 = new Atividade(evento, 3);
+            Atividade atividade5 = new Atividade(evento, 3);
             evento.RemoverAtividade(evento.ListaDeAtividades[0]);
             evento.RemoverAtividade(evento.ListaDeAtividades[0]);
             Assert.AreEqual(3, evento.ListaDeAtividades.Count);

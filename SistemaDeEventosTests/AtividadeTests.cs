@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Tests {
     [TestClass()]
     public class AtividadeTests {
-
+        public Evento evento = new Evento();
         [TestMethod()]
         public void horaio_da_ativdade_Inicio_hoje() {
             Atividade atividade = new Atividade(new Evento(),3);
@@ -41,13 +41,13 @@ namespace Sistema_de_Eventos.Tests {
         [TestMethod()]
         public void diminuir_quantidade_de_inscritos_quando_ja_tem_inscritos_pagos() {
             Atividade atividade = new Atividade(new Evento(), 4);
-            Inscricao joao = new Inscricao(new Pessoa());
+            Inscricao joao = new Inscricao(evento, new Pessoa());
             joao.FinalizarInscricao();
-            Inscricao maria = new Inscricao(new Pessoa());
+            Inscricao maria = new Inscricao(evento, new Pessoa());
             maria.FinalizarInscricao();
-            Inscricao jose = new Inscricao(new Pessoa());
+            Inscricao jose = new Inscricao(evento, new Pessoa());
             jose.FinalizarInscricao();
-            Inscricao antonio = new Inscricao(new Pessoa());
+            Inscricao antonio = new Inscricao(evento, new Pessoa());
             atividade.AdicionarInscritos(joao);
             atividade.AdicionarInscritos(maria);
             atividade.AdicionarInscritos(jose);
@@ -58,13 +58,13 @@ namespace Sistema_de_Eventos.Tests {
         [TestMethod()]
         public void diminuir_quantidade_de_inscritos_quando_ja_tem_inscritos_pagos_mas_nao_vai_diminuir_tanto() {
             Atividade atividade = new Atividade(new Evento(), 5);
-            Inscricao joao = new Inscricao(new Pessoa());
+            Inscricao joao = new Inscricao(evento, new Pessoa());
             joao.FinalizarInscricao();
-            Inscricao maria = new Inscricao(new Pessoa());
+            Inscricao maria = new Inscricao(evento, new Pessoa());
             maria.FinalizarInscricao();
-            Inscricao jose = new Inscricao(new Pessoa());
+            Inscricao jose = new Inscricao(evento, new Pessoa());
             jose.FinalizarInscricao();
-            Inscricao antonio = new Inscricao(new Pessoa());
+            Inscricao antonio = new Inscricao(evento, new Pessoa());
             atividade.AdicionarInscritos(joao);
             atividade.AdicionarInscritos(maria);
             atividade.AdicionarInscritos(jose);
