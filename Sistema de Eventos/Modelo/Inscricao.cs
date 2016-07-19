@@ -61,7 +61,11 @@ namespace Sistema_de_Eventos {
         }
         public void AdicionarCuponDeDesconto(Cupom cupom) {
             if (!pagamento) {
-                listaDeCupons.Add(cupom);
+                if(cupom.Usado == false) { 
+                    listaDeCupons.Add(cupom);
+                } else {
+                    throw new Exception("Cupom Invalido");
+                }
             } else {
                 throw new Exception("Inscricao Ja finalizada");
             }
@@ -69,6 +73,9 @@ namespace Sistema_de_Eventos {
         public void FinalizarInscricao() {
             if (evento.Estado == EstadoDoEvento.Aberto) { 
                 pagamento = true;
+                for(int i = 0; i < listaDeCupons.Count; i++) {
+                    listaDeCupons[i].Invalidar();
+                }
             } else {
                 throw new Exception("Inscricao encerrada");
             }
