@@ -43,18 +43,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
-    <Compile Include="Atividade.cs" />
-    <Compile Include="Cupom.cs" />
-    <Compile Include="CupomEstudante.cs" />
-    <Compile Include="Evento.cs" />
-    <Compile Include="Inscricao.cs" />
-    <Compile Include="Pessoa.cs" />
+    <Compile Include="Modelo\Descontavel.cs" />
+    <Compile Include="Modelo\Atividade.cs" />
+    <Compile Include="Modelo\Cupom.cs" />
+    <Compile Include="Modelo\DescontoEstudante.cs" />
+    <Compile Include="Modelo\Evento.cs" />
+    <Compile Include="Modelo\Inscricao.cs" />
+    <Compile Include="Modelo\Pessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario.cs" />
+    <Compile Include="Modelo\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

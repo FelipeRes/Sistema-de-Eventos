@@ -47,14 +47,14 @@ namespace SistemaDeEventosTests {
             Atividade atividade = new Atividade(evento, 3);
             atividade.Preco = 90;
             inscricao.AdicionarAtividade(atividade);
-            inscricao.AdicionarCuponDeDesconto(new CupomEstudante());
+            inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoEstudante()));
             Assert.AreEqual(45, inscricao.ValorComDesconto);
         }
         [TestMethod]
         public void adicionar_atividade_apos_finalizar_inscricao() {
             inscricao.AdicionarAtividade(new Atividade(evento, 3));
             inscricao.AdicionarAtividade(new Atividade(evento, 3));
-            inscricao.AdicionarCuponDeDesconto(new CupomEstudante());
+            inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoEstudante()));
             inscricao.FinalizarInscricao();
             try {
                 inscricao.AdicionarAtividade(new Atividade(evento, 3));

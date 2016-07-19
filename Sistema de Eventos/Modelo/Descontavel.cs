@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public interface Cupom {
+    public interface Descontavel {
         double GetDesconto(double valor);
     }
 }
