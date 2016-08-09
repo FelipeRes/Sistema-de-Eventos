@@ -8,6 +8,9 @@ using System.Net.Mail;
 namespace Sistema_de_Eventos {
     public class Evento {
 
+        private Evento eventoSatelite;
+        private Evento EventoSatelite { get { return eventoSatelite; } }
+
         private string nome;
         public string Nome { get { return nome; } set { this.nome = value; } }
 
@@ -41,6 +44,14 @@ namespace Sistema_de_Eventos {
         public void EnviarNotificacao(String menssagem) {
             notificacao = new Notificacao(new NotificacaoEmail());
             notificacao.EnviarNotificacao(menssagem);
+        }
+
+        public void AdicionarEventoSatelite(Evento evento) {
+            eventoSatelite = evento;
+        }
+
+        public void RemoverEventoSatelite() {
+            eventoSatelite = null;
         }
     }
 }
