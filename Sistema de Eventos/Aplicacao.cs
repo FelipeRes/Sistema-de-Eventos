@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos {
     public class Aplicacao {
         public static void Main() {
-
+            Console.ReadKey();
         }
     }
 }
