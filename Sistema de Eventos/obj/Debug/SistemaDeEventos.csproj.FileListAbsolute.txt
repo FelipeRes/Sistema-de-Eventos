@@ -1,6 +1,6 @@
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\Sistema de Eventos.exe.config
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\Sistema de Eventos.exe
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\Sistema de Eventos.pdb
-C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\SistemaDeEventos.csprojResolveAssemblyReference.cache
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.exe
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.pdb
+C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\SistemaDeEventos.csprojResolveAssemblyReference.cache

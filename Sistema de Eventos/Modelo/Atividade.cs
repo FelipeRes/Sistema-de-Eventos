@@ -15,6 +15,17 @@ namespace Sistema_de_Eventos {
         private DateTime dataInicio;
         public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
 
+        private EspacoFisico espacoFisico;
+        public EspacoFisico lugar {
+            get {
+                if (espacoFisico == null) {
+                    return new EspacoVazio();
+                } else {
+                    return espacoFisico;
+                }
+            }
+        }
+
         private DateTime dataFim;
         public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
 
@@ -35,20 +46,19 @@ namespace Sistema_de_Eventos {
         private double preco;
         public double Preco { get { return preco; } set { preco = value; } }
 
-        private string local;
-        public string Local { get { return local; } set { local = value; } }
-
-        private int quantidadeMaximaPessoas;
-        public int QuantidadeMaximaPessoas { get { return quantidadeMaximaPessoas; } set {
+        public int QuantidadeMaximaPessoas { get { return lugar.Capacidade; } set {
                 if (value >= QuantidadeDeInscritosPagos) {
-                    quantidadeMaximaPessoas = value;
+                    EspacoSimples espaco = new EspacoSimples(value, lugar.Nome);
+                    this.espacoFisico = espaco;
                 }
             }
         }
-        public Atividade(Evento evento, int quantidade) {
+        public Atividade(Evento evento, string lugar, int quantidade) {
             this.evento = evento;
             evento.AdicionarAtividade(this);
             QuantidadeMaximaPessoas = quantidade;
+            EspacoSimples espaco = new EspacoSimples(quantidade, nome);
+            this.espacoFisico = espaco;
         }
         public void AdicionarInscritos(Inscricao inscricao) {
             if (QuantidadeDeInscritos < QuantidadeMaximaPessoas && !inscritos.Contains(inscricao)) {
@@ -59,6 +69,10 @@ namespace Sistema_de_Eventos {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
             }
+        }
+        public void MudarEspacoFisico(string nome, int capacidade) {
+            EspacoSimples espaco = new EspacoSimples(capacidade, nome);
+            this.espacoFisico = espaco;
         }
     }
 }

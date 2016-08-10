@@ -14,7 +14,7 @@ namespace Sistema_de_Eventos {
             Cupom cumpom1 = new Cupom(new DescontoEstudante());
 
             Evento evento = new Evento();
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento,"Lugar", 3);
             atividade.Preco = 10;
             Inscricao inscricao = new Inscricao(evento, new Pessoa());
             inscricao.AdicionarAtividade(atividade);
@@ -22,7 +22,7 @@ namespace Sistema_de_Eventos {
             inscricao.FinalizarInscricao();
 
             Evento evento2 = new Evento();
-            Atividade atividade2 = new Atividade(evento2, 3);
+            Atividade atividade2 = new Atividade(evento2, "Lugar", 3);
             atividade2.Preco = 30;
             Inscricao inscricao2 = new Inscricao(evento2, new Pessoa());
             inscricao2.AdicionarAtividade(atividade2);

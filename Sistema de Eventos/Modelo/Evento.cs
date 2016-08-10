@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 
+
 namespace Sistema_de_Eventos {
     public class Evento {
 
@@ -21,6 +22,20 @@ namespace Sistema_de_Eventos {
 
         private Notificacao notificacao;
         public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
+
+        private EspacoFisico espacoFisico;
+        public EspacoFisico Lugar {
+            get {
+                if (espacoFisico == null) {
+                    return new EspacoVazio();
+                } else {
+                    return espacoFisico;
+                }
+            }
+            set {
+                    espacoFisico = value;
+            }
+        }
 
         public Evento() {
             Estado = EstadoDoEvento.Aberto;

@@ -14,9 +14,9 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void preco_da_inscricao() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             atividade.Preco = 45;
-            Atividade atividade2 = new Atividade(evento, 4);
+            Atividade atividade2 = new Atividade(evento, "Lugar", 4);
             atividade2.Preco = 45;
             inscricao.AdicionarAtividade(atividade);
             inscricao.AdicionarAtividade(atividade2);
@@ -25,10 +25,10 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void adicionar_atividade_repetida_na_inscricao() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade palestra = new Atividade(evento, 3);
-            inscricao.AdicionarAtividade(new Atividade(evento, 3));
+            Atividade palestra = new Atividade(evento, "Lugar", 3);
+            inscricao.AdicionarAtividade(new Atividade(evento, "Lugar", 3));
             try {
-                inscricao.AdicionarAtividade(new Atividade(evento, 3));
+                inscricao.AdicionarAtividade(new Atividade(evento, "Lugar", 3));
                 Assert.Fail();
             }catch(Exception e) {
                 Assert.IsTrue(true);
@@ -37,9 +37,9 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void remover_atividade_que_nao_existe_da_inscricao() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade palestra = new Atividade(evento, 3);
+            Atividade palestra = new Atividade(evento, "Lugar", 3);
             try {
-                inscricao.RemoverAtividade(new Atividade(evento, 3));
+                inscricao.RemoverAtividade(new Atividade(evento, "Lugar", 3));
                 Assert.Fail();
             } catch (Exception e) {
                 Assert.IsTrue(true);
@@ -48,7 +48,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void valor_da_inscricao_com_cupom_de_desconto_para_estudante() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             atividade.Preco = 90;
             inscricao.AdicionarAtividade(atividade);
             inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoEstudante()));
@@ -57,12 +57,12 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void adicionar_atividade_apos_finalizar_inscricao() {
             inscricao = new Inscricao(evento, new Pessoa());
-            inscricao.AdicionarAtividade(new Atividade(evento, 3));
-            inscricao.AdicionarAtividade(new Atividade(evento, 3));
+            inscricao.AdicionarAtividade(new Atividade(evento, "Lugar", 3));
+            inscricao.AdicionarAtividade(new Atividade(evento, "Lugar", 3));
             inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoEstudante()));
             inscricao.FinalizarInscricao();
             try {
-                inscricao.AdicionarAtividade(new Atividade(evento, 3));
+                inscricao.AdicionarAtividade(new Atividade(evento, "Lugar", 3));
                 Assert.Fail();
             }catch(Exception e) {
 
@@ -71,7 +71,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void exceder_numero_maxio_de_inscritos() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             Inscricao inscrito1 = new Inscricao(evento, new Pessoa());
             inscrito1.AdicionarAtividade(atividade);
             Inscricao inscrito2 = new Inscricao(evento, new Pessoa());
@@ -85,7 +85,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void valor_da_inscricao_com_cupom_de_desconto_por_porcentagem() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             atividade.Preco = 90;
             inscricao.AdicionarAtividade(atividade);
             inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoPorcentagem()));
@@ -94,7 +94,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void adiciona_inscrito_repetido() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             Inscricao jose = new Inscricao(evento, new Pessoa());
             atividade.AdicionarInscritos(jose);
             atividade.AdicionarInscritos(jose);
@@ -103,7 +103,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void inscrever_em_atividade_que_nao_pertece_ao_evento() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             Evento evento2 = new Evento();
             Inscricao inscricaoDeEvento2 = new Inscricao(evento2, new Pessoa());
             try {
@@ -117,7 +117,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void inscrever_em_evento_ja_fechado() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             evento.Estado = EstadoDoEvento.Encerrado;
             try {
                 inscricao.AdicionarAtividade(atividade);
@@ -130,7 +130,7 @@ namespace SistemaDeEventosTests {
         [TestMethod]
         public void inscrever_em_evento_aberto() {
             inscricao = new Inscricao(evento, new Pessoa());
-            Atividade atividade = new Atividade(evento, 3);
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             evento.Estado = EstadoDoEvento.Aberto;
             try {
                 inscricao.AdicionarAtividade(atividade);
