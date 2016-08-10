@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
     <Compile Include="Modelo\EspacoFisico.cs" />
+    <Compile Include="Modelo\EspacoVazio.cs" />
     <Compile Include="Modelo\EstadoDoEvento.cs" />
     <Compile Include="Modelo\Descontavel.cs" />
     <Compile Include="Modelo\Atividade.cs" />
@@ -71,8 +72,8 @@
     <Compile Include="Modelo\Notificacao.cs" />
     <Compile Include="Modelo\NotificacaoEmail.cs" />
     <Compile Include="Modelo\Notificavel.cs" />
-    <Compile Include="Modelo\Predio.cs" />
-    <Compile Include="Modelo\Sala.cs" />
+    <Compile Include="Modelo\EspacoComposto.cs" />
+    <Compile Include="Modelo\EspacoSimples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modelo\Usuario.cs" />
   </ItemGroup>

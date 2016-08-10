@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.Modelo {
-    public class Predio : EspacoFisico {
+namespace Sistema_de_Eventos {
+    public class EspacoComposto : EspacoFisico {
 
         private List<EspacoFisico> espacoInterior = new List<EspacoFisico>();
         private string nome;
@@ -19,9 +19,17 @@ namespace Sistema_de_Eventos.Modelo {
                 return capacidade;
             }
         }
-        public string Nome { get { return nome; } }
+        public string Nome {
+            get {
+                string nomeLocalCompleto = "";
+                for (int i = 0; i < espacoInterior.Count; i++) {
+                    nome += " - " + espacoInterior[i].Nome;
+                }
+                return nome + nomeLocalCompleto;
+            }
+        }
 
-        public Predio(string Titulo, EspacoFisico interior) {
+        public EspacoComposto(string Titulo, EspacoFisico interior) {
             nome = Titulo;
             AdicionarInterior(interior);
         }

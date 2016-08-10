@@ -55,7 +55,7 @@
     <Compile Include="AtividadeTests.cs" />
     <Compile Include="EventoTests.cs" />
     <Compile Include="CupomTests.cs" />
-    <Compile Include="Modelo\PredioTests.cs" />
+    <Compile Include="PredioTests.cs" />
     <Compile Include="NotificacaoEmailTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TesteDeInscricao.cs" />
