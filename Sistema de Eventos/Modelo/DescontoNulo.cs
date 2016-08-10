@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public interface Descontavel {
-        double GetDesconto(double valorRecebido);
+    class DescontoNulo : Descontavel {
+        public double GetDesconto(double valorRecebido) {
+            return 0;
+        }
     }
 }

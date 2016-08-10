@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
     public class DescontoPorcentagem : Descontavel {
-        public double GetDesconto(double valor) {
-            return valor/100 *valor;
+        private double porcentagem;
+        public double GetDesconto(double valorRecebido) {
+            return valorRecebido / 100 * porcentagem;
+        }
+        public DescontoPorcentagem(double porcentagem) {
+            this.porcentagem = porcentagem;
         }
     }
 }

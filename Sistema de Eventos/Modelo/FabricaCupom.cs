@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public class DescontoEstudante : Descontavel {
-        public double GetDesconto(double valor) {
-            return valor / 2;
+    public class FabricaCupom {
+
+        public FabricaCupom CriarCupom() {
+            return this;
         }
     }
 }

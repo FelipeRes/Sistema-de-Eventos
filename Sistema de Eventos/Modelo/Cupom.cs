@@ -9,10 +9,11 @@ namespace Sistema_de_Eventos {
         private Descontavel desconto;
         private Descontavel Desconto { get { return desconto; } }
         private bool usado;
+        private Cupom comboCupom;
         public bool Usado { get { return usado; }}
-        public double GetDesconto(double valor) {
+        public double GetDesconto(double valorRecebido) {
             if (!Usado) {
-                return desconto.GetDesconto(valor);
+                return desconto.GetDesconto(valorRecebido);
             }else {
                 throw new Exception("Cupom ja utilizado");
             }

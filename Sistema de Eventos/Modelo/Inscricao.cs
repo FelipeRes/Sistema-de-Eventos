@@ -32,11 +32,11 @@ namespace Sistema_de_Eventos {
         }
         public double ValorComDesconto {
             get {
-                valor = ValorTotal;
+                double valorComDesconto = ValorTotal;
                 for (int i = 0; i < listaDeAtividades.Count; i++) {
-                    valor -= listaDeCupons[i].GetDesconto(ValorTotal);
+                    valorComDesconto -= listaDeCupons[i].GetDesconto(ValorTotal);
                 }
-                return valor;
+                return valorComDesconto;
             }
         }
         public Inscricao(Evento evento, Pessoa pessoa) {
