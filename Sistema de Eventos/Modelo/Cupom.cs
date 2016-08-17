@@ -9,11 +9,18 @@ namespace Sistema_de_Eventos {
         private Descontavel desconto;
         private Descontavel Desconto { get { return desconto; } }
         private bool usado;
-        private Cupom comboCupom;
+        private List<Cupom> comboCupom = new List<Cupom>();
         public bool Usado { get { return usado; }}
         public double GetDesconto(double valorRecebido) {
             if (!Usado) {
-                return desconto.GetDesconto(valorRecebido);
+                double descontoTotal = 0;
+                descontoTotal += desconto.GetDesconto(valorRecebido);
+                if (comboCupom.Count > 0) {
+                   for(int i = 0; i < comboCupom.Count; i++) {
+                        descontoTotal +=comboCupom[i].GetDesconto(descontoTotal);
+                    }
+                }
+                return descontoTotal;
             }else {
                 throw new Exception("Cupom ja utilizado");
             }
@@ -24,6 +31,10 @@ namespace Sistema_de_Eventos {
         public Cupom(Descontavel desconto) {
             this.desconto = desconto;
             usado = false;
+        }
+        public Cupom AdicionarCupom(Cupom cupom) {
+            comboCupom.Add(cupom);
+            return this;
         }
     }
 }

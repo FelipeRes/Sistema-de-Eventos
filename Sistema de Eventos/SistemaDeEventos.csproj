@@ -68,7 +68,6 @@
     <Compile Include="Modelo\Cupom.cs" />
     <Compile Include="Modelo\DescontoPorcentagem.cs" />
     <Compile Include="Modelo\Evento.cs" />
-    <Compile Include="Modelo\FabricaCupom.cs" />
     <Compile Include="Modelo\Inscricao.cs" />
     <Compile Include="Modelo\Pessoa.cs" />
     <Compile Include="Modelo\Notificacao.cs" />

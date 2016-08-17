@@ -35,15 +35,16 @@ namespace Sistema_de_Eventos {
         }
         [TestMethod()]
         public void criando_combos_cupom() {
-            /*Cupom cumpom1 = new Cupom(new DescontoEstudante()).AdicionarPromocao(new DescontoPorcentagem()).AdicionarPromocao(new DescontoEstudante());
+            Cupom cupom1 = new Cupom(new DescontoPorcentagem(50));
+            Cupom cupom2 = new Cupom(new DescontoPorcentagem(10));
+            cupom1.AdicionarCupom(cupom2);
             Evento evento = new Evento();
             Atividade atividade = new Atividade(evento, "Lugar", 3);
             atividade.Preco = 100;
             Inscricao inscricao = new Inscricao(evento, new Pessoa());
             inscricao.AdicionarAtividade(atividade);
-            inscricao.AdicionarCuponDeDesconto(cumpom1);*/
-
-            
+            inscricao.AdicionarCuponDeDesconto(cupom1);
+            Assert.AreEqual(45, inscricao.ValorComDesconto);
         }
     }
 }
