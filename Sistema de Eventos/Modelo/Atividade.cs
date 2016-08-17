@@ -45,11 +45,10 @@ namespace Sistema_de_Eventos {
 
         private double preco;
         public double Preco { get { return preco; } set { preco = value; } }
-
-        public int QuantidadeMaximaPessoas { get { return lugar.Capacidade; } set {
+        private int quantidadeMaximaPessoas;
+        public int QuantidadeMaximaPessoas { get { return quantidadeMaximaPessoas; } set {
                 if (value >= QuantidadeDeInscritosPagos) {
-                    EspacoSimples espaco = new EspacoSimples(value, lugar.Nome);
-                    this.espacoFisico = espaco;
+                    quantidadeMaximaPessoas = value;
                 }
             }
         }
