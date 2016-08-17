@@ -58,13 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
+    <Compile Include="Modelo\DescontoNulo.cs" />
+    <Compile Include="Modelo\DescontoValor.cs" />
     <Compile Include="Modelo\EspacoFisico.cs" />
     <Compile Include="Modelo\EspacoVazio.cs" />
     <Compile Include="Modelo\EstadoDoEvento.cs" />
     <Compile Include="Modelo\Descontavel.cs" />
     <Compile Include="Modelo\Atividade.cs" />
     <Compile Include="Modelo\Cupom.cs" />
-    <Compile Include="Modelo\DescontoEstudante.cs" />
     <Compile Include="Modelo\DescontoPorcentagem.cs" />
     <Compile Include="Modelo\Evento.cs" />
     <Compile Include="Modelo\Inscricao.cs" />

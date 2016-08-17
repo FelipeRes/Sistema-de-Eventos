@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public class DescontoEstudante : Descontavel {
-        public double GetDesconto(double valor) {
-            return valor / 2;
+    class DescontoNulo : Descontavel {
+        public double GetDesconto(double valorRecebido) {
+            return 0;
         }
     }
 }
