@@ -7,44 +7,60 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo {
     public class Organizacao {
 
-        private Evento evento;
-        public Evento EventoOrganizado { get { return evento; } }
-        private Usuario organizador;
-        public Usuario Organizador { get { return organizador; } }
-        private List<Usuario> colaboradores = new List<Usuario>();
-        public List<Usuario> Colaboradores { get { return colaboradores; } }
+        private Atividade atividade;
+        public Atividade AtividadeOrganizacao { get { return atividade; } }
+        private Pessoa organizador;
+        public Pessoa Organizador { get { return organizador; } }
+        private List<Pessoa> colaboradores = new List<Pessoa>();
+        public List<Pessoa> Colaboradores { get { return colaboradores; } }
+        public String ResponsavelNome {
+            get { return organizador.Nome; }
+        }
+        public String ResponsavelDescricao {
+            get { return organizador.Descricao; }
+        }
+        public String NomeColaboradores {
+            get {
+                string colaboradores = organizador.Nome + "\n";
+                for (int i = 0; i < Colaboradores.Count; i++){
+                    colaboradores += Colaboradores[i].Nome + "\n";
+                }
+                return colaboradores;
+            }
+        }
 
-        public Organizacao (Evento evento, Usuario organizador) {
-            this.evento = evento;
+        public Organizacao (Atividade atividade, Pessoa organizador) {
+            this.atividade = atividade;
             this.organizador = organizador;
         }
-        public void AdicionarColaborador(Usuario usuario) {
-            if (usuario != null && !colaboradores.Contains(usuario)) {
-                colaboradores.Add(usuario);
+        public void AdicionarColaborador(Pessoa pessoa) {
+            if (pessoa != null && !colaboradores.Contains(pessoa)) {
+                colaboradores.Add(pessoa);
             }else {
                 throw new Exception("Colaborador ja existe");
             }
         }
-        public void RemoverColaborador(Usuario usuario) {
-            if (usuario != null && colaboradores.Contains(usuario)) {
-                colaboradores.Remove(usuario);
+        public void RemoverColaborador(Pessoa pessoa) {
+            if (pessoa != null && colaboradores.Contains(pessoa)) {
+                colaboradores.Remove(pessoa);
             } else {
                 throw new Exception("Colaborador nao Existe");
             }
         }
-        public bool ChecarUsuario(Usuario usuario) {
-            if ((usuario != null && colaboradores.Contains(usuario)) || usuario == organizador) {
+        public bool ChecarUsuario(Pessoa pessoa) {
+            if ((pessoa != null && colaboradores.Contains(pessoa)) || pessoa == organizador) {
                 return true;
             }else {
                 return false;
             }
         }
-        void PermissaoDeUsuario(Usuario usuario) {
-            if ((usuario != null && colaboradores.Contains(usuario)) || usuario == organizador) {
+        void PermissaoDeUsuario(Pessoa pessoa) {
+            if ((pessoa != null && colaboradores.Contains(pessoa)) || pessoa == organizador) {
                 return;
             } else {
                 throw new Exception("Usuario Sem Permissao");
             }
         }
+
     }
 }

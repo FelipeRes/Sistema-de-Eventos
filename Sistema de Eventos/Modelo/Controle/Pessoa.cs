@@ -18,6 +18,9 @@ namespace Sistema_de_Eventos {
         private string email;
         public string Email { get { return email; } set { this.email = value; } }
 
+        private string descricao;
+        public string Descricao { get { return descricao; } set { this.email = value; } }
+
         public Pessoa() {
         }
         public Pessoa(string nome, int idade, int CPF, string email) {
