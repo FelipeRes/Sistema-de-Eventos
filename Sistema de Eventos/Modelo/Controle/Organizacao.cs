@@ -21,11 +21,15 @@ namespace Sistema_de_Eventos.Modelo {
         public void AdicionarColaborador(Usuario usuario) {
             if (usuario != null && !colaboradores.Contains(usuario)) {
                 colaboradores.Add(usuario);
+            }else {
+                throw new Exception("Colaborador ja existe");
             }
         }
         public void RemoverColaborador(Usuario usuario) {
             if (usuario != null && colaboradores.Contains(usuario)) {
                 colaboradores.Remove(usuario);
+            } else {
+                throw new Exception("Colaborador nao Existe");
             }
         }
         public bool ChecarUsuario(Usuario usuario) {
