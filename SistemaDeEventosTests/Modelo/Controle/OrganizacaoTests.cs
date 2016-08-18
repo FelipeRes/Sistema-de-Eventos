@@ -10,13 +10,13 @@ namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class OrganizacaoTests {
 
-        public Evento evento = new Evento();
-        Usuario adm = new Usuario();
+        public Atividade atividade = new Atividade(new Evento(), "Bahia", 3);
+        Pessoa adm = new Pessoa();
 
         [TestMethod()]
         public void adicioar_colaborador_repetido() {
-            Organizacao organizacao = new Organizacao(evento, adm);
-            Usuario colaborador = new Usuario();
+            Organizacao organizacao = new Organizacao(atividade, adm);
+            Pessoa colaborador = new Pessoa();
             organizacao.AdicionarColaborador(colaborador);
             try {
                 organizacao.AdicionarColaborador(colaborador);
@@ -24,11 +24,30 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             } catch {
             }
         }
+        [TestMethod()]
+        public void nome_do_responsavel() {
+            Pessoa colaborador = new Pessoa("Felipe", 30, 0404004, "aaa@gemail");
+            Organizacao organizacao = new Organizacao(atividade, colaborador);
+            Assert.AreEqual(colaborador.Nome, organizacao.ResponsavelNome);
+        }
+
+        [TestMethod()]
+        public void nome_dos_responsaveis() {
+            Pessoa colaborador = new Pessoa("Felipe", 30, 0404004, "aaa@gemail");
+            Pessoa p1 = new Pessoa("Jotaro", 30, 0404004, "aaa@gemail");
+            Pessoa p2 = new Pessoa("Josuke", 30, 0404004, "aaa@gemail");
+            Pessoa p3 = new Pessoa("Jonhantan", 30, 0404004, "aaa@gemail");
+            Organizacao organizacao = new Organizacao(atividade, colaborador);
+            organizacao.AdicionarColaborador(p1);
+            organizacao.AdicionarColaborador(p2);
+            organizacao.AdicionarColaborador(p3);
+            Assert.AreEqual("Felipe\nJotaro\nJosuke\nJonhantan\n", organizacao.NomeColaboradores);
+        }
 
         [TestMethod()]
         public void remover_colaborador_inexistente() {
-            Organizacao organizacao = new Organizacao(evento, adm);
-            Usuario colaborador = new Usuario();
+            Organizacao organizacao = new Organizacao(atividade, adm);
+            Pessoa colaborador = new Pessoa();
             organizacao.AdicionarColaborador(colaborador);
             try {
                 organizacao.RemoverColaborador(colaborador);
