@@ -58,25 +58,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplicacao.cs" />
-    <Compile Include="Modelo\DescontoNulo.cs" />
-    <Compile Include="Modelo\DescontoValor.cs" />
-    <Compile Include="Modelo\EspacoFisico.cs" />
-    <Compile Include="Modelo\EspacoVazio.cs" />
-    <Compile Include="Modelo\EstadoDoEvento.cs" />
-    <Compile Include="Modelo\Descontavel.cs" />
-    <Compile Include="Modelo\Atividade.cs" />
-    <Compile Include="Modelo\Cupom.cs" />
-    <Compile Include="Modelo\DescontoPorcentagem.cs" />
-    <Compile Include="Modelo\Evento.cs" />
-    <Compile Include="Modelo\Inscricao.cs" />
-    <Compile Include="Modelo\Pessoa.cs" />
-    <Compile Include="Modelo\Notificacao.cs" />
-    <Compile Include="Modelo\NotificacaoEmail.cs" />
-    <Compile Include="Modelo\Notificavel.cs" />
-    <Compile Include="Modelo\EspacoComposto.cs" />
-    <Compile Include="Modelo\EspacoSimples.cs" />
+    <Compile Include="Modelo\Cupom\DescontoNulo.cs" />
+    <Compile Include="Modelo\Cupom\DescontoValor.cs" />
+    <Compile Include="Modelo\Espaco\EspacoFisico.cs" />
+    <Compile Include="Modelo\Espaco\EspacoVazio.cs" />
+    <Compile Include="Modelo\Espaco\EstadoDoEvento.cs" />
+    <Compile Include="Modelo\Cupom\Descontavel.cs" />
+    <Compile Include="Modelo\Evento\Atividade.cs" />
+    <Compile Include="Modelo\Cupom\Cupom.cs" />
+    <Compile Include="Modelo\Cupom\DescontoPorcentagem.cs" />
+    <Compile Include="Modelo\Evento\Evento.cs" />
+    <Compile Include="Modelo\Evento\Inscricao.cs" />
+    <Compile Include="Modelo\Controle\Organizacao.cs" />
+    <Compile Include="Modelo\Controle\Pessoa.cs" />
+    <Compile Include="Modelo\Notificacao\Notificacao.cs" />
+    <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
+    <Compile Include="Modelo\Notificacao\Notificavel.cs" />
+    <Compile Include="Modelo\Espaco\EspacoComposto.cs" />
+    <Compile Include="Modelo\Espaco\EspacoSimples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="Modelo\Controle\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

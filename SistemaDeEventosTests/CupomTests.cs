@@ -25,7 +25,6 @@ namespace Sistema_de_Eventos {
             Atividade atividade2 = new Atividade(evento2, "Lugar", 3);
             atividade2.Preco = 30;
             Inscricao inscricao2 = new Inscricao(evento2, new Pessoa());
-            inscricao2.AdicionarAtividade(atividade2);
             try {
                 inscricao2.AdicionarCuponDeDesconto(cumpom1);
                 Assert.Fail();
