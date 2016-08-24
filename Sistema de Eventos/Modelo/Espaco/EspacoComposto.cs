@@ -8,9 +8,8 @@ namespace Sistema_de_Eventos {
     public class EspacoComposto : EspacoFisico {
 
         private List<EspacoFisico> espacoInterior = new List<EspacoFisico>();
-        private string nome;
 
-        public int Capacidade {
+        public override int Capacidade {
             get {
                 int capacidade = 0;
                 for (int i = 0; i < espacoInterior.Count; i++) {
@@ -19,7 +18,7 @@ namespace Sistema_de_Eventos {
                 return capacidade;
             }
         }
-        public string Nome {
+        public override string Nome {
             get {
                 string nomeLocalCompleto = "";
                 for (int i = 0; i < espacoInterior.Count; i++) {

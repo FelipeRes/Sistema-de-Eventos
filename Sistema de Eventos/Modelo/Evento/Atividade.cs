@@ -45,10 +45,11 @@ namespace Sistema_de_Eventos {
 
         private double preco;
         public double Preco { get { return preco; } set { preco = value; } }
-        public Atividade(Evento evento, string lugar) {
+        public Atividade(Evento evento, string nome) {
             this.evento = evento;
             evento.AdicionarAtividade(this);
             espacoFisico = new EspacoVazio();
+            this.nome = nome;
         }
         public void AdicionarInscritos(Inscricao inscricao) {
             if (!inscritos.Contains(inscricao)) {
@@ -62,7 +63,7 @@ namespace Sistema_de_Eventos {
         }
         public void MudarEspacoFisico(string nome, int capacidade) {
             EspacoFisico espaco = new EspacoSimples(capacidade, nome);
-            this.espacoFisico = espaco;
+            espacoFisico = espaco;
         }
     }
 }
