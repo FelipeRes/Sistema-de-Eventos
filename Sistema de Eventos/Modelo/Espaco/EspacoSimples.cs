@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos{
     public class EspacoSimples : EspacoFisico {
 
-        protected int capacidade;
-        protected string nome;
-
-        public override string Nome { get { return nome; } }
-        public override int Capacidade { get { return capacidade; } }
+        private int capacidade;
+        private string nome;
+        public int Capacidade {get {return capacidade;}}
+        public string Nome {get {return nome; } }
 
         public EspacoSimples(int capacidade, string nome) {
             this.capacidade = capacidade;

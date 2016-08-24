@@ -45,14 +45,22 @@ namespace Sistema_de_Eventos {
 
         private double preco;
         public double Preco { get { return preco; } set { preco = value; } }
-        public Atividade(Evento evento, string nome) {
+        private int quantidadeMaximaPessoas;
+        public int QuantidadeMaximaPessoas { get { return quantidadeMaximaPessoas; } set {
+                if (value >= QuantidadeDeInscritosPagos) {
+                    quantidadeMaximaPessoas = value;
+                }
+            }
+        }
+        public Atividade(Evento evento, string lugar, int quantidade) {
             this.evento = evento;
             evento.AdicionarAtividade(this);
-            espacoFisico = new EspacoVazio();
-            this.nome = nome;
+            QuantidadeMaximaPessoas = quantidade;
+            EspacoSimples espaco = new EspacoSimples(quantidade, nome);
+            this.espacoFisico = espaco;
         }
         public void AdicionarInscritos(Inscricao inscricao) {
-            if (!inscritos.Contains(inscricao)) {
+            if (QuantidadeDeInscritos < QuantidadeMaximaPessoas && !inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
             }
         }
@@ -62,8 +70,8 @@ namespace Sistema_de_Eventos {
             }
         }
         public void MudarEspacoFisico(string nome, int capacidade) {
-            EspacoFisico espaco = new EspacoSimples(capacidade, nome);
-            espacoFisico = espaco;
+            EspacoSimples espaco = new EspacoSimples(capacidade, nome);
+            this.espacoFisico = espaco;
         }
     }
 }

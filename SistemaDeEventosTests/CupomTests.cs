@@ -13,7 +13,7 @@ namespace Sistema_de_Eventos {
         public void testando_se_cupom_esta_invalido() {
 
             Evento evento = new Evento();
-            Atividade atividade = new Atividade(evento,"Lugar");
+            Atividade atividade = new Atividade(evento,"Lugar", 3);
             atividade.Preco = 10;
             Inscricao inscricao = new Inscricao(evento, new Pessoa());
             inscricao.AdicionarAtividade(atividade);
@@ -22,7 +22,7 @@ namespace Sistema_de_Eventos {
             inscricao.FinalizarInscricao();
             
             Evento evento2 = new Evento();
-            Atividade atividade2 = new Atividade(evento2, "Lugar");
+            Atividade atividade2 = new Atividade(evento2, "Lugar", 3);
             atividade2.Preco = 30;
             Inscricao inscricao2 = new Inscricao(evento2, new Pessoa());
             try {
@@ -38,7 +38,7 @@ namespace Sistema_de_Eventos {
             Cupom cupom2 = new Cupom(new DescontoPorcentagem(10));
             cupom1.AdicionarCupom(cupom2);
             Evento evento = new Evento();
-            Atividade atividade = new Atividade(evento, "Lugar");
+            Atividade atividade = new Atividade(evento, "Lugar", 3);
             atividade.Preco = 100;
             Inscricao inscricao = new Inscricao(evento, new Pessoa());
             inscricao.AdicionarAtividade(atividade);

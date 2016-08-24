@@ -13,16 +13,18 @@ namespace Sistema_de_Eventos {
         private Evento EventoSatelite { get { return eventoSatelite; } }
 
         private string nome;
-        public string Nome { get { return nome; } set { this.nome = value; } }
+        public string Nome { get { return atividadePrincipal.Nome; } set { atividadePrincipal.Nome = value; } }
 
         private EstadoDoEvento estadoEvento;
         public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
 
-        private Notificacao notificacao;
-        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
+        private Atividade atividadePrincipal;
+        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } set { atividadePrincipal = value; } }
 
-        private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
-        public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
+        public List<Atividade> ListaDeAtividades = new List<Atividade>();
+
+        private Notificacao notificacao;
+        public Notificacao Notificacao { get { return notificacao; } }
 
         private EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -39,13 +41,25 @@ namespace Sistema_de_Eventos {
         }
 
         public Evento() {
+            espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
+            ListaDeAtividades = new List<Atividade>();
+            AtividadePrinciapal = new Atividade(this, espacoFisico.Nome, 100);
+            Nome = "Novo Evento";
         }
         public void AdicionarAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.AdicionarAtividade(atividade);
+            if (!ListaDeAtividades.Contains(atividade)) {
+                ListaDeAtividades.Add(atividade);
+            } else {
+                throw new Exception("Atividade repetida");
+            }
         }
         public void RemoverAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.RemoverAtividade(atividade);
+            if (ListaDeAtividades.Contains(atividade)) {
+                ListaDeAtividades.Remove(atividade);
+            } else {
+                throw new Exception("Atividade nao existe");
+            }
         }
 
         public void EnviarNotificacao(String menssagem) {
