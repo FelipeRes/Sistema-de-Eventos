@@ -33,7 +33,7 @@ namespace Sistema_de_Eventos {
         public double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
-                for (int i = 0; i < listaDeAtividades.Count; i++) {
+                for (int i = 0; i < listaDeCupons.Count; i++) {
                     valorComDesconto -= listaDeCupons[i].GetDesconto(ValorTotal);
                 }
                 return valorComDesconto;
@@ -41,6 +41,7 @@ namespace Sistema_de_Eventos {
         }
         public Inscricao(Evento evento, Pessoa pessoa) {
             this.evento = evento;
+            AdicionarAtividade(evento.AtividadePrinciapal);
             this.pessoa = pessoa;
         }
 
