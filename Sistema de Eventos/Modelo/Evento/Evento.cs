@@ -13,15 +13,18 @@ namespace Sistema_de_Eventos {
         private Evento EventoSatelite { get { return eventoSatelite; } }
 
         private string nome;
-        public string Nome { get { return nome; } set { this.nome = value; } }
+        public string Nome { get { return atividadePrincipal.Nome; } set { atividadePrincipal.Nome = value; } }
 
         private EstadoDoEvento estadoEvento;
         public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
 
+        private Atividade atividadePrincipal;
+        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } set { atividadePrincipal = value; } }
+
         public List<Atividade> ListaDeAtividades = new List<Atividade>();
 
         private Notificacao notificacao;
-        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
+        public Notificacao Notificacao { get { return notificacao; } }
 
         private EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -38,8 +41,11 @@ namespace Sistema_de_Eventos {
         }
 
         public Evento() {
+            espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
             ListaDeAtividades = new List<Atividade>();
+            AtividadePrinciapal = new Atividade(this, espacoFisico.Nome, 100);
+            Nome = "Novo Evento";
         }
         public void AdicionarAtividade(Atividade atividade) {
             if (!ListaDeAtividades.Contains(atividade)) {
