@@ -18,13 +18,14 @@ namespace Sistema_de_Eventos {
         private EstadoDoEvento estadoEvento;
         public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
 
+        private Notificacao notificacao;
+        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
+
+        private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
+        public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
+
         private Atividade atividadePrincipal;
         public Atividade AtividadePrinciapal { get { return atividadePrincipal; } set { atividadePrincipal = value; } }
-
-        public List<Atividade> ListaDeAtividades = new List<Atividade>();
-
-        private Notificacao notificacao;
-        public Notificacao Notificacao { get { return notificacao; } }
 
         private EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -44,22 +45,13 @@ namespace Sistema_de_Eventos {
             nome = "Novo Evento";
             espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
-            ListaDeAtividades = new List<Atividade>();
-            AtividadePrinciapal = new Atividade(this,espacoFisico.Nome);
+            AtividadePrinciapal = new Atividade(this, espacoFisico.Nome);
         }
         public void AdicionarAtividade(Atividade atividade) {
-            if (!ListaDeAtividades.Contains(atividade)) {
-                ListaDeAtividades.Add(atividade);
-            } else {
-                throw new Exception("Atividade repetida");
-            }
+            gerenciadorDeAtividades.AdicionarAtividade(atividade);
         }
         public void RemoverAtividade(Atividade atividade) {
-            if (ListaDeAtividades.Contains(atividade)) {
-                ListaDeAtividades.Remove(atividade);
-            } else {
-                throw new Exception("Atividade nao existe");
-            }
+            gerenciadorDeAtividades.RemoverAtividade(atividade);
         }
 
         public void EnviarNotificacao(String menssagem) {
