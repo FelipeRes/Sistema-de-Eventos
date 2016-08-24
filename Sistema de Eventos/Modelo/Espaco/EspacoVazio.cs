@@ -8,5 +8,7 @@ namespace Sistema_de_Eventos {
     public class EspacoVazio : EspacoFisico { 
         public int Capacidade { get {return 0;}}
         public string Nome {get {return "vazio"; }}
+        public EspacoVazio() {
+        }
     }
 }
