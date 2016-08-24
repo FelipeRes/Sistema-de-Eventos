@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class OrganizacaoTests {
+
         public Atividade atividade = new Atividade(new Evento(), "Bahia");
         Pessoa adm = new Pessoa();
 

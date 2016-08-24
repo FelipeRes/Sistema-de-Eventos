@@ -18,16 +18,16 @@ namespace Sistema_de_Eventos.Tests {
             Atividade atividade3 = new Atividade(evento, "Lugar");
             Atividade atividade4 = new Atividade(evento, "Lugar");
             Atividade atividade5 = new Atividade(evento, "Lugar");
-            evento.RemoverAtividade(atividade1);
-            evento.RemoverAtividade(atividade2);
-            Assert.AreEqual(3, evento.QuantidadeDeAtividades);
+            evento.RemoverAtividade(evento.ListaDeAtividades[0]);
+            evento.RemoverAtividade(evento.ListaDeAtividades[0]);
+            Assert.AreEqual(4, evento.ListaDeAtividades.Count);
         }
         [TestMethod()]
         public void adicao_de_atividade_pelo_contrutor_da_atividade() {
             Atividade atividade1 = new Atividade(evento, "Lugar");
             Atividade atividade2 = new Atividade(evento, "Lugar");
             Atividade atividade3 = new Atividade(evento, "Lugar");
-            Assert.AreEqual(3, evento.QuantidadeDeAtividades);
+            Assert.AreEqual(4, evento.ListaDeAtividades.Count);
         }
         [TestMethod()]
         public void adicionar_local_ao_evento() {
