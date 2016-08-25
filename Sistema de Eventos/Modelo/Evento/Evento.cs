@@ -23,28 +23,14 @@ namespace Sistema_de_Eventos {
 
         private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
         public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
-        public List<Atividade> listaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
+        public List<Atividade> ListaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
 
         private Atividade atividadePrincipal;
         public Atividade AtividadePrinciapal { get { return atividadePrincipal; } }
 
-        private EspacoFisico espacoFisico;
-        public EspacoFisico Lugar {
-            get {
-                if (espacoFisico == null) {
-                    return new EspacoVazio();
-                } else {
-                    return espacoFisico;
-                }
-            }
-            set {
-                    espacoFisico = value;
-            }
-        }
-
         public Evento() {
             nome = "Novo Evento";
-            espacoFisico = new EspacoVazio();
+            EspacoFisico espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
             atividadePrincipal = new Atividade(this, espacoFisico.Nome);
         }

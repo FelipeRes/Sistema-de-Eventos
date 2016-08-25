@@ -36,12 +36,12 @@ namespace Sistema_de_Eventos.Tests {
             Atividade atividade3 = new Atividade(evento, "Lugar");
             EspacoFisico sala = new EspacoSimples(10, "B3");
             EspacoFisico espaco = new EspacoComposto("Predio B", sala);
-            evento.Lugar = espaco;
-            Assert.AreEqual(evento.Lugar.Nome, "Predio B - B3" );
+            evento.AtividadePrinciapal.Lugar = espaco;
+            Assert.AreEqual(evento.AtividadePrinciapal.Lugar.Nome, "Predio B - B3" );
         }
         [TestMethod()]
         public void saber_se_evento_tem_espaco_vazio() {
-            Assert.AreEqual(evento.Lugar.Nome, "vazio");
+            Assert.AreEqual(evento.AtividadePrinciapal.Lugar.Nome, "vazio");
         }
         [TestMethod()]
         public void modificando_atividade_principal_do_evento() {

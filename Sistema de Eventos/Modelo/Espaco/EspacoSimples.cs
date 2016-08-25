@@ -16,6 +16,7 @@ namespace Sistema_de_Eventos{
         public EspacoSimples(int capacidade, string nome) {
             this.capacidade = capacidade;
             this.nome = nome;
+            listaDeAtividades = new GerenciaAtividade();
         }
     }
 }
