@@ -25,7 +25,7 @@ namespace Sistema_de_Eventos {
         public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
 
         private Atividade atividadePrincipal;
-        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } set { atividadePrincipal = value; } }
+        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } }
 
         private EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -45,7 +45,7 @@ namespace Sistema_de_Eventos {
             nome = "Novo Evento";
             espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
-            AtividadePrinciapal = new Atividade(this, espacoFisico.Nome);
+            atividadePrincipal = new Atividade(this, espacoFisico.Nome);
         }
         public void AdicionarAtividade(Atividade atividade) {
             gerenciadorDeAtividades.AdicionarAtividade(atividade);

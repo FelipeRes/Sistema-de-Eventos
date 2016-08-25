@@ -43,5 +43,26 @@ namespace Sistema_de_Eventos.Tests {
         public void saber_se_evento_tem_espaco_vazio() {
             Assert.AreEqual(evento.Lugar.Nome, "vazio");
         }
+        [TestMethod()]
+        public void modificando_atividade_principal_do_evento() {
+            evento.AtividadePrinciapal.Nome = "Arduiono Day";
+            Assert.AreEqual(evento.AtividadePrinciapal.Nome, "Arduiono Day");
+        }
+        [TestMethod()]
+        public void inscricao_em_atividade_principal() {
+            evento.AtividadePrinciapal.Nome = "Arduiono Day";
+            evento.AtividadePrinciapal.Preco = 30;
+            Inscricao inscricao = new Inscricao(evento, new Pessoa());
+            inscricao.FinalizarInscricao();
+            Assert.AreEqual(inscricao.ValorTotal, 30);
+        }
+        [TestMethod()]
+        public void confirmacao_de_inscricao() {
+            evento.AtividadePrinciapal.Nome = "Arduiono Day";
+            evento.AtividadePrinciapal.Preco = 30;
+            Inscricao inscricao = new Inscricao(evento, new Pessoa());
+            Inscricao inscricao2 = new Inscricao(evento, new Pessoa());
+            Assert.AreEqual(evento.AtividadePrinciapal.QuantidadeDeInscritos, 2);
+        }
     }
 }
