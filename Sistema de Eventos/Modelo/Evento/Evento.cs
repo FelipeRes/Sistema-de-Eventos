@@ -23,6 +23,7 @@ namespace Sistema_de_Eventos {
 
         private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
         public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
+        public List<Atividade> listaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
 
         private Atividade atividadePrincipal;
         public Atividade AtividadePrinciapal { get { return atividadePrincipal; } }
