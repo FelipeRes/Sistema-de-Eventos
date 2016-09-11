@@ -16,13 +16,18 @@ namespace Sistema_de_Eventos {
         public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
 
         private EspacoFisico espacoFisico;
-        public EspacoFisico lugar {
+        public EspacoFisico Lugar {
             get {
                 if (espacoFisico == null) {
                     return new EspacoVazio();
                 } else {
                     return espacoFisico;
                 }
+            }
+            set {
+                espacoFisico.RemoverAtividade(this);
+                value.AdicionarAtividade(this);
+                espacoFisico = value;
             }
         }
 
@@ -48,8 +53,8 @@ namespace Sistema_de_Eventos {
         public Atividade(Evento evento, string nome) {
             this.evento = evento;
             evento.AdicionarAtividade(this);
-            espacoFisico = new EspacoVazio();
             this.nome = nome;
+            espacoFisico = new EspacoVazio();
         }
         public void AdicionarInscritos(Inscricao inscricao) {
             if (!inscritos.Contains(inscricao)) {
@@ -60,10 +65,6 @@ namespace Sistema_de_Eventos {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
             }
-        }
-        public void MudarEspacoFisico(string nome, int capacidade) {
-            EspacoFisico espaco = new EspacoSimples(capacidade, nome);
-            espacoFisico = espaco;
         }
     }
 }
