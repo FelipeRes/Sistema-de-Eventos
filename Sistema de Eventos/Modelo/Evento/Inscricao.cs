@@ -7,8 +7,7 @@ using System.Net.Mail;
 
 namespace Sistema_de_Eventos {
     public class Inscricao {
-
-        private List<Atividade> listaDeAtividades = new List<Atividade>();
+        
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
         private Evento evento;
@@ -20,16 +19,9 @@ namespace Sistema_de_Eventos {
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
 
-        private double valor;
-        public double ValorTotal {
-            get {
-                valor = 0;
-                for (int i = 0; i < listaDeAtividades.Count; i++) {
-                    valor += listaDeAtividades[i].Preco;
-                }
-                return valor;
-            }
-        }
+        private ListaAtividade listaDeAtividades = new ListaAtividade();
+
+        public double ValorTotal { get {return listaDeAtividades.ValorDeTodasAtividades();}}
         public double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
@@ -46,16 +38,16 @@ namespace Sistema_de_Eventos {
         }
 
         public void AdicionarAtividade(Atividade atividade) {
-            if (!listaDeAtividades.Contains(atividade) && !pagamento && atividade.EventoDaAtividade == this.eventoDaInscricao) {
+            if (!pagamento && evento.PossuiAtividade(atividade)) {
                 atividade.AdicionarInscritos(this);
-                listaDeAtividades.Add(atividade);
+                listaDeAtividades.AdicionarAtividade(atividade);
             }else {
                 throw new Exception("Atividade Repetida ou não pertece a esse evento");
             }
         }
         public void RemoverAtividade(Atividade atividade) {
-            if (listaDeAtividades.Contains(atividade) && !pagamento) {
-                listaDeAtividades.Remove(atividade);
+            if (!pagamento) {
+                listaDeAtividades.RemoverAtividade(atividade);
                 atividade.RemoverInscritos(this);
             }else {
                 throw new Exception("Atividade nao encontrada");
@@ -74,12 +66,12 @@ namespace Sistema_de_Eventos {
         }
         public void FinalizarInscricao() {
             if (evento.Estado == EstadoDoEvento.Aberto) {
-                if (listaDeAtividades.Count > 0) { 
-                pagamento = true;
-                for (int i = 0; i < listaDeCupons.Count; i++) {
-                    listaDeCupons[i].Invalidar();
-                }
-                evento.EnviarNotificacao("Inscricao Realizada com sucesso");
+                if (listaDeAtividades.QunatidadeDeInscritos() > 0) { 
+                    pagamento = true;
+                    for (int i = 0; i < listaDeCupons.Count; i++) {
+                        listaDeCupons[i].Invalidar();
+                    }
+                    evento.EnviarNotificacao("Inscricao Realizada com sucesso");
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }

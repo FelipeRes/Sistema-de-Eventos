@@ -13,7 +13,7 @@ namespace Sistema_de_Eventos {
         abstract public string Nome { get; }
         abstract public int Capacidade { get; }
 
-        protected GerenciaAtividade listaDeAtividades;
+        protected ListaAtividade listaDeAtividades;
         public List<Atividade> ListaDeAtividades { get {return listaDeAtividades.ListaDeAtividades; } }
 
         public void AdicionarAtividade(Atividade atividade) {

@@ -23,7 +23,8 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.AtividadePrinciapal.Nome = "GGJ";
             evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            Atividade atividade2 = new Atividade(evento, "MiniCurso");
+            Atividade atividade2 = new Atividade("MiniCurso");
+            evento.AdicionarAtividade(atividade2);
             atividade2.DataInicio = new DateTime(2016, 1, 27, 18, 0, 0);
             atividade2.DataFim = new DateTime(2016, 1, 27, 22, 0, 0);
             AgendaUtils.QuadroDeHorariosDoEvento(evento);
@@ -34,7 +35,8 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.AtividadePrinciapal.Nome = "GGJ";
             evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            Atividade atividade2 = new Atividade(evento, "MiniCurso");
+            Atividade atividade2 = new Atividade("MiniCurso");
+            evento.AdicionarAtividade(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
             AgendaUtils.QuadroDeHorariosDoEvento(evento);
@@ -47,7 +49,8 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             evento.AtividadePrinciapal.Lugar = espaco;
-            Atividade atividade2 = new Atividade(evento, "MiniCurso");
+            Atividade atividade2 = new Atividade("MiniCurso");
+            evento.AdicionarAtividade(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
             atividade2.Lugar = espaco;

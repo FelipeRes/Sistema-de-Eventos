@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public class GerenciaAtividade {
+    public class ListaAtividade {
 
         public List<Atividade> ListaDeAtividades;
 
-        public GerenciaAtividade() {
+        public ListaAtividade() {
             ListaDeAtividades = new List<Atividade>();
         }
 
@@ -24,6 +24,16 @@ namespace Sistema_de_Eventos {
             if (ListaDeAtividades.Contains(atividade)) {
                 ListaDeAtividades.Remove(atividade);
             }
+        }
+        public double ValorDeTodasAtividades() {
+            double valor = 0;
+            for (int i = 0; i < ListaDeAtividades.Count; i++) {
+                valor += ListaDeAtividades[i].Preco;
+            }
+            return valor;
+        }
+        public int QunatidadeDeInscritos() {
+            return ListaDeAtividades.Count;
         }
     }
 }

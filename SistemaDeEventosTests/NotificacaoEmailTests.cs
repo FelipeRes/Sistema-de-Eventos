@@ -13,7 +13,8 @@ namespace Sistema_de_Eventos.Tests {
         [TestMethod()]
         public void enviar_notificacao() {
             Evento evento = new Evento();
-            Atividade ativiade = new Atividade(evento, "Lugar");
+            Atividade ativiade = new Atividade("Lugar");
+            evento.AdicionarAtividade(ativiade);
             Inscricao inscricao = new Inscricao(evento, new Pessoa());
             inscricao.AdicionarAtividade(ativiade);
             inscricao.FinalizarInscricao();

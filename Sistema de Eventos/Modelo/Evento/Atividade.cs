@@ -6,16 +6,22 @@ namespace Sistema_de_Eventos {
 
         private List<Inscricao> inscritos = new List<Inscricao>();
 
-        private Evento evento;
-        public Evento EventoDaAtividade { get { return evento; }}
-
         private string nome;
         public string Nome { get { return nome; } set {nome = value; } }
 
         private DateTime dataInicio;
         public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
 
+        private DateTime dataFim;
+        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
+
+        public int QuantidadeDeInscritos { get { return inscritos.Count; } }
+
         private EspacoFisico espacoFisico;
+
+        private double preco;
+        public double Preco { get { return preco; } set { preco = value; } }
+
         public EspacoFisico Lugar {
             get {
                 if (espacoFisico == null) {
@@ -31,11 +37,6 @@ namespace Sistema_de_Eventos {
             }
         }
 
-        private DateTime dataFim;
-        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
-
-        public int QuantidadeDeInscritos { get {return inscritos.Count; } }
-
         public int QuantidadeDeInscritosPagos {
             get {
                 int quantidadePagos =0;
@@ -48,11 +49,7 @@ namespace Sistema_de_Eventos {
             }
         }
 
-        private double preco;
-        public double Preco { get { return preco; } set { preco = value; } }
-        public Atividade(Evento evento, string nome) {
-            this.evento = evento;
-            evento.AdicionarAtividade(this);
+        public Atividade(String nome) {
             this.nome = nome;
             espacoFisico = new EspacoVazio();
         }

@@ -21,7 +21,7 @@ namespace Sistema_de_Eventos {
         private Notificacao notificacao;
         public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
 
-        private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
+        private ListaAtividade gerenciadorDeAtividades = new ListaAtividade();
         public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
         public List<Atividade> ListaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
 
@@ -32,7 +32,8 @@ namespace Sistema_de_Eventos {
             nome = "Novo Evento";
             EspacoFisico espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
-            atividadePrincipal = new Atividade(this, espacoFisico.Nome);
+            atividadePrincipal = new Atividade(espacoFisico.Nome);
+            AdicionarAtividade(atividadePrincipal);
         }
         public void AdicionarAtividade(Atividade atividade) {
             gerenciadorDeAtividades.AdicionarAtividade(atividade);
@@ -52,6 +53,13 @@ namespace Sistema_de_Eventos {
 
         public void RemoverEventoSatelite() {
             eventoSatelite = null;
+        }
+        public bool PossuiAtividade(Atividade atividade) {
+            if (ListaDeAtividades.Contains(atividade)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
