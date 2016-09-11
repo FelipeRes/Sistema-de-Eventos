@@ -42,8 +42,8 @@ namespace Sistema_de_Eventos.Tests {
         [TestMethod()]
         public void adicionar_espaco_fisico() {
             Atividade atividade = new Atividade(evento, "Lugar");
-            atividade.MudarEspacoFisico("Outro Lugar", 10);
-            Assert.AreEqual("Outro Lugar", atividade.lugar.Nome);
+            atividade.Lugar = new EspacoSimples(10,"Outro Lugar");
+            Assert.AreEqual("Outro Lugar", atividade.Lugar.Nome);
         }
     }
     

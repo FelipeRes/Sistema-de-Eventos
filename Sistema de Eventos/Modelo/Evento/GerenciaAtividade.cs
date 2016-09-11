@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos {
     public class GerenciaAtividade {
 
-        public List<Atividade> ListaDeAtividades = new List<Atividade>();
+        public List<Atividade> ListaDeAtividades;
+
+        public GerenciaAtividade() {
+            ListaDeAtividades = new List<Atividade>();
+        }
 
         public void AdicionarAtividade(Atividade atividade) {
             if (!ListaDeAtividades.Contains(atividade)) {
@@ -19,8 +23,6 @@ namespace Sistema_de_Eventos {
         public void RemoverAtividade(Atividade atividade) {
             if (ListaDeAtividades.Contains(atividade)) {
                 ListaDeAtividades.Remove(atividade);
-            } else {
-                throw new Exception("Atividade nao existe");
             }
         }
     }
