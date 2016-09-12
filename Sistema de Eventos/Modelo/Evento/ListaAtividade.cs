@@ -7,33 +7,44 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos {
     public class ListaAtividade {
 
-        public List<Atividade> ListaDeAtividades;
+        private List<Atividade> lista;
 
         public ListaAtividade() {
-            ListaDeAtividades = new List<Atividade>();
+            lista = new List<Atividade>();
         }
 
-        public void AdicionarAtividade(Atividade atividade) {
-            if (!ListaDeAtividades.Contains(atividade)) {
-                ListaDeAtividades.Add(atividade);
+        public void Adicionar(Atividade atividade) {
+            if (!lista.Contains(atividade)) {
+                lista.Add(atividade);
             } else {
                 throw new Exception("Atividade repetida");
             }
         }
-        public void RemoverAtividade(Atividade atividade) {
-            if (ListaDeAtividades.Contains(atividade)) {
-                ListaDeAtividades.Remove(atividade);
+        public void Remover(Atividade atividade) {
+            if (lista.Contains(atividade)) {
+                lista.Remove(atividade);
             }
         }
-        public double ValorDeTodasAtividades() {
-            double valor = 0;
-            for (int i = 0; i < ListaDeAtividades.Count; i++) {
-                valor += ListaDeAtividades[i].Preco;
+        public double ValorDeTodasAtividades{
+            get {
+                double valor = 0;
+                for (int i = 0; i < lista.Count; i++) {
+                    valor += lista[i].Preco;
+                }
+                return valor;
             }
-            return valor;
         }
-        public int QunatidadeDeInscritos() {
-            return ListaDeAtividades.Count;
+        public int Quantidade {get { return lista.Count; }}
+
+        public bool Possui(Atividade atividade) {
+                if (lista.Contains(atividade)) {
+                    return true;
+                } else {
+                    return false;
+                }
+        }
+        public IReadOnlyList<Atividade> Lista {
+            get {return lista; }
         }
     }
 }

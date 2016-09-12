@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos.Modelo {
     public class AgendaUtils {
-        static public String QuadroDeHorariosDoEvento(Evento evento) {
-            List<Atividade> lista = evento.ListaDeAtividades;
-            List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
+        static public String QuadroDeHorariosDoEvento(Atividade evento) {
+            /*List<Atividade> lista = (List<Atividade>)evento.Atividades.Lista;
+            lista.Add(evento);
+            List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList(); 
             string horarios = "\n";
             for (int i = 0; i < listaOrdenada.Count; i++) {
                 horarios += listaOrdenada[i].Nome;
@@ -17,11 +18,12 @@ namespace Sistema_de_Eventos.Modelo {
                 horarios += " - Fim: ";
                 horarios += listaOrdenada[i].DataFim.ToString();
                 horarios += "\n";
-            }
+            }*/
+            string horarios = "\n";
             return horarios;
         }
         static public String QuadroDeHorariosDoLocal(EspacoFisico espaco) {
-            List<Atividade> lista = espaco.ListaDeAtividades;
+            List<Atividade> lista = (List<Atividade>)espaco.ListaDeAtividades;
             List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
             string horarios = "\n";
             for (int i = 0; i < listaOrdenada.Count; i++) {

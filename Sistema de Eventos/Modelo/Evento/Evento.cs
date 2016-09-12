@@ -7,59 +7,33 @@ using System.Net.Mail;
 
 
 namespace Sistema_de_Eventos {
-    public class Evento {
-
-        private Evento eventoSatelite;
-        private Evento EventoSatelite { get { return eventoSatelite; } }
-
-        private string nome;
-        public string Nome { get { return nome; } set { this.nome = value; } }
-
-        private EstadoDoEvento estadoEvento;
-        public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
-
-        private Notificacao notificacao;
-        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
-
-        private ListaAtividade gerenciadorDeAtividades = new ListaAtividade();
-        public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
-        public List<Atividade> ListaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
-
-        private Atividade atividadePrincipal;
-        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } }
+    public class Evento : Atividade {
+        
+        public ListaAtividade Atividades;
 
         public Evento() {
-            nome = "Novo Evento";
             EspacoFisico espacoFisico = new EspacoVazio();
             Estado = EstadoDoEvento.Aberto;
-            atividadePrincipal = new Atividade(espacoFisico.Nome);
-            AdicionarAtividade(atividadePrincipal);
-        }
-        public void AdicionarAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.AdicionarAtividade(atividade);
-        }
-        public void RemoverAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.RemoverAtividade(atividade);
+            Atividades = new ListaAtividade();
         }
 
-        public void EnviarNotificacao(String menssagem) {
-            notificacao = new Notificacao(new NotificacaoEmail());
-            notificacao.EnviarNotificacao(menssagem);
-        }
-
-        public void AdicionarEventoSatelite(Evento evento) {
-            eventoSatelite = evento;
-        }
-
-        public void RemoverEventoSatelite() {
-            eventoSatelite = null;
-        }
-        public bool PossuiAtividade(Atividade atividade) {
-            if (ListaDeAtividades.Contains(atividade)) {
-                return true;
-            } else {
-                return false;
+        public override String Agenda {
+            get {
+                string horarios = "\n";
+                List<Atividade> lista = (List<Atividade>)this.Atividades.Lista;
+                lista.Add(this);
+                List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
+                for (int i = 0; i < listaOrdenada.Count; i++) {
+                    horarios += listaOrdenada[i].Nome;
+                    horarios += " - Inicio: ";
+                    horarios += listaOrdenada[i].DataInicio.ToString();
+                    horarios += " - Fim: ";
+                    horarios += listaOrdenada[i].DataFim.ToString();
+                    horarios += "\n";
+                }
+                return horarios;
             }
         }
+
     }
 }

@@ -12,50 +12,46 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         Evento evento = new Evento();
         [TestMethod()]
         public void formacao_de_quadro_de_horarios() {
-            evento.AtividadePrinciapal.Nome = "GGJ";
-            evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
-            evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            AgendaUtils.QuadroDeHorariosDoEvento(evento);
-            Assert.AreEqual("\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", AgendaUtils.QuadroDeHorariosDoEvento(evento));
+            evento.Nome = "GGJ";
+            evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
+            evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
+            Assert.AreEqual("\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", evento.Agenda);
         }
         [TestMethod()]
         public void quadro_de_horarios_para_varias_atividades() {
-            evento.AtividadePrinciapal.Nome = "GGJ";
-            evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
-            evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
+            evento.Nome = "GGJ";
+            evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
+            evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             Atividade atividade2 = new Atividade("MiniCurso");
-            evento.AdicionarAtividade(atividade2);
+            evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2016, 1, 27, 18, 0, 0);
             atividade2.DataFim = new DateTime(2016, 1, 27, 22, 0, 0);
-            AgendaUtils.QuadroDeHorariosDoEvento(evento);
-            Assert.AreEqual("\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\nMiniCurso - Inicio: 27/01/2016 18:00:00 - Fim: 27/01/2016 22:00:00\n", AgendaUtils.QuadroDeHorariosDoEvento(evento));
+            Assert.AreEqual("\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\nMiniCurso - Inicio: 27/01/2016 18:00:00 - Fim: 27/01/2016 22:00:00\n", evento.Agenda);
         }
         [TestMethod()]
         public void saber_se_a_agenda_esta_ordenada() {
-            evento.AtividadePrinciapal.Nome = "GGJ";
-            evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
-            evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
+            evento.Nome = "GGJ";
+            evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
+            evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             Atividade atividade2 = new Atividade("MiniCurso");
-            evento.AdicionarAtividade(atividade2);
+            evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
-            AgendaUtils.QuadroDeHorariosDoEvento(evento);
-            Assert.AreEqual("\nMiniCurso - Inicio: 21/01/2015 13:00:00 - Fim: 21/01/2015 17:00:00\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", AgendaUtils.QuadroDeHorariosDoEvento(evento));
+            Assert.AreEqual("\nMiniCurso - Inicio: 21/01/2015 13:00:00 - Fim: 21/01/2015 17:00:00\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", evento.Agenda);
         }
         [TestMethod()]
         public void quadro_de_horarios_por_espaco_fisico() {
             EspacoFisico espaco = new EspacoSimples(12, "PredioB");
-            evento.AtividadePrinciapal.Nome = "GGJ";
-            evento.AtividadePrinciapal.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
-            evento.AtividadePrinciapal.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            evento.AtividadePrinciapal.Lugar = espaco;
+            evento.Nome = "GGJ";
+            evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
+            evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
+            evento.Lugar = espaco;
             Atividade atividade2 = new Atividade("MiniCurso");
-            evento.AdicionarAtividade(atividade2);
+            evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
             atividade2.Lugar = espaco;
-            AgendaUtils.QuadroDeHorariosDoLocal(espaco);
-            Assert.AreEqual("\nMiniCurso - Inicio: 21/01/2015 13:00:00 - Fim: 21/01/2015 17:00:00\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", AgendaUtils.QuadroDeHorariosDoEvento(evento));
+            Assert.AreEqual("\nMiniCurso - Inicio: 21/01/2015 13:00:00 - Fim: 21/01/2015 17:00:00\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", evento.Agenda);
         }
     }
 }

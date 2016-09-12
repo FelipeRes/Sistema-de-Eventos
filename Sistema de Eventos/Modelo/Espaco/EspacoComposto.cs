@@ -31,7 +31,7 @@ namespace Sistema_de_Eventos {
         public EspacoComposto(string Titulo, EspacoFisico interior) {
             nome = Titulo;
             AdicionarInterior(interior);
-            listaDeAtividades = new ListaAtividade();
+            Atividade = new ListaAtividade();
         }
         public void AdicionarInterior(EspacoFisico interior) {
             if (!espacoInterior.Contains(interior) && interior != null) {
