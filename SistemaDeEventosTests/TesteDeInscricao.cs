@@ -121,7 +121,7 @@ namespace SistemaDeEventosTests {
             inscricao = new Inscricao(evento, new Pessoa());
             Atividade atividade = new Atividade("Lugar");
             evento.Atividades.Adicionar(atividade);
-            evento.Estado = EstadoDoEvento.Encerrado;
+            evento.Estado = EstadoDaAtividade.Encerrado;
             try {
                 inscricao.AdicionarAtividade(atividade);
                 Assert.Fail();
@@ -135,7 +135,7 @@ namespace SistemaDeEventosTests {
             inscricao = new Inscricao(evento, new Pessoa());
             Atividade atividade = new Atividade("Lugar");
             evento.Atividades.Adicionar(atividade);
-            evento.Estado = EstadoDoEvento.Aberto;
+            evento.Estado = EstadoDaAtividade.Aberto;
             try {
                 inscricao.AdicionarAtividade(atividade);
                 Assert.Fail();

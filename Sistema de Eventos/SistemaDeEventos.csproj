@@ -62,7 +62,7 @@
     <Compile Include="Modelo\Cupom\DescontoValor.cs" />
     <Compile Include="Modelo\Espaco\EspacoFisico.cs" />
     <Compile Include="Modelo\Espaco\EspacoVazio.cs" />
-    <Compile Include="Modelo\Espaco\EstadoDoEvento.cs" />
+    <Compile Include="Modelo\Espaco\EstadoDaAtividade.cs" />
     <Compile Include="Modelo\Cupom\Descontavel.cs" />
     <Compile Include="Modelo\Evento\AgendaUtils.cs" />
     <Compile Include="Modelo\Evento\Atividade.cs" />

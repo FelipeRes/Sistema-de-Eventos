@@ -15,8 +15,8 @@ namespace Sistema_de_Eventos {
         private DateTime dataFim;
         public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
 
-        private EstadoDoEvento estadoEvento;
-        public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
+        private EstadoDaAtividade estadoDaAtividade;
+        public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
 
         public int QuantidadeDeInscritos { get { return inscritos.Count; } }
 

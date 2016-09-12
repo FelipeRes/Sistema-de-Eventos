@@ -13,7 +13,7 @@ namespace Sistema_de_Eventos {
 
         public Evento() {
             EspacoFisico espacoFisico = new EspacoVazio();
-            Estado = EstadoDoEvento.Aberto;
+            Estado = EstadoDaAtividade.Aberto;
             Atividades = new ListaAtividade();
         }
 

@@ -65,7 +65,7 @@ namespace Sistema_de_Eventos {
             }
         }
         public void FinalizarInscricao() {
-            if (evento.Estado == EstadoDoEvento.Aberto) {
+            if (evento.Estado == EstadoDaAtividade.Aberto) {
                 if (listaDeAtividades.Quantidade > 0) { 
                     pagamento = true;
                     for (int i = 0; i < listaDeCupons.Count; i++) {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public enum EstadoDoEvento {
+    public enum EstadoDaAtividade {
         Aberto,
         InscricoesEncerradas,
         Encerrado
