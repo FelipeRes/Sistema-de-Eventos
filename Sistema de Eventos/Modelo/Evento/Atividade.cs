@@ -2,53 +2,40 @@
 using System.Collections.Generic;
 
 namespace Sistema_de_Eventos {
-    public class Atividade {
+    public abstract class Atividade {
 
-        private List<Inscricao> inscritos;
+        protected List<Inscricao> inscritos;
 
-        private string nome;
+        protected string nome;
         public string Nome { get { return nome; } set { nome = value; } }
 
-        private DateTime dataInicio;
+        protected DateTime dataInicio;
         public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
 
-        private DateTime dataFim;
+        protected DateTime dataFim;
         public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
 
-        private EstadoDaAtividade estadoDaAtividade;
+        protected EstadoDaAtividade estadoDaAtividade;
         public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
 
-        public int QuantidadeDeInscritos { get { return inscritos.Count; } }
+        protected double preco;
+        public abstract double Preco { get; set; }
 
-        private EspacoFisico espacoFisico;
+        public abstract int QuantidadeDeInscritos { get; }
 
-        private double preco;
-        public double Preco { get { return preco; } set { preco = value; } }
+        public abstract int QuantidadeDeInscritosPagos { get; }
 
+        public abstract String Agenda { get; }
+
+        protected EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
             get {
-                if (espacoFisico == null) {
-                    return new EspacoVazio();
-                } else {
-                    return espacoFisico;
-                }
+                return espacoFisico;
             }
             set {
                 espacoFisico.RemoverAtividade(this);
                 value.AdicionarAtividade(this);
                 espacoFisico = value;
-            }
-        }
-
-        public int QuantidadeDeInscritosPagos {
-            get {
-                int quantidadePagos =0;
-                for (int i = 0; i < QuantidadeDeInscritos; i++) {
-                    if (inscritos[i].Pagamento) {
-                        quantidadePagos++;
-                    }
-                }
-                return quantidadePagos;
             }
         }
 
@@ -61,6 +48,7 @@ namespace Sistema_de_Eventos {
             inscritos = new List<Inscricao>();
             espacoFisico = new EspacoVazio();
         }
+
         public void AdicionarInscritos(Inscricao inscricao) {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
@@ -69,19 +57,6 @@ namespace Sistema_de_Eventos {
         public void RemoverInscritos(Inscricao inscricao) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
-            }
-        }
-
-        public virtual String Agenda {
-            get {
-                string horarios = "\n";
-                horarios += Nome;
-                horarios += " - Inicio: ";
-                horarios += DataInicio.ToString();
-                horarios += " - Fim: ";
-                horarios += DataFim.ToString();
-                horarios += "\n";
-                return horarios;
             }
         }
     }

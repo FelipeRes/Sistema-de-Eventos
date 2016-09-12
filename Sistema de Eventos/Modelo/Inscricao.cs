@@ -10,18 +10,18 @@ namespace Sistema_de_Eventos {
         
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
-        private Atividade evento;
-        public Atividade eventoDaInscricao { get { return evento;}}
+        private Atividade Atividade;
+        public Atividade AtividadeDaInscricao { get { return Atividade;}}
 
-        private Pessoa pessoa;
-        public Pessoa PessoaInscrita { get { return pessoa; } }
+        private Usuario usuario;
+        public Usuario PessoaInscrita { get { return usuario; } }
 
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
 
         private ListaAtividade listaDeAtividades = new ListaAtividade();
 
-        public double ValorTotal { get {return listaDeAtividades.ValorDeTodasAtividades;}}
+        public double ValorTotal { get { return Atividade.Preco;}}
         public double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
@@ -31,10 +31,10 @@ namespace Sistema_de_Eventos {
                 return valorComDesconto;
             }
         }
-        public Inscricao(Atividade atividade, Pessoa pessoa) {
-            this.evento = atividade;
+        public Inscricao(Atividade atividade, Usuario pessoa) {
+            this.Atividade = atividade;
             AdicionarAtividade(atividade);
-            this.pessoa = pessoa;
+            this.usuario = usuario;
         }
 
         public void AdicionarAtividade(Atividade atividade) {
@@ -65,7 +65,7 @@ namespace Sistema_de_Eventos {
             }
         }
         public void FinalizarInscricao() {
-            if (evento.Estado == EstadoDaAtividade.Aberto) {
+            if (Atividade.Estado == EstadoDaAtividade.Aberto) {
                 if (listaDeAtividades.Quantidade > 0) { 
                     pagamento = true;
                     for (int i = 0; i < listaDeCupons.Count; i++) {

@@ -13,11 +13,11 @@ namespace Sistema_de_Eventos.Tests {
         Evento evento = new Evento();
         [TestMethod()]
         public void quantidade_de_atividades_no_evento() {
-            Atividade atividade1 = new Atividade("Lugar");
-            Atividade atividade2 = new Atividade("Lugar");
-            Atividade atividade3 = new Atividade("Lugar");
-            Atividade atividade4 = new Atividade("Lugar");
-            Atividade atividade5 = new Atividade("Lugar");
+            Atividade atividade1 = new AtividadeSimples("Lugar");
+            Atividade atividade2 = new AtividadeSimples("Lugar");
+            Atividade atividade3 = new AtividadeSimples("Lugar");
+            Atividade atividade4 = new AtividadeSimples("Lugar");
+            Atividade atividade5 = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             evento.Atividades.Adicionar(atividade2);
             evento.Atividades.Adicionar(atividade3);
@@ -29,9 +29,9 @@ namespace Sistema_de_Eventos.Tests {
         }
         [TestMethod()]
         public void adicao_de_atividade_pelo_contrutor_da_atividade() {
-            Atividade atividade1 = new Atividade("Lugar");
-            Atividade atividade2 = new Atividade("Lugar");
-            Atividade atividade3 = new Atividade("Lugar");
+            Atividade atividade1 = new AtividadeSimples("Lugar");
+            Atividade atividade2 = new AtividadeSimples("Lugar");
+            Atividade atividade3 = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             evento.Atividades.Adicionar(atividade2);
             evento.Atividades.Adicionar(atividade3);
@@ -39,9 +39,9 @@ namespace Sistema_de_Eventos.Tests {
         }
         [TestMethod()]
         public void adicionar_local_ao_evento() {
-            Atividade atividade1 = new Atividade("Lugar");
-            Atividade atividade2 = new Atividade("Lugar");
-            Atividade atividade3 = new Atividade("Lugar");
+            Atividade atividade1 = new AtividadeSimples("Lugar");
+            Atividade atividade2 = new AtividadeSimples("Lugar");
+            Atividade atividade3 = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             evento.Atividades.Adicionar(atividade2);
             evento.Atividades.Adicionar(atividade3);
@@ -63,7 +63,7 @@ namespace Sistema_de_Eventos.Tests {
         public void inscricao_em_atividade_principal() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(evento, new Pessoa());
+            Inscricao inscricao = new Inscricao(evento, new Usuario(new Pessoa()));
             inscricao.FinalizarInscricao();
             Assert.AreEqual(inscricao.ValorTotal, 30);
         }
@@ -71,8 +71,8 @@ namespace Sistema_de_Eventos.Tests {
         public void confirmacao_de_inscricao() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(evento, new Pessoa());
-            Inscricao inscricao2 = new Inscricao(evento, new Pessoa());
+            Inscricao inscricao = new Inscricao(evento, new Usuario(new Pessoa()));
+            Inscricao inscricao2 = new Inscricao(evento, new Usuario(new Pessoa()));
             Assert.AreEqual(evento.QuantidadeDeInscritos, 2);
         }
     }

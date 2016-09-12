@@ -64,13 +64,14 @@
     <Compile Include="Modelo\Espaco\EspacoVazio.cs" />
     <Compile Include="Modelo\Espaco\EstadoDaAtividade.cs" />
     <Compile Include="Modelo\Cupom\Descontavel.cs" />
-    <Compile Include="Modelo\Evento\AgendaUtils.cs" />
+    <Compile Include="Modelo\AgendaUtils.cs" />
     <Compile Include="Modelo\Evento\Atividade.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
     <Compile Include="Modelo\Cupom\DescontoPorcentagem.cs" />
+    <Compile Include="Modelo\Evento\AtividadeSimples.cs" />
     <Compile Include="Modelo\Evento\Evento.cs" />
     <Compile Include="Modelo\Evento\ListaAtividade.cs" />
-    <Compile Include="Modelo\Evento\Inscricao.cs" />
+    <Compile Include="Modelo\Inscricao.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
     <Compile Include="Modelo\Notificacao\Notificacao.cs" />

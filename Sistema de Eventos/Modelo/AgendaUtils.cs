@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo {
     public class AgendaUtils {
         static public String QuadroDeHorariosDoEvento(Atividade evento) {
-            /*List<Atividade> lista = (List<Atividade>)evento.Atividades.Lista;
-            lista.Add(evento);
+            /*List<Atividade> lista = (List<Atividade>)Atividade.Atividades.Lista;
+            lista.Add(Atividade);
             List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList(); 
             string horarios = "\n";
             for (int i = 0; i < listaOrdenada.Count; i++) {
