@@ -2,27 +2,35 @@
 using System.Collections.Generic;
 
 namespace Sistema_de_Eventos {
-    public class Atividade {
+    public abstract class Atividade {
 
-        private List<Inscricao> inscritos = new List<Inscricao>();
+        protected List<Inscricao> inscritos;
 
-        private Evento evento;
-        public Evento EventoDaAtividade { get { return evento; }}
+        protected string nome;
+        public string Nome { get { return nome; } set { nome = value; } }
 
-        private string nome;
-        public string Nome { get { return nome; } set {nome = value; } }
-
-        private DateTime dataInicio;
+        protected DateTime dataInicio;
         public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
 
-        private EspacoFisico espacoFisico;
+        protected DateTime dataFim;
+        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
+
+        protected EstadoDaAtividade estadoDaAtividade;
+        public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
+
+        protected double preco;
+        public abstract double Preco { get; set; }
+
+        public abstract int QuantidadeDeInscritos { get; }
+
+        public abstract int QuantidadeDeInscritosPagos { get; }
+
+        public abstract String Agenda { get; }
+
+        protected EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
             get {
-                if (espacoFisico == null) {
-                    return new EspacoVazio();
-                } else {
-                    return espacoFisico;
-                }
+                return espacoFisico;
             }
             set {
                 espacoFisico.RemoverAtividade(this);
@@ -31,31 +39,16 @@ namespace Sistema_de_Eventos {
             }
         }
 
-        private DateTime dataFim;
-        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
-
-        public int QuantidadeDeInscritos { get {return inscritos.Count; } }
-
-        public int QuantidadeDeInscritosPagos {
-            get {
-                int quantidadePagos =0;
-                for (int i = 0; i < QuantidadeDeInscritos; i++) {
-                    if (inscritos[i].Pagamento) {
-                        quantidadePagos++;
-                    }
-                }
-                return quantidadePagos;
-            }
-        }
-
-        private double preco;
-        public double Preco { get { return preco; } set { preco = value; } }
-        public Atividade(Evento evento, string nome) {
-            this.evento = evento;
-            evento.AdicionarAtividade(this);
+        public Atividade(String nome) {
+            inscritos = new List<Inscricao>();
             this.nome = nome;
             espacoFisico = new EspacoVazio();
         }
+        public Atividade() {
+            inscritos = new List<Inscricao>();
+            espacoFisico = new EspacoVazio();
+        }
+
         public void AdicionarInscritos(Inscricao inscricao) {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);

@@ -7,29 +7,21 @@ using System.Net.Mail;
 
 namespace Sistema_de_Eventos {
     public class Inscricao {
-
-        private List<Atividade> listaDeAtividades = new List<Atividade>();
+        
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
-        private Evento evento;
-        public Evento eventoDaInscricao { get { return evento;}}
+        private Atividade Atividade;
+        public Atividade AtividadeDaInscricao { get { return Atividade;}}
 
-        private Pessoa pessoa;
-        public Pessoa PessoaInscrita { get { return pessoa; } }
+        private Usuario usuario;
+        public Usuario PessoaInscrita { get { return usuario; } }
 
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
 
-        private double valor;
-        public double ValorTotal {
-            get {
-                valor = 0;
-                for (int i = 0; i < listaDeAtividades.Count; i++) {
-                    valor += listaDeAtividades[i].Preco;
-                }
-                return valor;
-            }
-        }
+        private ListaAtividade listaDeAtividades = new ListaAtividade();
+
+        public double ValorTotal { get { return Atividade.Preco;}}
         public double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
@@ -39,23 +31,23 @@ namespace Sistema_de_Eventos {
                 return valorComDesconto;
             }
         }
-        public Inscricao(Evento evento, Pessoa pessoa) {
-            this.evento = evento;
-            AdicionarAtividade(evento.AtividadePrinciapal);
-            this.pessoa = pessoa;
+        public Inscricao(Atividade atividade, Usuario pessoa) {
+            this.Atividade = atividade;
+            AdicionarAtividade(atividade);
+            this.usuario = usuario;
         }
 
         public void AdicionarAtividade(Atividade atividade) {
-            if (!listaDeAtividades.Contains(atividade) && !pagamento && atividade.EventoDaAtividade == this.eventoDaInscricao) {
+            if (!pagamento) {
                 atividade.AdicionarInscritos(this);
-                listaDeAtividades.Add(atividade);
+                listaDeAtividades.Adicionar(atividade);
             }else {
-                throw new Exception("Atividade Repetida ou não pertece a esse evento");
+                throw new Exception("Atividade Repetida ou não pertece a esse atividade");
             }
         }
         public void RemoverAtividade(Atividade atividade) {
-            if (listaDeAtividades.Contains(atividade) && !pagamento) {
-                listaDeAtividades.Remove(atividade);
+            if (!pagamento) {
+                listaDeAtividades.Remover(atividade);
                 atividade.RemoverInscritos(this);
             }else {
                 throw new Exception("Atividade nao encontrada");
@@ -73,13 +65,12 @@ namespace Sistema_de_Eventos {
             }
         }
         public void FinalizarInscricao() {
-            if (evento.Estado == EstadoDoEvento.Aberto) {
-                if (listaDeAtividades.Count > 0) { 
-                pagamento = true;
-                for (int i = 0; i < listaDeCupons.Count; i++) {
-                    listaDeCupons[i].Invalidar();
-                }
-                evento.EnviarNotificacao("Inscricao Realizada com sucesso");
+            if (Atividade.Estado == EstadoDaAtividade.Aberto) {
+                if (listaDeAtividades.Quantidade > 0) { 
+                    pagamento = true;
+                    for (int i = 0; i < listaDeCupons.Count; i++) {
+                        listaDeCupons[i].Invalidar();
+                    }
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }

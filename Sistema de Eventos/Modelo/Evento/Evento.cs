@@ -7,51 +7,68 @@ using System.Net.Mail;
 
 
 namespace Sistema_de_Eventos {
-    public class Evento {
+    public class Evento : Atividade {
+        
+        public ListaAtividade Atividades;
 
-        private Evento eventoSatelite;
-        private Evento EventoSatelite { get { return eventoSatelite; } }
+        public override double Preco {
+            get {
+                double PrecoFinal = 0;
+                for (int i = 0; i < Atividades.Quantidade; i++) {
+                    PrecoFinal += Atividades.Lista[i].Preco;
+                }
+                return preco + PrecoFinal;
+            }
+            set {
+                preco = value;
+            }
+        }
 
-        private string nome;
-        public string Nome { get { return nome; } set { this.nome = value; } }
+        public override int QuantidadeDeInscritos {
+            get {
+                int quantidade = 0;
+                for (int i = 0; i < Atividades.Lista.Count; i++) {
+                    quantidade += Atividades.Lista[i].QuantidadeDeInscritos;
+                }
+                return quantidade + inscritos.Count;
+            }
+        }
 
-        private EstadoDoEvento estadoEvento;
-        public EstadoDoEvento Estado { get { return estadoEvento; } set { estadoEvento = value; } }
+        public override int QuantidadeDeInscritosPagos {
+            get {
+                int quantidadePagos = 0;
+                for (int i = 0; i < QuantidadeDeInscritos; i++) {
+                    if (inscritos[i].Pagamento) {
+                        quantidadePagos++;
+                    }
+                }
+                return quantidadePagos;
+            }
+        }
 
-        private Notificacao notificacao;
-        public Notificacao Notificacao { get { return notificacao; } set { notificacao = value; } }
-
-        private GerenciaAtividade gerenciadorDeAtividades = new GerenciaAtividade();
-        public int QuantidadeDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades.Count; } }
-        public List<Atividade> ListaDeAtividades { get { return gerenciadorDeAtividades.ListaDeAtividades; } }
-
-        private Atividade atividadePrincipal;
-        public Atividade AtividadePrinciapal { get { return atividadePrincipal; } }
+        public override String Agenda {
+            get {
+                string horarios = "\n";
+                List<Atividade> lista = (List<Atividade>)this.Atividades.Lista;
+                lista.Add(this);
+                List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
+                for (int i = 0; i < listaOrdenada.Count; i++) {
+                    horarios += listaOrdenada[i].Nome;
+                    horarios += " - Inicio: ";
+                    horarios += listaOrdenada[i].DataInicio.ToString();
+                    horarios += " - Fim: ";
+                    horarios += listaOrdenada[i].DataFim.ToString();
+                    horarios += "\n";
+                }
+                return horarios;
+            }
+        }
 
         public Evento() {
-            nome = "Novo Evento";
             EspacoFisico espacoFisico = new EspacoVazio();
-            Estado = EstadoDoEvento.Aberto;
-            atividadePrincipal = new Atividade(this, espacoFisico.Nome);
-        }
-        public void AdicionarAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.AdicionarAtividade(atividade);
-        }
-        public void RemoverAtividade(Atividade atividade) {
-            gerenciadorDeAtividades.RemoverAtividade(atividade);
+            Estado = EstadoDaAtividade.Aberto;
+            Atividades = new ListaAtividade();
         }
 
-        public void EnviarNotificacao(String menssagem) {
-            notificacao = new Notificacao(new NotificacaoEmail());
-            notificacao.EnviarNotificacao(menssagem);
-        }
-
-        public void AdicionarEventoSatelite(Evento evento) {
-            eventoSatelite = evento;
-        }
-
-        public void RemoverEventoSatelite() {
-            eventoSatelite = null;
-        }
     }
 }

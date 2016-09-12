@@ -9,7 +9,7 @@ namespace Sistema_de_Eventos {
         public override int Capacidade { get {return 0;}}
         public override string Nome {get {return "vazio"; }}
         public EspacoVazio() {
-            listaDeAtividades = new GerenciaAtividade();
+            Atividade = new ListaAtividade();
         }
     }
 }
