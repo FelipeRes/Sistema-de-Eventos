@@ -38,7 +38,8 @@ namespace Sistema_de_Eventos.AtividadePack {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
-                for(int i = 0; i<Atividades.Lista.Count; i++) {
+                notificador.AdicionarNotificavel(inscricao.User);
+                for (int i = 0; i<Atividades.Lista.Count; i++) {
                     Atividades.Lista[i].AdicionarInscritos(inscricao, addAtividade);
                 }
             }
@@ -46,11 +47,15 @@ namespace Sistema_de_Eventos.AtividadePack {
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
+                notificador.AdicionarNotificavel(inscricao.User);
                 for (int i = 0; i < Atividades.Lista.Count; i++) {
                     Atividades.Lista[i].RemoverInscritos(inscricao, removeAtividade);
                 }
             }
         }
 
+        protected override void Notificar(string Mensagem) {
+            notificador.AtualizarNotificaveis(Mensagem);
+        }
     }
 }

@@ -35,5 +35,9 @@ namespace Sistema_de_Eventos{
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade remove) {
             return;
         }
+
+        protected override void Notificar(string Mensagem) {
+            return;
+        }
     }
 }

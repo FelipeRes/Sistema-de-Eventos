@@ -30,13 +30,19 @@ namespace Sistema_de_Eventos.AtividadePack {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
+                notificador.AdicionarNotificavel(inscricao.User);
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
+                notificador.RemoverNotificavel(inscricao.User);
             }
+        }
+
+        protected override void Notificar(string Mensagem) {
+            notificador.AtualizarNotificaveis(Mensagem);
         }
     }
 }

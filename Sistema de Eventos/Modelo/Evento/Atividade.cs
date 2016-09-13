@@ -7,14 +7,16 @@ namespace Sistema_de_Eventos.AtividadePack {
         protected List<Inscricao> inscritos;
         public IReadOnlyList<Inscricao> ListaDeInscritos { get { return inscritos; } }
 
+        protected Notificador notificador;
+
         protected string nome;
         public string Nome { get { return nome; } set { nome = value; } }
 
         protected DateTime dataInicio;
-        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
+        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; Notificar("Horario de inicio Atividade " + Nome + " alterado para: " + dataInicio.ToString()); } }
 
         protected DateTime dataFim;
-        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
+        public DateTime DataFim { get { return dataFim; } set { dataFim = value; Notificar("Horario de termino Atividade " + Nome + " alterado para: " + dataFim.ToString()); } }
 
         protected EstadoDaAtividade estadoDaAtividade;
         public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
@@ -41,8 +43,10 @@ namespace Sistema_de_Eventos.AtividadePack {
         public Atividade() {
             inscritos = new List<Inscricao>();
             espacoFisico = new EspacoVazio();
+            notificador = new Notificacao();
         }
 
+        protected abstract void Notificar(string Mensagem);
         public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);
         public abstract void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade);
     }

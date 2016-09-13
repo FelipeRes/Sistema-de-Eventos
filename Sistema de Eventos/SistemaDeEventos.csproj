@@ -80,6 +80,7 @@
     <Compile Include="Modelo\Notificacao\Notificavel.cs" />
     <Compile Include="Modelo\Espaco\EspacoComposto.cs" />
     <Compile Include="Modelo\Espaco\EspacoSimples.cs" />
+    <Compile Include="Modelo\Notificacao\Notificador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modelo\Controle\Usuario.cs" />
   </ItemGroup>

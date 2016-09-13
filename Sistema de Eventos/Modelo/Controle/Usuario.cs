@@ -5,15 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public class Usuario {
+    public class Usuario : Notificavel {
+
         private string email;
-        public string Email { get { return email;  } set { email = value; } }
+        public string Email { get { return email; } set { email = value; } }
 
         private Pessoa pessoa;
         public Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
 
         private string senha;
-        public string Senha {set { senha = value; } }
+        public string Senha { set { senha = value; } }
+
+        private Notificador notificacao;
+        public Notificador Notificacao {get{return notificacao;}set { notificacao = value; }}
 
         private List<Inscricao> minhasInscricoes;
         public IReadOnlyList<Inscricao> MinhasInscricoes {
@@ -22,11 +26,15 @@ namespace Sistema_de_Eventos {
 
         public Usuario() {
             minhasInscricoes = new List<Inscricao>();
+            notificacao = new Notificacao();
+            notificacao.AdicionarNotificavel(new NotificacaoEmail());
         }
 
         public Usuario(Pessoa pessoa) {
             minhasInscricoes = new List<Inscricao>();
             this.pessoa = pessoa;
+            notificacao = new Notificacao();
+            notificacao.AdicionarNotificavel(new NotificacaoEmail());
         }
 
         public string GetSenha(string senha) {
@@ -41,6 +49,9 @@ namespace Sistema_de_Eventos {
             if (inscricao.User == this && !minhasInscricoes.Contains(inscricao)) {
                 minhasInscricoes.Add(inscricao);
             }
+        }
+        public void Atualizar(string message) {
+            Notificacao.AtualizarNotificaveis(message);
         }
 
     }

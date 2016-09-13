@@ -78,6 +78,7 @@ namespace Sistema_de_Eventos {
                     for (int i = 0; i < listaDeCupons.Count; i++) {
                         listaDeCupons[i].Invalidar();
                     }
+                usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
                 User.InserirInscricao(this);
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");

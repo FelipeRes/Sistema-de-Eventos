@@ -8,6 +8,6 @@ namespace Sistema_de_Eventos {
     public interface Notificador {
         void AdicionarNotificavel(Notificavel notificavel);
         void RemoverNotificavel(Notificavel notificavel);
-        void AtualizarNotificaveis();
+        void AtualizarNotificaveis(string message);
     }
 }

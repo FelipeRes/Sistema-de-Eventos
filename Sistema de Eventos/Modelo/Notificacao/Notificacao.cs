@@ -19,9 +19,9 @@ namespace Sistema_de_Eventos {
             }
         }
 
-        public void AtualizarNotificaveis() {
+        public void AtualizarNotificaveis(string message) {
             foreach(Notificavel n in listaObservadores) {
-                n.Atualizar();
+                n.Atualizar(message);
             }
         }
 
