@@ -49,7 +49,7 @@ namespace Sistema_de_Eventos {
             Console.WriteLine(user.MinhasInscricoes[0].Pagamento);
 
             atividade3.DataInicio = new DateTime(2016, 9, 13, 20, 30, 0);
-            evento2.DataFim = new DateTime(2016, 9, 13, 20, 30, 0);
+           evento2.DataFim = new DateTime(2016, 9, 13, 20, 30, 0);
 
             Console.ReadKey();
         }

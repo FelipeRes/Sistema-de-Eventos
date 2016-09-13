@@ -42,7 +42,8 @@ namespace Sistema_de_Eventos.AtividadePack {
         }
 
         protected override void Notificar(string Mensagem) {
-            notificador.AtualizarNotificaveis(Mensagem);
+            string Complemento = "Prezado incrito, a data e horario desta Atividade foram alteradas.";
+            notificador.AtualizarNotificaveis(Complemento + Mensagem);
         }
     }
 }

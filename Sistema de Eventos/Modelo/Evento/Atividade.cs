@@ -13,10 +13,10 @@ namespace Sistema_de_Eventos.AtividadePack {
         public string Nome { get { return nome; } set { nome = value; } }
 
         protected DateTime dataInicio;
-        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; Notificar("Horario de inicio Atividade " + Nome + " alterado para: " + dataInicio.ToString()); } }
+        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; Notificar("Horario de inicio:" + dataInicio.ToString()); } }
 
         protected DateTime dataFim;
-        public DateTime DataFim { get { return dataFim; } set { dataFim = value; Notificar("Horario de termino Atividade " + Nome + " alterado para: " + dataFim.ToString()); } }
+        public DateTime DataFim { get { return dataFim; } set { dataFim = value; Notificar("Horario de termino: " + dataFim.ToString()); } }
 
         protected EstadoDaAtividade estadoDaAtividade;
         public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
