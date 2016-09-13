@@ -18,7 +18,6 @@ namespace Sistema_de_Eventos{
                 horarios += DataInicio.ToString();
                 horarios += " - Fim: ";
                 horarios += DataFim.ToString();
-                horarios += "\n";
                 return horarios;
             }
         }

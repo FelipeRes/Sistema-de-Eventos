@@ -14,16 +14,16 @@ namespace Sistema_de_Eventos.AtividadePack {
         public override string Agenda {
             get {
                 string horarios = "\n";
+                horarios += "Evento: "+Nome;
+                horarios += " - Inicio: ";
+                horarios += DataInicio.ToString();
+                horarios += " - Fim: ";
+                horarios += DataFim.ToString();
                 List<Atividade> lista = Atividades.Lista;
-                lista.Add(this);
                 List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
                 for (int i = 0; i < listaOrdenada.Count; i++) {
-                    horarios += listaOrdenada[i].Nome;
-                    horarios += " - Inicio: ";
-                    horarios += listaOrdenada[i].DataInicio.ToString();
-                    horarios += " - Fim: ";
-                    horarios += listaOrdenada[i].DataFim.ToString();
-                    horarios += "\n";
+                    horarios += listaOrdenada[i].Agenda;
+                    //horarios += "\n";
                 }
                 return horarios;
             }
