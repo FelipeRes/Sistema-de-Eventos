@@ -13,11 +13,7 @@ namespace Sistema_de_Eventos {
 
         public override double Preco {
             get {
-                double PrecoFinal = 0;
-                for (int i = 0; i < Atividades.Quantidade; i++) {
-                    PrecoFinal += Atividades.Lista[i].Preco;
-                }
-                return preco + PrecoFinal;
+                return preco;
             }
             set {
                 preco = value;
@@ -68,6 +64,19 @@ namespace Sistema_de_Eventos {
             EspacoFisico espacoFisico = new EspacoVazio();
             Estado = EstadoDaAtividade.Aberto;
             Atividades = new ListaAtividade();
+        }
+        public override void AdicionarInscritos(Inscricao inscricao) {
+            if (!inscritos.Contains(inscricao)) {
+                inscritos.Add(inscricao);
+                for(int i = 0; i<Atividades.Lista.Count; i++) {
+                    //Atividades.Lista
+                }
+            }
+        }
+        public override void RemoverInscritos(Inscricao inscricao) {
+            if (inscritos.Contains(inscricao)) {
+                inscritos.Remove(inscricao);
+            }
         }
 
     }

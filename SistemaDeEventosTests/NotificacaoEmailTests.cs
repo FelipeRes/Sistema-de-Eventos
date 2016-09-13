@@ -15,7 +15,7 @@ namespace Sistema_de_Eventos.Tests {
             Evento evento = new Evento();
             Atividade ativiade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(ativiade);
-            Inscricao inscricao = new Inscricao(evento, new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao( new Usuario(new Pessoa()));
             inscricao.AdicionarAtividade(ativiade);
             inscricao.FinalizarInscricao();
         }

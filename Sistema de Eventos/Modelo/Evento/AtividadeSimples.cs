@@ -40,6 +40,18 @@ namespace Sistema_de_Eventos {
             inscritos = new List<Inscricao>();
             this.nome = nome;
             espacoFisico = new EspacoVazio();
+            Estado = EstadoDaAtividade.Aberto;
+        }
+
+        public override void AdicionarInscritos(Inscricao inscricao) {
+            if (!inscritos.Contains(inscricao)) {
+                inscritos.Add(inscricao);
+            }
+        }
+        public override void RemoverInscritos(Inscricao inscricao) {
+            if (inscritos.Contains(inscricao)) {
+                inscritos.Remove(inscricao);
+            }
         }
     }
 }

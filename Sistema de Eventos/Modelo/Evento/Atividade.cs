@@ -49,15 +49,7 @@ namespace Sistema_de_Eventos {
             espacoFisico = new EspacoVazio();
         }
 
-        public void AdicionarInscritos(Inscricao inscricao) {
-            if (!inscritos.Contains(inscricao)) {
-                inscritos.Add(inscricao);
-            }
-        }
-        public void RemoverInscritos(Inscricao inscricao) {
-            if (inscritos.Contains(inscricao)) {
-                inscritos.Remove(inscricao);
-            }
-        }
+        public abstract void AdicionarInscritos(Inscricao inscricao);
+        public abstract void RemoverInscritos(Inscricao inscricao);
     }
 }

@@ -10,18 +10,23 @@ namespace Sistema_de_Eventos {
         
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
-        private Atividade Atividade;
-        public Atividade AtividadeDaInscricao { get { return Atividade;}}
-
         private Usuario usuario;
         public Usuario PessoaInscrita { get { return usuario; } }
 
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
 
-        private ListaAtividade listaDeAtividades = new ListaAtividade();
+        private ListaAtividade Atividades;
 
-        public double ValorTotal { get { return Atividade.Preco;}}
+        public double ValorTotal {
+            get {
+                double PrecoFinal = 0;
+                for(int i =0; i< Atividades.Quantidade; i++) {
+                    PrecoFinal += Atividades.Lista[i].Preco;
+                }
+                return PrecoFinal;
+            }
+        }
         public double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
@@ -31,23 +36,22 @@ namespace Sistema_de_Eventos {
                 return valorComDesconto;
             }
         }
-        public Inscricao(Atividade atividade, Usuario pessoa) {
-            this.Atividade = atividade;
-            AdicionarAtividade(atividade);
-            this.usuario = usuario;
+        public Inscricao(Usuario pessoa) {
+            Atividades = new ListaAtividade();
+            this.usuario = pessoa;
         }
 
         public void AdicionarAtividade(Atividade atividade) {
-            if (!pagamento) {
+            if (!pagamento && atividade.Estado == EstadoDaAtividade.Aberto) {
                 atividade.AdicionarInscritos(this);
-                listaDeAtividades.Adicionar(atividade);
+                Atividades.Adicionar(atividade);
             }else {
                 throw new Exception("Atividade Repetida ou não pertece a esse atividade");
             }
         }
         public void RemoverAtividade(Atividade atividade) {
             if (!pagamento) {
-                listaDeAtividades.Remover(atividade);
+                Atividades.Remover(atividade);
                 atividade.RemoverInscritos(this);
             }else {
                 throw new Exception("Atividade nao encontrada");
@@ -65,8 +69,7 @@ namespace Sistema_de_Eventos {
             }
         }
         public void FinalizarInscricao() {
-            if (Atividade.Estado == EstadoDaAtividade.Aberto) {
-                if (listaDeAtividades.Quantidade > 0) { 
+                if (Atividades.Quantidade > 0) { 
                     pagamento = true;
                     for (int i = 0; i < listaDeCupons.Count; i++) {
                         listaDeCupons[i].Invalidar();
@@ -74,9 +77,6 @@ namespace Sistema_de_Eventos {
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }
-            } else {
-                throw new Exception("Inscricao encerrada");
-            }
         }
     }
 }

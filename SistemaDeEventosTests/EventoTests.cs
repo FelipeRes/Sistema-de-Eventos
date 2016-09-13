@@ -63,7 +63,8 @@ namespace Sistema_de_Eventos.Tests {
         public void inscricao_em_atividade_principal() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(evento, new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
             inscricao.FinalizarInscricao();
             Assert.AreEqual(inscricao.ValorTotal, 30);
         }
@@ -71,8 +72,10 @@ namespace Sistema_de_Eventos.Tests {
         public void confirmacao_de_inscricao() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(evento, new Usuario(new Pessoa()));
-            Inscricao inscricao2 = new Inscricao(evento, new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            Inscricao inscricao2 = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
+            inscricao2.AdicionarAtividade(evento);
             Assert.AreEqual(evento.QuantidadeDeInscritos, 2);
         }
     }
