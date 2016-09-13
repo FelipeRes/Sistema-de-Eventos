@@ -68,6 +68,7 @@
     <Compile Include="Modelo\Evento\Atividade.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
     <Compile Include="Modelo\Cupom\DescontoPorcentagem.cs" />
+    <Compile Include="Modelo\Evento\AtividadeDefault.cs" />
     <Compile Include="Modelo\Evento\AtividadeSimples.cs" />
     <Compile Include="Modelo\Evento\Evento.cs" />
     <Compile Include="Modelo\Evento\ListaAtividade.cs" />

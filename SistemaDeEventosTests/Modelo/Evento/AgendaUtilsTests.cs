@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Sistema_de_Eventos.AtividadePack;
 using Sistema_de_Eventos.Modelo;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,21 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             evento.Lugar = espaco;
             Atividade atividade2 = new AtividadeSimples("MiniCurso");
+            evento.Atividades.Adicionar(atividade2);
+            atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
+            atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
+            atividade2.Lugar = espaco;
+            Assert.AreEqual("\nMiniCurso - Inicio: 21/01/2015 13:00:00 - Fim: 21/01/2015 17:00:00\nGGJ - Inicio: 27/01/2016 17:00:00 - Fim: 29/01/2016 17:00:00\n", evento.Agenda);
+        }
+
+        [TestMethod()]
+        public void quadro_de_horarios_com_atividades_complementares() {
+            EspacoFisico espaco = new EspacoSimples(12, "PredioB");
+            evento.Nome = "GGJ";
+            evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
+            evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
+            evento.Lugar = espaco;
+            Atividade atividade2 = new AtividadeDefault("MiniCurso");
             evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);

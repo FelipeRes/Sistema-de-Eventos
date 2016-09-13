@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sistema_de_Eventos;
+using Sistema_de_Eventos.AtividadePack;
 using Sistema_de_Eventos.Modelo;
 using System;
 using System.Collections.Generic;
@@ -78,5 +79,17 @@ namespace Sistema_de_Eventos.Tests {
             inscricao2.AdicionarAtividade(evento);
             Assert.AreEqual(evento.QuantidadeDeInscritos, 2);
         }
+        [TestMethod()]
+        public void preco_inscricao_automatica_em_atividades() {
+            evento.Nome = "Arduiono Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeSimples("Palestra");
+            atividade.Preco = 30;
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
+            Assert.AreEqual(60,inscricao.ValorTotal);
+        }
+      
     }
 }

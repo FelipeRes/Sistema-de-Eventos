@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Sistema_de_Eventos.AtividadePack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.AtividadePack {
-    public class AtividadeSimples : Atividade {
+namespace Sistema_de_Eventos{
+    public class AtividadeDefault :Atividade {
+
+        public override double Preco { get { return 0; } set { throw new Exception("Não pode ter valor"); } }
 
         public override string Agenda {
             get {
@@ -20,7 +23,7 @@ namespace Sistema_de_Eventos.AtividadePack {
             }
         }
 
-        public AtividadeSimples(string nome) {
+        public AtividadeDefault(string nome) {
             inscritos = new List<Inscricao>();
             this.nome = nome;
             espacoFisico = new EspacoVazio();
@@ -28,16 +31,10 @@ namespace Sistema_de_Eventos.AtividadePack {
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
-            if (!inscritos.Contains(inscricao)) {
-                inscritos.Add(inscricao);
-                addAtividade(this);
-            }
+            return;
         }
-        public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
-            if (inscritos.Contains(inscricao)) {
-                inscritos.Remove(inscricao);
-                removeAtividade(this);
-            }
+        public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade remove) {
+            return;
         }
     }
 }

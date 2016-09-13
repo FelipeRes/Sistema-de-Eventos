@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.AtividadePack {
     public class ListaAtividade {
 
         private List<Atividade> lista;
@@ -43,8 +43,8 @@ namespace Sistema_de_Eventos {
                     return false;
                 }
         }
-        public IReadOnlyList<Atividade> Lista {
-            get {return lista; }
+        public List<Atividade> Lista {
+            get { return lista; }
         }
     }
 }

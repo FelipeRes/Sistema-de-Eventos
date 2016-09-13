@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sistema_de_Eventos;
+using Sistema_de_Eventos.AtividadePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,8 +98,8 @@ namespace SistemaDeEventosTests {
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             Inscricao jose = new Inscricao(new Usuario(new Pessoa()));
-            atividade.AdicionarInscritos(jose);
-            atividade.AdicionarInscritos(jose);
+            jose.AdicionarAtividade(atividade);
+            jose.AdicionarAtividade(atividade);
             Assert.AreEqual(atividade.QuantidadeDeInscritos, 1);
         }
         [TestMethod]
@@ -142,6 +143,42 @@ namespace SistemaDeEventosTests {
             } catch {
 
             }
+        }
+        [TestMethod()]
+        public void printar_nota_de_inscricao() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeSimples("Palestra");
+            atividade.Preco = 30;
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
+            Assert.AreEqual("\nArduino Day - Preco: 30\nPalestra - Preco: 30\nValor Total: 60\nValor Com Desconto: 60", inscricao.nota);
+        }
+        [TestMethod()]
+        public void tentar_inscrever_em_atividade_complementar() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeDefault("Palestra");
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
+            try {
+                inscricao.AdicionarAtividade(atividade);
+                Assert.Fail();
+            } catch {
+
+            }
+        }
+        [TestMethod()]
+        public void verifica_se_atividade_complementar_esta_na_nota() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeDefault("Café");
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao.AdicionarAtividade(evento);
+            Assert.AreEqual("\nArduino Day - Preco: 30\nValor Total: 30\nValor Com Desconto: 30", inscricao.nota);
         }
     }
 }

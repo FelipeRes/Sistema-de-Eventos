@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using Sistema_de_Eventos.AtividadePack;
 
 namespace Sistema_de_Eventos {
     public class Inscricao {
-        
+
+        public delegate void AddAtividade(Atividade atividade);
+        public delegate void RemoveAtividade(Atividade atividade);
+
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
         private Usuario usuario;
@@ -43,17 +47,17 @@ namespace Sistema_de_Eventos {
 
         public void AdicionarAtividade(Atividade atividade) {
             if (!pagamento && atividade.Estado == EstadoDaAtividade.Aberto) {
-                atividade.AdicionarInscritos(this);
-                Atividades.Adicionar(atividade);
-            }else {
+                AddAtividade a = new AddAtividade(Atividades.Adicionar);
+                atividade.AdicionarInscritos(this, a);
+            } else {
                 throw new Exception("Atividade Repetida ou não pertece a esse atividade");
             }
         }
         public void RemoverAtividade(Atividade atividade) {
             if (!pagamento) {
-                Atividades.Remover(atividade);
-                atividade.RemoverInscritos(this);
-            }else {
+                RemoveAtividade a = new RemoveAtividade(Atividades.Adicionar);
+                atividade.RemoverInscritos(this, a);
+            } else {
                 throw new Exception("Atividade nao encontrada");
             }
         }
@@ -77,6 +81,17 @@ namespace Sistema_de_Eventos {
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }
+        }
+        public string nota {
+            get {
+                string nota = "\n";
+                for(int i = 0; i< Atividades.Lista.Count; i++) {
+                    nota += Atividades.Lista[i].Nome + " - Preco: "+ Atividades.Lista[i].Preco + "\n" ;
+                }
+                nota += "Valor Total: " + ValorTotal + "\n";
+                nota += "Valor Com Desconto: " + ValorComDesconto;
+                return nota;
+            }
         }
     }
 }

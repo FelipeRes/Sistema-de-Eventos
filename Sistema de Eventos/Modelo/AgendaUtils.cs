@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Sistema_de_Eventos.AtividadePack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.Modelo {
+namespace Sistema_de_Eventos {
     public class AgendaUtils {
         static public String QuadroDeHorariosDoEvento(Atividade evento) {
             /*List<Atividade> lista = (List<Atividade>)Atividade.Atividades.Lista;

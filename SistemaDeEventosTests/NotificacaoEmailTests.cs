@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using Sistema_de_Eventos.AtividadePack;
 
 namespace Sistema_de_Eventos.Tests {
     [TestClass()]

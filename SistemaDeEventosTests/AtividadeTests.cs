@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sistema_de_Eventos;
+using Sistema_de_Eventos.AtividadePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;

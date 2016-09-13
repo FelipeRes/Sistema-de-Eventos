@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.AtividadePack {
     public abstract class Atividade {
 
         protected List<Inscricao> inscritos;
@@ -19,13 +19,11 @@ namespace Sistema_de_Eventos {
         public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
 
         protected double preco;
-        public abstract double Preco { get; set; }
+        public virtual double Preco { get { return preco; } set { preco = value; } }
 
-        public abstract int QuantidadeDeInscritos { get; }
+        public int QuantidadeDeInscritos { get { return inscritos.Count; } }
 
-        public abstract int QuantidadeDeInscritosPagos { get; }
-
-        public abstract String Agenda { get; }
+        public abstract string Agenda { get; }
 
         protected EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -38,18 +36,13 @@ namespace Sistema_de_Eventos {
                 espacoFisico = value;
             }
         }
-
-        public Atividade(String nome) {
-            inscritos = new List<Inscricao>();
-            this.nome = nome;
-            espacoFisico = new EspacoVazio();
-        }
+        
         public Atividade() {
             inscritos = new List<Inscricao>();
             espacoFisico = new EspacoVazio();
         }
 
-        public abstract void AdicionarInscritos(Inscricao inscricao);
-        public abstract void RemoverInscritos(Inscricao inscricao);
+        public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);
+        public abstract void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade);
     }
 }

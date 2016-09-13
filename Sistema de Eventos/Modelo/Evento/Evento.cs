@@ -6,46 +6,15 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.AtividadePack {
     public class Evento : Atividade {
         
         public ListaAtividade Atividades;
 
-        public override double Preco {
-            get {
-                return preco;
-            }
-            set {
-                preco = value;
-            }
-        }
-
-        public override int QuantidadeDeInscritos {
-            get {
-                int quantidade = 0;
-                for (int i = 0; i < Atividades.Lista.Count; i++) {
-                    quantidade += Atividades.Lista[i].QuantidadeDeInscritos;
-                }
-                return quantidade + inscritos.Count;
-            }
-        }
-
-        public override int QuantidadeDeInscritosPagos {
-            get {
-                int quantidadePagos = 0;
-                for (int i = 0; i < QuantidadeDeInscritos; i++) {
-                    if (inscritos[i].Pagamento) {
-                        quantidadePagos++;
-                    }
-                }
-                return quantidadePagos;
-            }
-        }
-
-        public override String Agenda {
+        public override string Agenda {
             get {
                 string horarios = "\n";
-                List<Atividade> lista = (List<Atividade>)this.Atividades.Lista;
+                List<Atividade> lista = Atividades.Lista;
                 lista.Add(this);
                 List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
                 for (int i = 0; i < listaOrdenada.Count; i++) {
@@ -65,17 +34,21 @@ namespace Sistema_de_Eventos {
             Estado = EstadoDaAtividade.Aberto;
             Atividades = new ListaAtividade();
         }
-        public override void AdicionarInscritos(Inscricao inscricao) {
+        public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
+                addAtividade(this);
                 for(int i = 0; i<Atividades.Lista.Count; i++) {
-                    //Atividades.Lista
+                    Atividades.Lista[i].AdicionarInscritos(inscricao, addAtividade);
                 }
             }
         }
-        public override void RemoverInscritos(Inscricao inscricao) {
+        public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
+                for (int i = 0; i < Atividades.Lista.Count; i++) {
+                    Atividades.Lista[i].RemoverInscritos(inscricao, removeAtividade);
+                }
             }
         }
 
