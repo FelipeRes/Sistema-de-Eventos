@@ -15,7 +15,7 @@ namespace Sistema_de_Eventos {
         private List<Cupom> listaDeCupons = new List<Cupom>();
 
         private Usuario usuario;
-        public Usuario PessoaInscrita { get { return usuario; } }
+        public Usuario User { get { return usuario; } }
 
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
@@ -78,6 +78,7 @@ namespace Sistema_de_Eventos {
                     for (int i = 0; i < listaDeCupons.Count; i++) {
                         listaDeCupons[i].Invalidar();
                     }
+                User.InserirInscricao(this);
                 } else {
                     throw new Exception("Voce deve se inscrever em ao menos uma atividade");
                 }

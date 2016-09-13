@@ -5,6 +5,7 @@ namespace Sistema_de_Eventos.AtividadePack {
     public abstract class Atividade {
 
         protected List<Inscricao> inscritos;
+        public IReadOnlyList<Inscricao> ListaDeInscritos { get { return inscritos; } }
 
         protected string nome;
         public string Nome { get { return nome; } set { nome = value; } }

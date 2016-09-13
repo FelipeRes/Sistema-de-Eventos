@@ -32,14 +32,22 @@ namespace Sistema_de_Eventos {
 
             meuEvento.Atividades.Adicionar(evento2);
 
-            Console.WriteLine(evento2.Agenda);
-            Console.WriteLine(meuEvento.Agenda);
+            //Console.WriteLine(evento2.Agenda);
+            //Console.WriteLine(meuEvento.Agenda);
 
             Pessoa pessoa = new Pessoa();
+            pessoa.Nome = "José";
             Usuario user = new Usuario(pessoa);
             Inscricao inscricao = new Inscricao(user);
             inscricao.AdicionarAtividade(meuEvento);
+            inscricao.FinalizarInscricao();
             Console.WriteLine(inscricao.nota);
+
+            for (int i = 0; i < meuEvento.ListaDeInscritos.Count; i++) {
+                Console.WriteLine(meuEvento.ListaDeInscritos[i].User.Pessoa.Nome);
+            }
+            Console.WriteLine(user.MinhasInscricoes[0].Pagamento);
+           
             Console.ReadKey();
         }
     }

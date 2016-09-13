@@ -15,11 +15,17 @@ namespace Sistema_de_Eventos {
         private string senha;
         public string Senha {set { senha = value; } }
 
-        public Usuario() {
+        private List<Inscricao> minhasInscricoes;
+        public IReadOnlyList<Inscricao> MinhasInscricoes {
+            get { return minhasInscricoes; }
+        }
 
+        public Usuario() {
+            minhasInscricoes = new List<Inscricao>();
         }
 
         public Usuario(Pessoa pessoa) {
+            minhasInscricoes = new List<Inscricao>();
             this.pessoa = pessoa;
         }
 
@@ -30,6 +36,11 @@ namespace Sistema_de_Eventos {
                 throw new ArgumentException("Senha Invalida");
             }
                 
+        }
+        public void InserirInscricao(Inscricao inscricao) {
+            if (inscricao.User == this && !minhasInscricoes.Contains(inscricao)) {
+                minhasInscricoes.Add(inscricao);
+            }
         }
 
     }

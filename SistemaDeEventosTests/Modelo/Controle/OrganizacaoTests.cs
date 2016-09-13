@@ -11,12 +11,12 @@ namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class OrganizacaoTests {
         public Atividade atividade = new AtividadeSimples("Bahia");
-        Pessoa adm = new Pessoa();
+        Usuario adm = new Usuario();
 
         [TestMethod()]
         public void adicioar_colaborador_repetido() {
             Organizacao organizacao = new Organizacao(atividade, adm);
-            Pessoa colaborador = new Pessoa();
+            Usuario colaborador = new Usuario();
             organizacao.AdicionarColaborador(colaborador);
             try {
                 organizacao.AdicionarColaborador(colaborador);
@@ -27,7 +27,8 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         [TestMethod()]
         public void nome_do_responsavel() {
             Pessoa colaborador = new Pessoa("Felipe", 30, 0404004, "aaa@gemail");
-            Organizacao organizacao = new Organizacao(atividade, colaborador);
+            Usuario user = new Usuario(colaborador);
+            Organizacao organizacao = new Organizacao(atividade, user);
             Assert.AreEqual(colaborador.Nome, organizacao.ResponsavelNome);
         }
 
@@ -37,10 +38,14 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             Pessoa p1 = new Pessoa("Jotaro", 30, 0404004, "aaa@gemail");
             Pessoa p2 = new Pessoa("Josuke", 30, 0404004, "aaa@gemail");
             Pessoa p3 = new Pessoa("Jonhantan", 30, 0404004, "aaa@gemail");
-            Organizacao organizacao = new Organizacao(atividade, colaborador);
-            organizacao.AdicionarColaborador(p1);
-            organizacao.AdicionarColaborador(p2);
-            organizacao.AdicionarColaborador(p3);
+            Usuario user = new Usuario(colaborador);
+            Usuario user1 = new Usuario(p1);
+            Usuario user2 = new Usuario(p2);
+            Usuario user3 = new Usuario(p3);
+            Organizacao organizacao = new Organizacao(atividade, user);
+            organizacao.AdicionarColaborador(user1);
+            organizacao.AdicionarColaborador(user2);
+            organizacao.AdicionarColaborador(user3);
             Assert.AreEqual("Felipe\nJotaro\nJosuke\nJonhantan\n", organizacao.NomeColaboradores);
         }
 
@@ -48,9 +53,10 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         public void remover_colaborador_inexistente() {
             Organizacao organizacao = new Organizacao(atividade, adm);
             Pessoa colaborador = new Pessoa();
-            organizacao.AdicionarColaborador(colaborador);
+            Usuario user = new Usuario(colaborador);
+            organizacao.AdicionarColaborador(user);
             try {
-                organizacao.RemoverColaborador(colaborador);
+                organizacao.RemoverColaborador(user);
                 Assert.Fail();
             } catch {
             }

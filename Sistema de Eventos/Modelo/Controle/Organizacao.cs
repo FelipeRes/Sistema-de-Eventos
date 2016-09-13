@@ -10,52 +10,52 @@ namespace Sistema_de_Eventos.Modelo {
 
         private Atividade atividade;
         public Atividade AtividadeOrganizacao { get { return atividade; } }
-        private Pessoa organizador;
-        public Pessoa Organizador { get { return organizador; } }
-        private List<Pessoa> colaboradores = new List<Pessoa>();
-        public List<Pessoa> Colaboradores { get { return colaboradores; } }
-        public String ResponsavelNome {
-            get { return organizador.Nome; }
+        private Usuario organizador;
+        public Usuario Organizador { get { return organizador; } }
+        private List<Usuario> colaboradores = new List<Usuario>();
+        public List<Usuario> Colaboradores { get { return colaboradores; } }
+        public string ResponsavelNome {
+            get { return organizador.Pessoa.Nome; }
         }
-        public String ResponsavelDescricao {
-            get { return organizador.Descricao; }
+        public string ResponsavelDescricao {
+            get { return organizador.Pessoa.Descricao; }
         }
-        public String NomeColaboradores {
+        public string NomeColaboradores {
             get {
-                string colaboradores = organizador.Nome + "\n";
+                string colaboradores = organizador.Pessoa.Nome + "\n";
                 for (int i = 0; i < Colaboradores.Count; i++){
-                    colaboradores += Colaboradores[i].Nome + "\n";
+                    colaboradores += Colaboradores[i].Pessoa.Nome + "\n";
                 }
                 return colaboradores;
             }
         }
 
-        public Organizacao (Atividade atividade, Pessoa organizador) {
+        public Organizacao (Atividade atividade, Usuario organizador) {
             this.atividade = atividade;
             this.organizador = organizador;
         }
-        public void AdicionarColaborador(Pessoa pessoa) {
+        public void AdicionarColaborador(Usuario pessoa) {
             if (pessoa != null && !colaboradores.Contains(pessoa)) {
                 colaboradores.Add(pessoa);
             }else {
                 throw new Exception("Colaborador ja existe");
             }
         }
-        public void RemoverColaborador(Pessoa pessoa) {
+        public void RemoverColaborador(Usuario pessoa) {
             if (pessoa != null && colaboradores.Contains(pessoa)) {
                 colaboradores.Remove(pessoa);
             } else {
                 throw new Exception("Colaborador nao Existe");
             }
         }
-        public bool ChecarUsuario(Pessoa pessoa) {
+        public bool ChecarUsuario(Usuario pessoa) {
             if ((pessoa != null && colaboradores.Contains(pessoa)) || pessoa == organizador) {
                 return true;
             }else {
                 return false;
             }
         }
-        void PermissaoDeUsuario(Pessoa pessoa) {
+        void PermissaoDeUsuario(Usuario pessoa) {
             if ((pessoa != null && colaboradores.Contains(pessoa)) || pessoa == organizador) {
                 return;
             } else {
