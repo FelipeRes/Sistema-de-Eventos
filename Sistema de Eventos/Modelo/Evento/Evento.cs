@@ -30,10 +30,9 @@ namespace Sistema_de_Eventos.AtividadePack {
 
         public Evento() {
             inscritos = new List<Inscricao>();
-            espacoFisico = new EspacoVazio();
-            Estado = EstadoDaAtividade.Aberto;
-            notificador = new Notificacao();
+            notificador = FabricaNotificacao.CriarNotificador();
             Atividades = new ListaAtividade();
+            espacoFisico = FabricarEspaco.Vazio();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao)) {

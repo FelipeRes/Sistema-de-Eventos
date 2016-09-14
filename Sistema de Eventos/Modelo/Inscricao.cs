@@ -20,7 +20,11 @@ namespace Sistema_de_Eventos {
         private bool pagamento;
         public bool Pagamento { get { return pagamento; } }
 
+        private bool checkIn;
+        public bool CheckIn{ get { return checkIn;}}
+
         private ListaAtividade Atividades;
+        public IReadOnlyList<Atividade> listaDeAtividades { get { return Atividades.Lista; } }
 
         public double ValorTotal {
             get {
@@ -94,6 +98,9 @@ namespace Sistema_de_Eventos {
                 nota += "Valor Com Desconto: " + ValorComDesconto;
                 return nota;
             }
+        }
+        public void ConfirmarCheckIn() {
+            checkIn = true;
         }
     }
 }

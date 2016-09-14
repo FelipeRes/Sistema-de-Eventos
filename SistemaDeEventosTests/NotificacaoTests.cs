@@ -15,7 +15,7 @@ namespace Sistema_de_Eventos.Tests {
         public void receber_notificacao_de_alteracao_de_horario() {
             Evento meuEvento = new Evento();
             meuEvento.Nome = "Arduino Day";
-            Usuario user = new Usuario("bla@gats", "sou");
+            Usuario user = new Usuario("bla@gats", "123456");
             Inscricao inscrito = new Inscricao(user);
             inscrito.AdicionarAtividade(meuEvento);
             meuEvento.DataInicio = new DateTime(2016, 12, 09, 18, 15, 0);

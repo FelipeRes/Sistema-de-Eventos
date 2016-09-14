@@ -21,9 +21,8 @@ namespace Sistema_de_Eventos.AtividadePack {
 
         public AtividadeSimples(string nome) {
             inscritos = new List<Inscricao>();
-            espacoFisico = new EspacoVazio();
-            Estado = EstadoDaAtividade.Aberto;
-            notificador = new Notificacao();
+            notificador = FabricaNotificacao.CriarNotificador();
+            espacoFisico = FabricarEspaco.Vazio();
             this.nome = nome;
         }
 

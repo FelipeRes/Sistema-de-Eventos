@@ -39,6 +39,11 @@ namespace Sistema_de_Eventos.AtividadePack {
                 espacoFisico = value;
             }
         }
+        public void ChecarCheckIn(Inscricao inscricao) {
+            if (inscritos.Contains(inscricao)) {
+                inscricao.ConfirmarCheckIn();
+            }
+        }
 
         protected abstract void Notificar(string Mensagem);
         public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);

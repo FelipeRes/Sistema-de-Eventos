@@ -77,6 +77,7 @@
     <Compile Include="Modelo\Inscricao.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
+    <Compile Include="Modelo\Notificacao\FabricaNotificacao.cs" />
     <Compile Include="Modelo\Notificacao\Notificacao.cs" />
     <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
     <Compile Include="Modelo\Notificacao\Notificavel.cs" />
