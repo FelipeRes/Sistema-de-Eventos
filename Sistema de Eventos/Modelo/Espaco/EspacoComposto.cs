@@ -29,6 +29,10 @@ namespace Sistema_de_Eventos {
             }
         }
 
+        public EspacoComposto(string Titulo) {
+            nome = Titulo;
+            Atividade = new ListaAtividade();
+        }
         public EspacoComposto(string Titulo, EspacoFisico interior) {
             nome = Titulo;
             AdicionarInterior(interior);

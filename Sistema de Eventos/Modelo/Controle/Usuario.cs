@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos {
     public class Usuario : Notificavel {
 
-        private string email;
-        public string Email { get { return email; } set { email = value; } }
-
         private Pessoa pessoa;
         public Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
+
+        private string email;
+        public string Email { get { return email; } set { email = value; } }       
 
         private string senha;
         public string Senha { set { senha = value; } }
@@ -24,22 +24,17 @@ namespace Sistema_de_Eventos {
             get { return minhasInscricoes; }
         }
 
-        public Usuario() {
+        public Usuario(string email, string senha) {
+            this.Email = email;
+            this.Senha = senha;
             minhasInscricoes = new List<Inscricao>();
             notificacao = new Notificacao();
             notificacao.AdicionarNotificavel(new NotificacaoEmail());
         }
 
-        public Usuario(Pessoa pessoa) {
-            minhasInscricoes = new List<Inscricao>();
-            this.pessoa = pessoa;
-            notificacao = new Notificacao();
-            notificacao.AdicionarNotificavel(new NotificacaoEmail());
-        }
-
-        public string GetSenha(string senha) {
+        public bool Check(string senha) {
             if(this.senha == senha) {
-                return senha;
+                return true;
             }else {
                 throw new ArgumentException("Senha Invalida");
             }

@@ -18,13 +18,10 @@ namespace Sistema_de_Eventos {
         public int Idade { get { return idade; } set { this.idade = value; } }
 
         private int cpf;
-        public int CPF { get { return cpf; } set { this.cpf = value; } }
-
-        private string email;
-        public string Email { get { return email; } set { this.email = value; } }
+        public int CPF { get { return cpf; } set { this.cpf = value; } } 
 
         private string descricao;
-        public string Descricao { get { return descricao; } set { this.email = value; } }
+        public string Descricao { get { return descricao; } set { this.descricao = value; } }
 
         private string endereco;
         public string Endereco { get { return endereco; } set { this.endereco = value; } }
@@ -48,10 +45,6 @@ namespace Sistema_de_Eventos {
         }
         public PessoaBuilder CPF(int cpf) {
             pessoa.CPF = cpf;
-            return this;
-        }
-        public PessoaBuilder Email(string email) {
-            pessoa.Email = email;
             return this;
         }
         public PessoaBuilder Descricao(string descricao) {

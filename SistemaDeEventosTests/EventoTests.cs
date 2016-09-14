@@ -14,11 +14,11 @@ namespace Sistema_de_Eventos.Tests {
         Evento evento = new Evento();
         [TestMethod()]
         public void quantidade_de_atividades_no_evento() {
-            Atividade atividade1 = new AtividadeSimples("Lugar");
-            Atividade atividade2 = new AtividadeSimples("Lugar");
-            Atividade atividade3 = new AtividadeSimples("Lugar");
-            Atividade atividade4 = new AtividadeSimples("Lugar");
-            Atividade atividade5 = new AtividadeSimples("Lugar");
+            Atividade atividade1 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade2 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade3 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade4 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade5 = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             evento.Atividades.Adicionar(atividade2);
             evento.Atividades.Adicionar(atividade3);
@@ -40,14 +40,14 @@ namespace Sistema_de_Eventos.Tests {
         }
         [TestMethod()]
         public void adicionar_local_ao_evento() {
-            Atividade atividade1 = new AtividadeSimples("Lugar");
-            Atividade atividade2 = new AtividadeSimples("Lugar");
-            Atividade atividade3 = new AtividadeSimples("Lugar");
+            Atividade atividade1 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade2 = FabricarAtividade.Simples("Lugar");
+            Atividade atividade3 = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             evento.Atividades.Adicionar(atividade2);
             evento.Atividades.Adicionar(atividade3);
-            EspacoFisico sala = new EspacoSimples(10, "B3");
-            EspacoFisico espaco = new EspacoComposto("Predio B", sala);
+            EspacoFisico sala = FabricarEspaco.Simples(10, "B3");
+            EspacoFisico espaco = FabricarEspaco.Composto("Predio B").CriarEspaco("B3", 10).build();
             evento.Lugar = espaco;
             Assert.AreEqual(evento.Lugar.Nome, "Predio B - B3" );
         }
@@ -64,7 +64,7 @@ namespace Sistema_de_Eventos.Tests {
         public void inscricao_em_atividade_principal() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "sou"));
             inscricao.AdicionarAtividade(evento);
             inscricao.FinalizarInscricao();
             Assert.AreEqual(inscricao.ValorTotal, 30);
@@ -73,8 +73,8 @@ namespace Sistema_de_Eventos.Tests {
         public void confirmacao_de_inscricao() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
-            Inscricao inscricao2 = new Inscricao(new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "sou"));
+            Inscricao inscricao2 = new Inscricao(new Usuario("bla@gats", "sou"));
             inscricao.AdicionarAtividade(evento);
             inscricao2.AdicionarAtividade(evento);
             Assert.AreEqual(evento.QuantidadeDeInscritos, 2);
@@ -83,10 +83,10 @@ namespace Sistema_de_Eventos.Tests {
         public void preco_inscricao_automatica_em_atividades() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Atividade atividade = new AtividadeSimples("Palestra");
+            Atividade atividade = FabricarAtividade.Simples("Palestra");
             atividade.Preco = 30;
             evento.Atividades.Adicionar(atividade);
-            Inscricao inscricao = new Inscricao(new Usuario(new Pessoa()));
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "sou"));
             inscricao.AdicionarAtividade(evento);
             Assert.AreEqual(60,inscricao.ValorTotal);
         }

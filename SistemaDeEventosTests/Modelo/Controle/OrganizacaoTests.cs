@@ -11,12 +11,12 @@ namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class OrganizacaoTests {
         public Atividade atividade = new AtividadeSimples("Bahia");
-        Usuario adm = new Usuario();
+        Usuario adm = new Usuario("bla@gats", "sou");
 
         [TestMethod()]
         public void adicioar_colaborador_repetido() {
             Organizacao organizacao = new Organizacao(atividade, adm);
-            Usuario colaborador = new Usuario();
+            Usuario colaborador = new Usuario("bla@gats", "sou");
             organizacao.AdicionarColaborador(colaborador);
             try {
                 organizacao.AdicionarColaborador(colaborador);
@@ -26,22 +26,27 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         }
         [TestMethod()]
         public void nome_do_responsavel() {
-            Pessoa colaborador = new Pessoa("Felipe", 30, 0404004, "aaa@gemail");
-            Usuario user = new Usuario(colaborador);
+            Pessoa colaborador = Pessoa.BuildNome("Felipe").Idade(30).CPF(0404004).build();
+            Usuario user = new Usuario("bla@gats", "sou");
+            user.Pessoa = colaborador;
             Organizacao organizacao = new Organizacao(atividade, user);
             Assert.AreEqual(colaborador.Nome, organizacao.ResponsavelNome);
         }
 
         [TestMethod()]
         public void nome_dos_responsaveis() {
-            Pessoa colaborador = new Pessoa("Felipe", 30, 0404004, "aaa@gemail");
-            Pessoa p1 = new Pessoa("Jotaro", 30, 0404004, "aaa@gemail");
-            Pessoa p2 = new Pessoa("Josuke", 30, 0404004, "aaa@gemail");
-            Pessoa p3 = new Pessoa("Jonhantan", 30, 0404004, "aaa@gemail");
-            Usuario user = new Usuario(colaborador);
-            Usuario user1 = new Usuario(p1);
-            Usuario user2 = new Usuario(p2);
-            Usuario user3 = new Usuario(p3);
+            Pessoa colaborador = Pessoa.BuildNome("Felipe").Idade(30).CPF(0404004).build();
+            Pessoa p1 = Pessoa.BuildNome("Jotaro").Idade(30).CPF(0404004).build();
+            Pessoa p2 = Pessoa.BuildNome("Josuke").Idade(30).CPF(0404004).build();
+            Pessoa p3 = Pessoa.BuildNome("Jonhantan").Idade(30).CPF(0404004).build();
+            Usuario user = new Usuario("bla@gats", "sou");
+            user.Pessoa = colaborador;
+            Usuario user1 = new Usuario("bla@gats", "sou");
+            user1.Pessoa = p1;
+            Usuario user2 = new Usuario("bla@gats", "sou");
+            user2.Pessoa = p2;
+            Usuario user3 = new Usuario("bla@gats", "sou");
+            user3.Pessoa = p3;
             Organizacao organizacao = new Organizacao(atividade, user);
             organizacao.AdicionarColaborador(user1);
             organizacao.AdicionarColaborador(user2);
@@ -53,7 +58,8 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         public void remover_colaborador_inexistente() {
             Organizacao organizacao = new Organizacao(atividade, adm);
             Pessoa colaborador = new Pessoa();
-            Usuario user = new Usuario(colaborador);
+            Usuario user = new Usuario("bla@gats", "sou");
+            user.Pessoa = colaborador;
             organizacao.AdicionarColaborador(user);
             try {
                 organizacao.RemoverColaborador(user);
