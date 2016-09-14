@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.AtividadePack {
     public abstract class Atividade {
 
         protected List<Inscricao> inscritos;
+        public IReadOnlyList<Inscricao> ListaDeInscritos { get { return inscritos; } }
+
+        protected Notificador notificador;
 
         protected string nome;
         public string Nome { get { return nome; } set { nome = value; } }
 
         protected DateTime dataInicio;
-        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; } }
+        public DateTime DataInicio { get { return dataInicio; } set { dataInicio = value; Notificar("Horario de inicio:" + dataInicio.ToString()); } }
 
         protected DateTime dataFim;
-        public DateTime DataFim { get { return dataFim; } set { dataFim = value; } }
+        public DateTime DataFim { get { return dataFim; } set { dataFim = value; Notificar("Horario de termino: " + dataFim.ToString()); } }
 
         protected EstadoDaAtividade estadoDaAtividade;
         public EstadoDaAtividade Estado { get { return estadoDaAtividade; } set { estadoDaAtividade = value; } }
 
         protected double preco;
-        public abstract double Preco { get; set; }
+        public virtual double Preco { get { return preco; } set { preco = value; } }
 
-        public abstract int QuantidadeDeInscritos { get; }
+        public int QuantidadeDeInscritos { get { return inscritos.Count; } }
 
-        public abstract int QuantidadeDeInscritosPagos { get; }
-
-        public abstract String Agenda { get; }
+        public abstract string Agenda { get; }
 
         protected EspacoFisico espacoFisico;
         public EspacoFisico Lugar {
@@ -38,18 +39,14 @@ namespace Sistema_de_Eventos {
                 espacoFisico = value;
             }
         }
-
-        public Atividade(String nome) {
-            inscritos = new List<Inscricao>();
-            this.nome = nome;
-            espacoFisico = new EspacoVazio();
-        }
-        public Atividade() {
-            inscritos = new List<Inscricao>();
-            espacoFisico = new EspacoVazio();
+        public void ChecarCheckIn(Inscricao inscricao) {
+            if (inscritos.Contains(inscricao)) {
+                inscricao.ConfirmarCheckIn();
+            }
         }
 
-        public abstract void AdicionarInscritos(Inscricao inscricao);
-        public abstract void RemoverInscritos(Inscricao inscricao);
+        protected abstract void Notificar(string Mensagem);
+        public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);
+        public abstract void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade);
     }
 }

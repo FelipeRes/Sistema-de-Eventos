@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sistema_de_Eventos;
+using Sistema_de_Eventos.AtividadePack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SistemaDeEventosTests {
         public Inscricao inscricao;
         [TestMethod]
         public void preco_da_inscricao() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 45;
@@ -26,7 +27,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void adicionar_atividade_repetida_na_inscricao() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade palestra = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(palestra);
             Atividade atividade2 = new AtividadeSimples("Lugar");
@@ -41,7 +42,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void remover_atividade_que_nao_existe_da_inscricao() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade palestra = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(palestra);
             try {
@@ -53,7 +54,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void valor_da_inscricao_com_cupom_de_desconto_para_estudante() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 90;
@@ -63,7 +64,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void adicionar_atividade_apos_finalizar_inscricao() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade1 = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade1);
             Atividade atividade2 = new AtividadeSimples("Lugar");
@@ -83,7 +84,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void valor_da_inscricao_com_cupom_de_desconto_por_porcentagem() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 90;
@@ -93,21 +94,21 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void adiciona_inscrito_repetido() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
-            Inscricao jose = new Inscricao(new Usuario(new Pessoa()));
-            atividade.AdicionarInscritos(jose);
-            atividade.AdicionarInscritos(jose);
+            Inscricao jose = new Inscricao(new Usuario("bla@gats", "123456"));
+            jose.AdicionarAtividade(atividade);
+            jose.AdicionarAtividade(atividade);
             Assert.AreEqual(atividade.QuantidadeDeInscritos, 1);
         }
         [TestMethod]
         public void inscrever_em_atividade_que_nao_pertece_ao_evento() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             Evento evento2 = new Evento();
-            Inscricao inscricaoDeEvento2 = new Inscricao(new Usuario(new Pessoa()));
+            Inscricao inscricaoDeEvento2 = new Inscricao(new Usuario("bla@gats", "123456"));
             try {
                 inscricaoDeEvento2.AdicionarAtividade(atividade);
                 Assert.Fail();
@@ -118,7 +119,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void inscrever_em_evento_ja_fechado() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             evento.Estado = EstadoDaAtividade.Encerrado;
@@ -132,7 +133,7 @@ namespace SistemaDeEventosTests {
         }
         [TestMethod]
         public void inscrever_em_evento_aberto() {
-            inscricao = new Inscricao(new Usuario(new Pessoa()));
+            inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
             Atividade atividade = new AtividadeSimples("Lugar");
             evento.Atividades.Adicionar(atividade);
             evento.Estado = EstadoDaAtividade.Aberto;
@@ -142,6 +143,53 @@ namespace SistemaDeEventosTests {
             } catch {
 
             }
+        }
+        [TestMethod()]
+        public void printar_nota_de_inscricao() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeSimples("Palestra");
+            atividade.Preco = 30;
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            inscricao.AdicionarAtividade(evento);
+            Assert.AreEqual("\nArduino Day - Preco: 30\nPalestra - Preco: 30\nValor Total: 60\nValor Com Desconto: 60", inscricao.nota);
+        }
+        [TestMethod()]
+        public void tentar_inscrever_em_atividade_complementar() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeDefault("Palestra");
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            inscricao.AdicionarAtividade(evento);
+            try {
+                inscricao.AdicionarAtividade(atividade);
+                Assert.Fail();
+            } catch {
+
+            }
+        }
+        [TestMethod()]
+        public void verifica_se_atividade_complementar_esta_na_nota() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeDefault("Café");
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            inscricao.AdicionarAtividade(evento);
+            Assert.AreEqual("\nArduino Day - Preco: 30\nValor Total: 30\nValor Com Desconto: 30", inscricao.nota);
+        }
+        [TestMethod()]
+        public void checar_check_in() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            Atividade atividade = new AtividadeDefault("Café");
+            evento.Atividades.Adicionar(atividade);
+            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            inscricao.AdicionarAtividade(evento);
+            evento.ChecarCheckIn(inscricao);
+            Assert.AreEqual(inscricao.CheckIn, true);
         }
     }
 }

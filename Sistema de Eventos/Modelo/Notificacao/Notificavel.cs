@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
     public interface Notificavel {
-        void EnviarNotificacao(string Menssagem);
+        void Atualizar(string message);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_de_Eventos.AtividadePack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,10 @@ namespace Sistema_de_Eventos {
             }
         }
 
+        public EspacoComposto(string Titulo) {
+            nome = Titulo;
+            Atividade = new ListaAtividade();
+        }
         public EspacoComposto(string Titulo, EspacoFisico interior) {
             nome = Titulo;
             AdicionarInterior(interior);

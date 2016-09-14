@@ -6,78 +6,57 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.AtividadePack {
     public class Evento : Atividade {
         
         public ListaAtividade Atividades;
 
-        public override double Preco {
-            get {
-                return preco;
-            }
-            set {
-                preco = value;
-            }
-        }
-
-        public override int QuantidadeDeInscritos {
-            get {
-                int quantidade = 0;
-                for (int i = 0; i < Atividades.Lista.Count; i++) {
-                    quantidade += Atividades.Lista[i].QuantidadeDeInscritos;
-                }
-                return quantidade + inscritos.Count;
-            }
-        }
-
-        public override int QuantidadeDeInscritosPagos {
-            get {
-                int quantidadePagos = 0;
-                for (int i = 0; i < QuantidadeDeInscritos; i++) {
-                    if (inscritos[i].Pagamento) {
-                        quantidadePagos++;
-                    }
-                }
-                return quantidadePagos;
-            }
-        }
-
-        public override String Agenda {
+        public override string Agenda {
             get {
                 string horarios = "\n";
-                List<Atividade> lista = (List<Atividade>)this.Atividades.Lista;
-                lista.Add(this);
+                horarios += "Evento: "+Nome;
+                horarios += " - Inicio: ";
+                horarios += DataInicio.ToString();
+                horarios += " - Fim: ";
+                horarios += DataFim.ToString();
+                List<Atividade> lista = Atividades.Lista;
                 List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
                 for (int i = 0; i < listaOrdenada.Count; i++) {
-                    horarios += listaOrdenada[i].Nome;
-                    horarios += " - Inicio: ";
-                    horarios += listaOrdenada[i].DataInicio.ToString();
-                    horarios += " - Fim: ";
-                    horarios += listaOrdenada[i].DataFim.ToString();
-                    horarios += "\n";
+                    horarios += listaOrdenada[i].Agenda;
                 }
                 return horarios;
             }
         }
 
         public Evento() {
-            EspacoFisico espacoFisico = new EspacoVazio();
-            Estado = EstadoDaAtividade.Aberto;
+            inscritos = new List<Inscricao>();
+            notificador = FabricaNotificacao.CriarNotificador();
             Atividades = new ListaAtividade();
+            espacoFisico = FabricarEspaco.Vazio();
         }
-        public override void AdicionarInscritos(Inscricao inscricao) {
+        public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
-                for(int i = 0; i<Atividades.Lista.Count; i++) {
-                    //Atividades.Lista
+                addAtividade(this);
+                notificador.AdicionarNotificavel(inscricao.User);
+                for (int i = 0; i<Atividades.Lista.Count; i++) {
+                    Atividades.Lista[i].AdicionarInscritos(inscricao, addAtividade);
                 }
             }
         }
-        public override void RemoverInscritos(Inscricao inscricao) {
+        public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
+                notificador.AdicionarNotificavel(inscricao.User);
+                for (int i = 0; i < Atividades.Lista.Count; i++) {
+                    Atividades.Lista[i].RemoverInscritos(inscricao, removeAtividade);
+                }
             }
         }
 
+        protected override void Notificar(string Mensagem) {
+            string Complemento = "Prezado incrito, a data e horario do evento foram alteradas.";
+            notificador.AtualizarNotificaveis(Complemento+Mensagem);
+        }
     }
 }
