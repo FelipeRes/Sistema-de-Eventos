@@ -32,8 +32,7 @@ namespace Sistema_de_Eventos {
 
             meuEvento.Atividades.Adicionar(evento2);
 
-            Pessoa pessoa = new Pessoa();
-            pessoa.Nome = "José";
+            Pessoa pessoa = Pessoa.BuildNome("Felipe").CPF(000100101).Email("felipe@ggeasy.com").build();
             Usuario user = new Usuario(pessoa);
             Inscricao inscricao = new Inscricao(user);
             inscricao.AdicionarAtividade(meuEvento);
@@ -50,7 +49,7 @@ namespace Sistema_de_Eventos {
             Console.WriteLine(user.MinhasInscricoes[0].Pagamento);
 
             atividade3.DataInicio = new DateTime(2016, 9, 13, 20, 30, 0);
-           evento2.DataFim = new DateTime(2016, 9, 13, 20, 30, 0);
+            evento2.DataFim = new DateTime(2016, 9, 13, 20, 30, 0);
 
             Console.ReadKey();
         }

@@ -9,6 +9,7 @@ namespace Sistema_de_Eventos {
         public string message;
         public void Atualizar(string message) {
             this.message = message;
+            //Console.WriteLine(message);
             //throw new NotImplementedException(message);
         }
     }

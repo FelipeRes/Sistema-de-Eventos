@@ -65,7 +65,6 @@
     <Compile Include="Modelo\Espaco\EspacoVazio.cs" />
     <Compile Include="Modelo\Espaco\EstadoDaAtividade.cs" />
     <Compile Include="Modelo\Cupom\Descontavel.cs" />
-    <Compile Include="Modelo\AgendaUtils.cs" />
     <Compile Include="Modelo\Espaco\FabricarEspaco.cs" />
     <Compile Include="Modelo\Evento\Atividade.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
