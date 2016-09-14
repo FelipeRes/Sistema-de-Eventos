@@ -23,15 +23,16 @@ namespace Sistema_de_Eventos.AtividadePack {
                 List<Atividade> listaOrdenada = lista.OrderBy(o => o.DataInicio).ToList();
                 for (int i = 0; i < listaOrdenada.Count; i++) {
                     horarios += listaOrdenada[i].Agenda;
-                    //horarios += "\n";
                 }
                 return horarios;
             }
         }
 
         public Evento() {
-            EspacoFisico espacoFisico = new EspacoVazio();
+            inscritos = new List<Inscricao>();
+            espacoFisico = new EspacoVazio();
             Estado = EstadoDaAtividade.Aberto;
+            notificador = new Notificacao();
             Atividades = new ListaAtividade();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {

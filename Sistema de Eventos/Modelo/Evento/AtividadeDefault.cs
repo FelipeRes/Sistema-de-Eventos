@@ -24,9 +24,10 @@ namespace Sistema_de_Eventos{
 
         public AtividadeDefault(string nome) {
             inscritos = new List<Inscricao>();
-            this.nome = nome;
             espacoFisico = new EspacoVazio();
             Estado = EstadoDaAtividade.Aberto;
+            notificador = new Notificacao();
+            this.nome = nome;
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {

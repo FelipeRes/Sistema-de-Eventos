@@ -39,12 +39,6 @@ namespace Sistema_de_Eventos.AtividadePack {
                 espacoFisico = value;
             }
         }
-        
-        public Atividade() {
-            inscritos = new List<Inscricao>();
-            espacoFisico = new EspacoVazio();
-            notificador = new Notificacao();
-        }
 
         protected abstract void Notificar(string Mensagem);
         public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);
