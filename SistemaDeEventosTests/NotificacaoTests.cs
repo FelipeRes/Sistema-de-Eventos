@@ -19,7 +19,8 @@ namespace Sistema_de_Eventos.Tests {
             Evento meuEvento = new Evento();
             meuEvento.Nome = "Arduino Day";
             Usuario user = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
-            Inscricao inscrito = new Inscricao(user);
+            Inscricao inscrito = new Inscricao();
+            inscrito.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscrito.AdicionarAtividade(meuEvento);
             meuEvento.DataInicio = new DateTime(2016, 12, 09, 18, 15, 0);
             Assert.AreEqual(0, 0);

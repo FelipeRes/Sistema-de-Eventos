@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class OrganizacaoTests {
-        public Atividade atividade = new AtividadeSimples("Bahia");
+        public Atividade atividade = FabricarAtividade.Simples("Bahia");
         Usuario adm = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
 
         [TestMethod()]

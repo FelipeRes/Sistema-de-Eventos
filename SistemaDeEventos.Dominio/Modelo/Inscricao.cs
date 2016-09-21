@@ -14,30 +14,32 @@ namespace Sistema_de_Eventos.Modelo {
         public delegate void AddAtividade(Atividade atividade);
         public delegate void RemoveAtividade(Atividade atividade);
 
-        private List<Cupom> listaDeCupons = new List<Cupom>();
+        public virtual int Id { get; set; }
+
+        public virtual IList<Cupom> listaDeCupons { get; set; }
 
         private Usuario usuario;
-        public Usuario User { get { return usuario; } }
+        public virtual Usuario User { get { return usuario; } set { usuario = value; } }
 
         private bool pagamento;
-        public bool Pagamento { get { return pagamento; } }
+        public virtual bool Pagamento { get { return pagamento; } }
 
         private bool checkIn;
-        public bool CheckIn{ get { return checkIn;}}
+        public virtual bool CheckIn { get { return checkIn; } }
 
-        private ListaAtividade Atividades;
-        public IReadOnlyList<Atividade> listaDeAtividades { get { return Atividades.Lista; } }
+        public virtual ListaAtividade Atividades { get; set; }
 
-        public double ValorTotal {
+
+        public virtual double ValorTotal {
             get {
                 double PrecoFinal = 0;
-                for(int i =0; i< Atividades.Quantidade; i++) {
-                    PrecoFinal += Atividades.Lista[i].Preco;
+                for (int i = 0; i < Atividades.Quantidade; i++) {
+                    PrecoFinal += Atividades.lista[i].Preco;
                 }
                 return PrecoFinal;
             }
         }
-        public double ValorComDesconto {
+        public virtual double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
                 for (int i = 0; i < listaDeCupons.Count; i++) {
@@ -46,12 +48,12 @@ namespace Sistema_de_Eventos.Modelo {
                 return valorComDesconto;
             }
         }
-        public Inscricao(Usuario pessoa) {
+        public Inscricao() {
             Atividades = new ListaAtividade();
-            this.usuario = pessoa;
+            listaDeCupons = new List<Cupom>();
         }
 
-        public void AdicionarAtividade(Atividade atividade) {
+        public virtual void AdicionarAtividade(Atividade atividade) {
             if (!pagamento && atividade.Estado == EstadoDaAtividade.Aberto) {
                 AddAtividade a = new AddAtividade(Atividades.Adicionar);
                 atividade.AdicionarInscritos(this, a);
@@ -59,7 +61,7 @@ namespace Sistema_de_Eventos.Modelo {
                 throw new Exception("Atividade Repetida ou não pertece a esse atividade");
             }
         }
-        public void RemoverAtividade(Atividade atividade) {
+        public virtual void RemoverAtividade(Atividade atividade) {
             if (!pagamento) {
                 RemoveAtividade a = new RemoveAtividade(Atividades.Adicionar);
                 atividade.RemoverInscritos(this, a);
@@ -67,41 +69,34 @@ namespace Sistema_de_Eventos.Modelo {
                 throw new Exception("Atividade nao encontrada");
             }
         }
-        public void AdicionarCuponDeDesconto(Cupom cupom) {
+        public virtual void AdicionarCuponDeDesconto(Cupom cupom) {
             if (!pagamento) {
-                if(cupom.IsUsado == false) { 
-                    listaDeCupons.Add(cupom);
-                } else {
-                    throw new Exception("Cupom Invalido");
-                }
+                listaDeCupons.Add(cupom);
             } else {
                 throw new Exception("Inscricao Ja finalizada");
             }
         }
-        public void FinalizarInscricao() {
-                if (Atividades.Quantidade > 0) { 
-                    pagamento = true;
-                    for (int i = 0; i < listaDeCupons.Count; i++) {
-                        listaDeCupons[i].Invalidar();
-                    }
+        public virtual void FinalizarInscricao() {
+            if (Atividades.Quantidade > 0) {
+                pagamento = true;
                 usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
-                //User.InserirInscricao(this);
-                } else {
-                    throw new Exception("Voce deve se inscrever em ao menos uma atividade");
-                }
+                //User.(this);
+            } else {
+                throw new Exception("Voce deve se inscrever em ao menos uma atividade");
+            }
         }
-        public string nota {
+        public virtual string nota {
             get {
                 string nota = "\n";
-                for(int i = 0; i< Atividades.Lista.Count; i++) {
-                    nota += Atividades.Lista[i].Nome + " - Preco: "+ Atividades.Lista[i].Preco + "\n" ;
+                for (int i = 0; i < Atividades.lista.Count; i++) {
+                    nota += Atividades.lista[i].Nome + " - Preco: " + Atividades.lista[i].Preco + "\n";
                 }
                 nota += "Valor Total: " + ValorTotal + "\n";
                 nota += "Valor Com Desconto: " + ValorComDesconto;
                 return nota;
             }
         }
-        public void ConfirmarCheckIn() {
+        public virtual void ConfirmarCheckIn() {
             checkIn = true;
         }
     }

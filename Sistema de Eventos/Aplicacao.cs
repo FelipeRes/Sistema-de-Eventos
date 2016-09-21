@@ -3,6 +3,7 @@ using Sistema_de_Eventos.Modelo.Controle;
 using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Espaco;
 using Sistema_de_Eventos.Modelo.Eventos;
+using Sistema_de_Eventos.NHibernateHelp;
 using SistemaDeEventos.Modelo.Controle;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,14 @@ namespace Sistema_de_Eventos {
             Usuario user = FabricaUsuario.NovoUsuario("blblbl@algo.com", "123456").AdicionaPessoa(pessoa).build();
             user.Notificacao.AtualizarNotificaveis("Hello");
             Console.WriteLine(user.Pessoa.Nome);
+
+            Evento evento = FabricarAtividade.Evento();
+            evento.Nome = "BGS";
+            evento.Preco = 10;
+            //evento.Lugar = espaco;
+            evento.DataInicio = DateTime.Now;
+            NHibernateHelper.SaveOrUpdate(ref evento);
+            Console.WriteLine(evento.Agenda);
 
             Console.ReadKey();
         }

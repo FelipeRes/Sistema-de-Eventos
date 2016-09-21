@@ -75,6 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map\Atividade\AtividadeMap.cs" />
+    <Compile Include="Map\Atividade\AtividadeSimplesMap.cs" />
+    <Compile Include="Map\Atividade\EventoMap.cs" />
+    <Compile Include="Map\Atividade\InscricaoMap.cs" />
+    <Compile Include="Map\Atividade\ListaAtividadeMap.cs" />
     <Compile Include="Map\Controle\OrganizacaoMap.cs" />
     <Compile Include="Map\Controle\PessoaMap.cs" />
     <Compile Include="Map\Controle\UsuarioMap.cs" />
