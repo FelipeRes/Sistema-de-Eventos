@@ -69,6 +69,10 @@
       <Project>{AB52E3E3-719E-433C-93CE-E2FFE8725D44}</Project>
       <Name>SistemaDeEventos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SistemaDeEventos.Dominio\SistemaDeEventos.Dominio.csproj">
+      <Project>{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}</Project>
+      <Name>SistemaDeEventos.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

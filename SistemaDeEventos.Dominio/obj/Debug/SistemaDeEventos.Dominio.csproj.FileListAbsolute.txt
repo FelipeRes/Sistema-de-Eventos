@@ -1,0 +1,4 @@
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\bin\Debug\SistemaDeEventos.Dominio.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\bin\Debug\SistemaDeEventos.Dominio.pdb
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\obj\Debug\SistemaDeEventos.Dominio.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\obj\Debug\SistemaDeEventos.Dominio.pdb

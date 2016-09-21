@@ -4,3 +4,5 @@ C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.exe
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.pdb
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\SistemaDeEventos.csprojResolveAssemblyReference.cache
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\SistemaDeEventos.Dominio.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\SistemaDeEventos.Dominio.pdb

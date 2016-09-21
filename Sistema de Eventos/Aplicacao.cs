@@ -36,7 +36,7 @@ namespace Sistema_de_Eventos {
             meuEvento.Atividades.Adicionar(evento2);
 
             Pessoa pessoa = Pessoa.BuildNome("Felipe").CPF(000100101).build();
-            Usuario user = new Usuario("bla@gats", "sou");
+            Usuario user = new Usuario("bla@gats", "123456");
             user.Pessoa = pessoa;
             Inscricao inscricao = new Inscricao(user);
             inscricao.AdicionarAtividade(meuEvento);
