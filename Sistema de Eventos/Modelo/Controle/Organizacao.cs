@@ -1,4 +1,7 @@
-﻿using Sistema_de_Eventos.Modelo.Evento;
+﻿using Sistema_de_Eventos.Modelo;
+using Sistema_de_Eventos.Modelo.Controle;
+using Sistema_de_Eventos.Modelo.Cupons;
+using Sistema_de_Eventos.Modelo.Eventos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

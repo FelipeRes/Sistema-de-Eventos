@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sistema_de_Eventos.AtividadePack;
 using Sistema_de_Eventos.Modelo;
+using Sistema_de_Eventos.Modelo.Espaco;
+using Sistema_de_Eventos.Modelo.Eventos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

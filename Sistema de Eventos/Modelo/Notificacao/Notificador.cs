@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.Modelo.Notificacoes {
     public interface Notificador {
         void AdicionarNotificavel(Notificavel notificavel);
         void RemoverNotificavel(Notificavel notificavel);

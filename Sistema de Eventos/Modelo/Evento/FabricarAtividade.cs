@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.AtividadePack {
+namespace Sistema_de_Eventos.Modelo.Evento {
     public class FabricarAtividade {
         public static Atividade Complementar(string nome) {
             AtividadeDefault atividade = new AtividadeDefault(nome);

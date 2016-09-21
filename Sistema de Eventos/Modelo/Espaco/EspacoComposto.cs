@@ -1,4 +1,4 @@
-﻿using Sistema_de_Eventos.Modelo.Evento;
+﻿using Sistema_de_Eventos.Modelo.Eventos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

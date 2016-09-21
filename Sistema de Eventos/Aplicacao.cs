@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Sistema_de_Eventos.Modelo;
+using Sistema_de_Eventos.Modelo.Controle;
+using Sistema_de_Eventos.Modelo.Cupons;
+using Sistema_de_Eventos.Modelo.Eventos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sistema_de_Eventos.AtividadePack;
 
 namespace Sistema_de_Eventos {
     public class Aplicacao {

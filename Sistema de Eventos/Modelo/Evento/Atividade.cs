@@ -1,5 +1,5 @@
 ﻿using Sistema_de_Eventos.Modelo.Espaco;
-using Sistema_de_Eventos.Modelo.Notificacao;
+using Sistema_de_Eventos.Modelo.Notificacoes;
 using System;
 using System.Collections.Generic;
 

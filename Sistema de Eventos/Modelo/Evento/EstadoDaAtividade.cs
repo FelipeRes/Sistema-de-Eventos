@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.Modelo.Evento {
     public enum EstadoDaAtividade {
         Aberto,
         InscricoesEncerradas,
