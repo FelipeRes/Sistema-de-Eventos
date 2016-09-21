@@ -69,9 +69,7 @@ namespace Sistema_de_Eventos.Modelo.Controle {
             }
         }*/
 
-        internal Usuario() {
-            //notificacao = new Notificacao();
-            //notificacao.AdicionarNotificavel(new NotificacaoEmail());
+        internal Usuario() {;
         }
 
         public virtual bool Check(string senha) {

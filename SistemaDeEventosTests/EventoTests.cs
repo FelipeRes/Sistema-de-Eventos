@@ -3,6 +3,7 @@ using Sistema_de_Eventos.Modelo;
 using Sistema_de_Eventos.Modelo.Controle;
 using Sistema_de_Eventos.Modelo.Espaco;
 using Sistema_de_Eventos.Modelo.Eventos;
+using SistemaDeEventos.Modelo.Controle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace Sistema_de_Eventos.Tests {
         public void inscricao_em_atividade_principal() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             inscricao.AdicionarAtividade(evento);
             inscricao.FinalizarInscricao();
             Assert.AreEqual(inscricao.ValorTotal, 30);
@@ -74,8 +75,8 @@ namespace Sistema_de_Eventos.Tests {
         public void confirmacao_de_inscricao() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
-            Inscricao inscricao2 = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
+            Inscricao inscricao2 = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             inscricao.AdicionarAtividade(evento);
             inscricao2.AdicionarAtividade(evento);
             Assert.AreEqual(evento.QuantidadeDeInscritos, 2);
@@ -87,7 +88,7 @@ namespace Sistema_de_Eventos.Tests {
             Atividade atividade = FabricarAtividade.Simples("Palestra");
             atividade.Preco = 30;
             evento.Atividades.Adicionar(atividade);
-            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             inscricao.AdicionarAtividade(evento);
             Assert.AreEqual(60,inscricao.ValorTotal);
         }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public abstract class Atividade {
 
+        public virtual int Id { get; set; }
+
         protected List<Inscricao> inscritos;
         public IReadOnlyList<Inscricao> ListaDeInscritos { get { return inscritos; } }
 

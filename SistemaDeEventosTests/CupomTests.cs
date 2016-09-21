@@ -4,6 +4,7 @@ using Sistema_de_Eventos.Modelo;
 using Sistema_de_Eventos.Modelo.Controle;
 using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Eventos;
+using SistemaDeEventos.Modelo.Controle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Sistema_de_Eventos {
             Atividade atividade = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 10;
-            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             inscricao.AdicionarAtividade(atividade);
             Cupom cumpom1 = FabricarCupom.DescontoPorcentagem(50);
             inscricao.AdicionarCuponDeDesconto(cumpom1);
@@ -30,7 +31,7 @@ namespace Sistema_de_Eventos {
             Atividade atividade2 = FabricarAtividade.Simples("Lugar");
             evento2.Atividades.Adicionar(atividade);
             atividade2.Preco = 30;
-            Inscricao inscricao2 = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao2 = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             try {
                 inscricao2.AdicionarCuponDeDesconto(cumpom1);
                 Assert.Fail();
@@ -47,7 +48,7 @@ namespace Sistema_de_Eventos {
             Atividade atividade = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 100;
-            Inscricao inscricao = new Inscricao(new Usuario("bla@gats", "123456"));
+            Inscricao inscricao = new Inscricao(FabricaUsuario.NovoUsuario("bla@gats", "123456").build());
             inscricao.AdicionarAtividade(atividade);
             inscricao.AdicionarCuponDeDesconto(cupom1);
             Assert.AreEqual(45, inscricao.ValorComDesconto);
