@@ -62,7 +62,7 @@ namespace SistemaDeEventosTests {
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 90;
             inscricao.AdicionarAtividade(atividade);
-            inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoPorcentagem(50)));
+            inscricao.AdicionarCuponDeDesconto(FabricarCupom.DescontoPorcentagem(50));
             Assert.AreEqual(45, inscricao.ValorComDesconto);
         }
         [TestMethod]
@@ -92,7 +92,7 @@ namespace SistemaDeEventosTests {
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 90;
             inscricao.AdicionarAtividade(atividade);
-            inscricao.AdicionarCuponDeDesconto(new Cupom(new DescontoPorcentagem(90)));
+            inscricao.AdicionarCuponDeDesconto(FabricarCupom.DescontoPorValor(90));
             Assert.AreEqual(9, inscricao.ValorComDesconto);
         }
         [TestMethod]

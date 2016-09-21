@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public class DescontoValor : Descontavel {
-        private double valor;
-        public double GetDesconto(double valorRecebido) {
+
+        public virtual int Id { get; set; }
+
+        internal virtual double valor { get; set; }
+
+        public virtual double GetDesconto(double valorRecebido) {
             return valor;
         }
-        public DescontoValor(double valor) {
-            this.valor = valor;
+
+        internal DescontoValor() {
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Sistema_de_Eventos.Modelo {
         }
         public void AdicionarCuponDeDesconto(Cupom cupom) {
             if (!pagamento) {
-                if(cupom.Usado == false) { 
+                if(cupom.IsUsado == false) { 
                     listaDeCupons.Add(cupom);
                 } else {
                     throw new Exception("Cupom Invalido");

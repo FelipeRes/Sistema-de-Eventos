@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public class DescontoPorcentagem : Descontavel {
-        private double porcentagem;
-        public double GetDesconto(double valorRecebido) {
+
+        public virtual int Id { get; set; }
+
+        internal virtual double porcentagem { get; set; }
+
+        public virtual double GetDesconto(double valorRecebido) {
             return valorRecebido / 100 * porcentagem;
         }
-        public DescontoPorcentagem(double porcentagem) {
-            this.porcentagem = porcentagem;
+        internal DescontoPorcentagem() {
         }
     }
 }

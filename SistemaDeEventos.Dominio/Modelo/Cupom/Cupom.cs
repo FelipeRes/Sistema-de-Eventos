@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public class Cupom {
+
+        internal virtual int Id { get; set; }
+
         private Descontavel desconto;
-        private Descontavel Desconto { get { return desconto; } }
-        private bool usado;
-        private List<Cupom> comboCupom = new List<Cupom>();
-        public bool Usado { get { return usado; }}
+        public virtual Descontavel Desconto { get { return desconto; } set { desconto = value;} }
+
+        private bool isUsado;
+        public virtual bool IsUsado { get { return isUsado; } set { isUsado = value; } }
+
+        public virtual IList<Cupom> comboCupom { get; set; }
+
         public double GetDesconto(double valorRecebido) {
-            if (!Usado) {
+            if (!IsUsado) {
                 double descontoTotal = 0;
                 descontoTotal += desconto.GetDesconto(valorRecebido);
                 if (comboCupom.Count > 0) {
@@ -25,14 +31,14 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
                 throw new Exception("Cupom ja utilizado");
             }
         }
-        public void Invalidar() {
-            usado = true;
+        public virtual void Invalidar() {
+            isUsado = true;
         }
-        public Cupom(Descontavel desconto) {
-            this.desconto = desconto;
-            usado = false;
+        internal Cupom() {
+            comboCupom = new List<Cupom>();
+            isUsado = false;
         }
-        public Cupom AdicionarCupom(Cupom cupom) {
+        public virtual Cupom AdicionarCupom(Cupom cupom) {
             comboCupom.Add(cupom);
             return this;
         }
