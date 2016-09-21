@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Espaco {
     public class EspacoComposto : EspacoFisico {
 
-        private List<EspacoFisico> espacoInterior = new List<EspacoFisico>();
+        public virtual IList<EspacoFisico> espacoInterior { get; set; }
 
         public override int Capacidade {
             get {
@@ -17,6 +17,8 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
                     capacidade += espacoInterior[i].Capacidade;
                 }
                 return capacidade;
+            }set {
+                capacidade = value;
             }
         }
         public override string Nome {
@@ -27,18 +29,16 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
                 }
                 return nome + nomeLocalCompleto;
             }
+            set {
+                nome = value;
+            }
         }
 
-        public EspacoComposto(string Titulo) {
-            nome = Titulo;
-            Atividade = new ListaAtividade();
+        internal EspacoComposto() {
+            espacoInterior = new List<EspacoFisico>();
         }
-        public EspacoComposto(string Titulo, EspacoFisico interior) {
-            nome = Titulo;
-            AdicionarInterior(interior);
-            Atividade = new ListaAtividade();
-        }
-        public void AdicionarInterior(EspacoFisico interior) {
+
+        public virtual void AdicionarInterior(EspacoFisico interior) {
             if (!espacoInterior.Contains(interior) && interior != null) {
                 espacoInterior.Add(interior);
             } else {
@@ -46,7 +46,7 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
             }
         }
 
-        public void RemoverInterior(EspacoFisico interior) {
+        public virtual void RemoverInterior(EspacoFisico interior) {
             if (espacoInterior.Contains(interior)) {
                 espacoInterior.Remove(interior);
             } else {

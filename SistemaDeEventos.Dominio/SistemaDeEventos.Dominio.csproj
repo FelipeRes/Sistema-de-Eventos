@@ -79,6 +79,9 @@
     <Compile Include="Map\Cupons\DescontavelMap.cs" />
     <Compile Include="Map\Cupons\DescontoPorcentagemMap.cs" />
     <Compile Include="Map\Cupons\DescontoValorMap.cs" />
+    <Compile Include="Map\Espaco\EspacoCompostoMap.cs" />
+    <Compile Include="Map\Espaco\EspacoFisicoMap.cs" />
+    <Compile Include="Map\Espaco\EspacoSimplesMap.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
     <Compile Include="Modelo\Controle\Usuario.cs" />

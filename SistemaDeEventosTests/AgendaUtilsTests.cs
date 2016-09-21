@@ -43,7 +43,7 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         }
         [TestMethod()]
         public void quadro_de_horarios_por_espaco_fisico() {
-            EspacoFisico espaco = new EspacoSimples(12, "PredioB");
+            EspacoFisico espaco = FabricarEspaco.Simples(12,"PredioB");
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
@@ -58,7 +58,7 @@ namespace Sistema_de_Eventos.Modelo.Tests {
 
         [TestMethod()]
         public void quadro_de_horarios_com_atividades_complementares() {
-            EspacoFisico espaco = new EspacoSimples(12, "PredioB");
+            EspacoFisico espaco = FabricarEspaco.Simples(12, "PredioB");
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);

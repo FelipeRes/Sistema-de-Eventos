@@ -11,20 +11,14 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Espaco {
     public abstract class EspacoFisico {
 
-        protected int capacidade;
-        protected string nome;
+        public virtual int Id { get; set; }
 
-        abstract public string Nome { get; }
-        abstract public int Capacidade { get; }
+        public virtual int capacidade { get; set; }
+        public virtual string nome { get; set; }
 
-        protected ListaAtividade Atividade;
-        public IReadOnlyList<Atividade> ListaDeAtividades { get {return Atividade.Lista; } }
+        abstract public string Nome { get; set; }
+        abstract public int Capacidade { get; set; }
 
-        public void AdicionarAtividade(Atividade atividade) {
-            Atividade.Adicionar(atividade);
-        }
-        public void RemoverAtividade(Atividade atividade) {
-            Atividade.Remover(atividade);
-        }
+        public virtual ListaAtividade Atividades { get; set; }
     }
 }

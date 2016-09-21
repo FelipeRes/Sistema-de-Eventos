@@ -36,8 +36,8 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 return espacoFisico;
             }
             set {
-                espacoFisico.RemoverAtividade(this);
-                value.AdicionarAtividade(this);
+                espacoFisico.Atividades.Remover(this);
+                value.Atividades.Adicionar(this);
                 espacoFisico = value;
             }
         }
