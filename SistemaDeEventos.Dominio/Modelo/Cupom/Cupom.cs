@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public class Cupom {
 
-        internal virtual int Id { get; set; }
+        public virtual int Id { get; set; }
 
         private Descontavel desconto;
         public virtual Descontavel Desconto { get { return desconto; } set { desconto = value;} }
@@ -17,7 +17,7 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
 
         public virtual IList<Cupom> comboCupom { get; set; }
 
-        public double GetDesconto(double valorRecebido) {
+        public virtual double GetDesconto(double valorRecebido) {
             if (!IsUsado) {
                 double descontoTotal = 0;
                 descontoTotal += desconto.GetDesconto(valorRecebido);

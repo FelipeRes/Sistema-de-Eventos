@@ -9,7 +9,7 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
 
         public virtual int Id { get; set; }
 
-        internal virtual double porcentagem { get; set; }
+        public virtual double porcentagem { get; set; }
 
         public virtual double GetDesconto(double valorRecebido) {
             return valorRecebido / 100 * porcentagem;
