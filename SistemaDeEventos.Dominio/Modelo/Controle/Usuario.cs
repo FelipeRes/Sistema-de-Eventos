@@ -13,14 +13,16 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Controle {
     public class Usuario : Notificavel {
 
+        public virtual int Id { get; set; }
+
         private Regex regMail = new Regex(@".*@(.*(\.|))*", RegexOptions.IgnoreCase);
         private Regex regSenha = new Regex(@"[a-zA-z0-9]{6,}", RegexOptions.IgnoreCase);
 
         private Pessoa pessoa;
-        public Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
+        public virtual Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
 
         private string email;
-        public string Email {
+        public virtual string Email {
             get {
                 return email;
             } set {
@@ -35,7 +37,10 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         }       
 
         private string senha;
-        public string Senha {
+        public virtual string Senha {
+            get {
+                return senha;
+            }
             set {
                 Match match = regSenha.Match(value);
                 if (match.Success) {
@@ -47,12 +52,10 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         }
 
         private Notificador notificacao;
-        public Notificador Notificacao {get{return notificacao;}set { notificacao = value; }}
+        public virtual Notificador Notificacao {get{return notificacao;}set { notificacao = value; }}
 
-        private List<Inscricao> minhasInscricoes;
-        public IReadOnlyList<Inscricao> MinhasInscricoes {
-            get { return minhasInscricoes; }
-        }
+        /*private IList<Inscricao> minhasInscricoes
+
         private List<Atividade> atividadeQueParticipei;
         public IReadOnlyList<Atividade> AtividadeQueParticipei {
             get {
@@ -64,18 +67,14 @@ namespace Sistema_de_Eventos.Modelo.Controle {
                 }
                 return atividadeQueParticipei;
             }
+        }*/
+
+        internal Usuario() {
+            //notificacao = new Notificacao();
+            //notificacao.AdicionarNotificavel(new NotificacaoEmail());
         }
 
-        public Usuario(string email, string senha) {
-            this.Email = email;
-            this.Senha = senha;
-            minhasInscricoes = new List<Inscricao>();
-            notificacao = new Notificacao();
-            notificacao.AdicionarNotificavel(new NotificacaoEmail());
-            atividadeQueParticipei = new List<Atividade>();
-        }
-
-        public bool Check(string senha) {
+        public virtual bool Check(string senha) {
             if(this.senha == senha) {
                 return true;
             }else {
@@ -83,12 +82,12 @@ namespace Sistema_de_Eventos.Modelo.Controle {
             }
                 
         }
-        public void InserirInscricao(Inscricao inscricao) {
+        /*public void InserirInscricao(Inscricao inscricao) {
             if (inscricao.User == this && !minhasInscricoes.Contains(inscricao)) {
                 minhasInscricoes.Add(inscricao);
             }
-        }
-        public void Atualizar(string message) {
+        }*/
+        public virtual void Atualizar(string message) {
             Notificacao.AtualizarNotificaveis(message);
         }
 

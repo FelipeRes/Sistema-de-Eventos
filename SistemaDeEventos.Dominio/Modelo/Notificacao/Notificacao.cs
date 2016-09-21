@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Notificacoes {
     public class Notificacao : Notificador {
 
-        private List<Notificavel> listaObservadores;
+        public virtual int Id { get; set; }
 
-        public Notificacao() {
+        public virtual IList<Notificavel> listaObservadores { get; set; }
+
+        internal Notificacao() {
             listaObservadores = new List<Notificavel>();
         }
 
-        public void AdicionarNotificavel(Notificavel notificavel) {
+        public virtual void AdicionarNotificavel(Notificavel notificavel) {
             if (!listaObservadores.Contains(notificavel)) {
                 listaObservadores.Add(notificavel);
             }
         }
 
-        public void AtualizarNotificaveis(string message) {
+        public virtual void AtualizarNotificaveis(string message) {
             foreach(Notificavel n in listaObservadores) {
                 n.Atualizar(message);
             }
         }
 
-        public void RemoverNotificavel(Notificavel notificavel) {
+        public virtual void RemoverNotificavel(Notificavel notificavel) {
             if (listaObservadores.Contains(notificavel)) {
                 listaObservadores.Add(notificavel);
             }

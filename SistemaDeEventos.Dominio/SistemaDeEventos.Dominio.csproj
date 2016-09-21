@@ -75,6 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map\Controle\OrganizacaoMap.cs" />
+    <Compile Include="Map\Controle\PessoaMap.cs" />
+    <Compile Include="Map\Controle\UsuarioMap.cs" />
     <Compile Include="Map\Cupons\CupomMap.cs" />
     <Compile Include="Map\Cupons\DescontavelMap.cs" />
     <Compile Include="Map\Cupons\DescontoPorcentagemMap.cs" />
@@ -82,6 +85,11 @@
     <Compile Include="Map\Espaco\EspacoCompostoMap.cs" />
     <Compile Include="Map\Espaco\EspacoFisicoMap.cs" />
     <Compile Include="Map\Espaco\EspacoSimplesMap.cs" />
+    <Compile Include="Map\Notificacao\NotificacaoEmailMap.cs" />
+    <Compile Include="Map\Notificacao\NotificacaoMap.cs" />
+    <Compile Include="Map\Notificacao\NotificadorMap.cs" />
+    <Compile Include="Map\Notificacao\NotificavelMap.cs" />
+    <Compile Include="Modelo\Controle\FabricaUsuario.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
     <Compile Include="Modelo\Controle\Usuario.cs" />
@@ -116,6 +124,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.103\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.103\build\net45\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
