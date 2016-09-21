@@ -3,7 +3,7 @@ using Sistema_de_Eventos.Modelo.Notificacoes;
 using System;
 using System.Collections.Generic;
 
-namespace Sistema_de_Eventos.Modelo.Evento {
+namespace Sistema_de_Eventos.Modelo.Eventos {
     public abstract class Atividade {
 
         protected List<Inscricao> inscritos;

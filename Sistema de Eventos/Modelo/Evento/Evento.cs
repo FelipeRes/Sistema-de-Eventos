@@ -7,7 +7,7 @@ using System.Net.Mail;
 using Sistema_de_Eventos.Modelo.Notificacoes;
 using Sistema_de_Eventos.Modelo.Espaco;
 
-namespace Sistema_de_Eventos.Modelo.Evento {
+namespace Sistema_de_Eventos.Modelo.Eventos {
     public class Evento : Atividade {
         
         public ListaAtividade Atividades;

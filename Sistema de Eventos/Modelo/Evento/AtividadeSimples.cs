@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.Modelo.Evento {
+namespace Sistema_de_Eventos.Modelo.Eventos {
     public class AtividadeSimples : Atividade {
 
         public override string Agenda {
