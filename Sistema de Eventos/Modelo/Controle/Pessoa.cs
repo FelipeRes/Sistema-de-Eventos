@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.Modelo.Controle {
     public class Pessoa {
         
         public static PessoaBuilder BuildNome(string nome) {

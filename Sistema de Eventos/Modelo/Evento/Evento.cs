@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using Sistema_de_Eventos.Modelo.Notificacoes;
+using Sistema_de_Eventos.Modelo.Espaco;
 
-
-namespace Sistema_de_Eventos.AtividadePack {
+namespace Sistema_de_Eventos.Modelo.Evento {
     public class Evento : Atividade {
         
         public ListaAtividade Atividades;

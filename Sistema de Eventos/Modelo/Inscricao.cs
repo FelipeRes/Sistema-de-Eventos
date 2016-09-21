@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
-using Sistema_de_Eventos.AtividadePack;
+using Sistema_de_Eventos.Modelo.Evento;
+using Sistema_de_Eventos.Modelo.Cupons;
+using Sistema_de_Eventos.Modelo.Controle;
 
-namespace Sistema_de_Eventos {
+namespace Sistema_de_Eventos.Modelo {
     public class Inscricao {
 
         public delegate void AddAtividade(Atividade atividade);

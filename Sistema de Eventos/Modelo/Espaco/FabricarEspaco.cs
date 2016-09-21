@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos {
-    public class FabricarEspaco {
+    public class FabricarEspaco.Modelo.Espaco {
         static public EspacoSimples Simples(int capacidade, string nome) {
             return new EspacoSimples(capacidade, nome);
         }

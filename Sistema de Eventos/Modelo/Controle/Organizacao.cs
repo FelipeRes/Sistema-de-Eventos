@@ -1,11 +1,11 @@
-﻿using Sistema_de_Eventos.AtividadePack;
+﻿using Sistema_de_Eventos.Modelo.Evento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.Modelo {
+namespace Sistema_de_Eventos.Modelo.Controle {
     public class Organizacao {
 
         private Atividade atividade;

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Sistema_de_Eventos.Modelo.Espaco;
+using Sistema_de_Eventos.Modelo.Notificacoes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos.AtividadePack {
+namespace Sistema_de_Eventos.Modelo.Evento {
     public class AtividadeSimples : Atividade {
 
         public override string Agenda {

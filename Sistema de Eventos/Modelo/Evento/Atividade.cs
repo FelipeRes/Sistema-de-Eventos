@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Sistema_de_Eventos.Modelo.Espaco;
+using Sistema_de_Eventos.Modelo.Notificacao;
+using System;
 using System.Collections.Generic;
 
-namespace Sistema_de_Eventos.AtividadePack {
+namespace Sistema_de_Eventos.Modelo.Evento {
     public abstract class Atividade {
 
         protected List<Inscricao> inscritos;

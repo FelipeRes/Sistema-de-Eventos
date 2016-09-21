@@ -1,11 +1,11 @@
-﻿using Sistema_de_Eventos.AtividadePack;
+﻿using Sistema_de_Eventos.Modelo.Notificacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_Eventos{
+namespace Sistema_de_Eventos.Modelo.Evento {
     public class AtividadeDefault :Atividade {
 
         public override double Preco { get { return 0; } set { throw new Exception("Não pode ter valor"); } }
