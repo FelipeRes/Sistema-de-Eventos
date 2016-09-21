@@ -18,7 +18,7 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
         public virtual IList<Cupom> comboCupom { get; set; }
 
         public virtual double GetDesconto(double valorRecebido) {
-            if (!IsUsado) {
+            //if (!IsUsado) {
                 double descontoTotal = 0;
                 descontoTotal += desconto.GetDesconto(valorRecebido);
                 if (comboCupom.Count > 0) {
@@ -27,9 +27,9 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
                     }
                 }
                 return descontoTotal;
-            }else {
-                throw new Exception("Cupom ja utilizado");
-            }
+            //}else {
+              //  throw new Exception("Cupom ja utilizado");
+            //}
         }
         public virtual void Invalidar() {
             isUsado = true;

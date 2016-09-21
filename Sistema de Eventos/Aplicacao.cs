@@ -16,7 +16,7 @@ namespace Sistema_de_Eventos {
         public static void Main() {
 
             Cupom cupom = FabricarCupom.DescontoPorcentagem(50);
-            cupom.comboCupom.Add(FabricarCupom.DescontoPorValor(5));
+            cupom.comboCupom.Add(FabricarCupom.DescontoPorValor(1));
             Console.WriteLine(cupom.GetDesconto(100));
 
             EspacoFisico espaco = FabricarEspaco.Composto("IFPI").CriarEspaco("B1", 10).CriarEspaco("B2",20).build();
@@ -29,11 +29,29 @@ namespace Sistema_de_Eventos {
 
             Evento evento = FabricarAtividade.Evento();
             evento.Nome = "BGS";
-            evento.Preco = 10;
-            //evento.Lugar = espaco;
+            evento.Preco = 100;
+            evento.Lugar = espaco;
             evento.DataInicio = DateTime.Now;
+
+            Atividade atividade = FabricarAtividade.Simples("Zawarudo");
+            atividade.Preco = 100;
+            evento.Atividades.Adicionar(atividade);
+            NHibernateHelper.SaveOrUpdate(ref atividade);
             NHibernateHelper.SaveOrUpdate(ref evento);
             Console.WriteLine(evento.Agenda);
+
+            Inscricao inscricao = new Inscricao();
+            inscricao.User = user;
+            inscricao.AdicionarCuponDeDesconto(cupom);
+            ListaAtividade listaAtividade = new ListaAtividade();
+            inscricao.Atividades = listaAtividade;
+            inscricao.Atividades.Adicionar(evento);
+            inscricao.FinalizarInscricao();
+
+            Console.WriteLine(inscricao.nota);
+
+            NHibernateHelper.SaveOrUpdate(ref listaAtividade);
+            NHibernateHelper.SaveOrUpdate(ref inscricao);
 
             Console.ReadKey();
         }

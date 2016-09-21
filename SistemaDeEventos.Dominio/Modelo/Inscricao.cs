@@ -79,6 +79,11 @@ namespace Sistema_de_Eventos.Modelo {
         public virtual void FinalizarInscricao() {
             if (Atividades.Quantidade > 0) {
                 pagamento = true;
+                foreach(var cupom in listaDeCupons) {
+                    if (!cupom.IsUsado) {
+                        cupom.Invalidar();
+                    }
+                }
                 usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
                 //User.(this);
             } else {
