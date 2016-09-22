@@ -4,3 +4,20 @@ C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.exe
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\Sistema de Eventos.pdb
 C:\Users\Felipe Resende\documents\visual studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\obj\Debug\SistemaDeEventos.csprojResolveAssemblyReference.cache
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\SistemaDeEventos.Dominio.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\SistemaDeEventos.Dominio.pdb
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\NHibernate.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\FluentNHibernate.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\Iesi.Collections.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\NHibernate.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\FluentNHibernate.pdb
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\FluentNHibernate.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\Iesi.Collections.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\EntityFramework.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\System.Data.SQLite.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\EntityFramework.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\Sistema de Eventos\bin\Debug\System.Data.SQLite.xml

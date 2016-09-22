@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Web
+# Visual Studio Express 14 for Windows Desktop
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeEventos", "Sistema de Eventos\SistemaDeEventos.csproj", "{AB52E3E3-719E-433C-93CE-E2FFE8725D44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeEventosTests", "SistemaDeEventosTests\SistemaDeEventosTests.csproj", "{A241C2D1-76FF-4D0A-93CE-812E5682C028}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDeEventos.Dominio", "SistemaDeEventos.Dominio\SistemaDeEventos.Dominio.csproj", "{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A241C2D1-76FF-4D0A-93CE-812E5682C028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A241C2D1-76FF-4D0A-93CE-812E5682C028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A241C2D1-76FF-4D0A-93CE-812E5682C028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C82D63-ED4D-461F-A2F9-90C5B9AFA353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sistema_de_Eventos.AtividadePack;
 using Sistema_de_Eventos.Modelo;
+using Sistema_de_Eventos.Modelo.Espaco;
+using Sistema_de_Eventos.Modelo.Eventos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Tests {
     [TestClass()]
     public class AgendaUtilsTests {
-        Evento evento = new Evento();
+        Evento evento = FabricarAtividade.Evento();
         [TestMethod()]
         public void formacao_de_quadro_de_horarios() {
             evento.Nome = "GGJ";
@@ -23,7 +24,7 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            Atividade atividade2 = new AtividadeSimples("MiniCurso");
+            Atividade atividade2 = FabricarAtividade.Simples("MiniCurso");
             evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2016, 1, 27, 18, 0, 0);
             atividade2.DataFim = new DateTime(2016, 1, 27, 22, 0, 0);
@@ -34,7 +35,7 @@ namespace Sistema_de_Eventos.Modelo.Tests {
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
-            Atividade atividade2 = new AtividadeSimples("MiniCurso");
+            Atividade atividade2 = FabricarAtividade.Simples("MiniCurso");
             evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
@@ -42,12 +43,12 @@ namespace Sistema_de_Eventos.Modelo.Tests {
         }
         [TestMethod()]
         public void quadro_de_horarios_por_espaco_fisico() {
-            EspacoFisico espaco = new EspacoSimples(12, "PredioB");
+            EspacoFisico espaco = FabricarEspaco.Simples(12,"PredioB");
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             evento.Lugar = espaco;
-            Atividade atividade2 = new AtividadeSimples("MiniCurso");
+            Atividade atividade2 = FabricarAtividade.Simples("MiniCurso");
             evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);
@@ -57,12 +58,12 @@ namespace Sistema_de_Eventos.Modelo.Tests {
 
         [TestMethod()]
         public void quadro_de_horarios_com_atividades_complementares() {
-            EspacoFisico espaco = new EspacoSimples(12, "PredioB");
+            EspacoFisico espaco = FabricarEspaco.Simples(12, "PredioB");
             evento.Nome = "GGJ";
             evento.DataInicio = new DateTime(2016, 1, 27, 17, 0, 0);
             evento.DataFim = new DateTime(2016, 1, 29, 17, 0, 0);
             evento.Lugar = espaco;
-            Atividade atividade2 = new AtividadeDefault("MiniCurso");
+            Atividade atividade2 = FabricarAtividade.Complementar("MiniCurso");
             evento.Atividades.Adicionar(atividade2);
             atividade2.DataInicio = new DateTime(2015, 1, 21, 13, 0, 0);
             atividade2.DataFim = new DateTime(2015, 1, 21, 17, 0, 0);

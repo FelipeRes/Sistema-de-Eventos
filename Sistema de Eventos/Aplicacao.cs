@@ -1,56 +1,58 @@
-﻿using System;
+﻿using Sistema_de_Eventos.Modelo;
+using Sistema_de_Eventos.Modelo.Controle;
+using Sistema_de_Eventos.Modelo.Cupons;
+using Sistema_de_Eventos.Modelo.Espaco;
+using Sistema_de_Eventos.Modelo.Eventos;
+using Sistema_de_Eventos.NHibernateHelp;
+using SistemaDeEventos.Dominio.Modelo.Inscircoes;
+using SistemaDeEventos.Modelo.Controle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sistema_de_Eventos.AtividadePack;
 
 namespace Sistema_de_Eventos {
     public class Aplicacao {
         public static void Main() {
-            Evento meuEvento = FabricarAtividade.Evento();
-            meuEvento.Nome = "Arduino Day";
-            Atividade atividade = FabricarAtividade.Complementar ("Credenciamento");
-            Atividade atividade2 = FabricarAtividade.Complementar("Sorteio");
-            Atividade atividade3 = FabricarAtividade.Simples("Minicurso");
-            atividade3.Preco = 15;
-            Atividade atividade4 = FabricarAtividade.Simples("Palestra");
-            atividade4.Preco = 50;
-            meuEvento.Atividades.Adicionar(atividade);
-            meuEvento.Atividades.Adicionar(atividade2);
-            meuEvento.Atividades.Adicionar(atividade3);
-            meuEvento.Atividades.Adicionar(atividade4);
-            Console.WriteLine(meuEvento.Agenda);
-
-            Evento evento2 = new Evento();
-            evento2.Nome = "SBGames";
-            Atividade atividadeA = FabricarAtividade.Complementar("Credenciamento");
-            Atividade atividadeB = FabricarAtividade.Simples("Stand");
-            atividadeB.Preco = 1000;
-            evento2.Atividades.Adicionar(atividadeA);
-            evento2.Atividades.Adicionar(atividadeB);
-
-            meuEvento.Atividades.Adicionar(evento2);
-
-            Pessoa pessoa = Pessoa.BuildNome("Felipe").CPF(000100101).build();
-            Usuario user = new Usuario("bla@gats", "sou");
-            user.Pessoa = pessoa;
-            Inscricao inscricao = new Inscricao(user);
-            inscricao.AdicionarAtividade(meuEvento);
-            Console.WriteLine(inscricao.nota);
 
             Cupom cupom = FabricarCupom.DescontoPorcentagem(50);
+            cupom.comboCupom.Add(FabricarCupom.DescontoPorValor(1));
+            Console.WriteLine(cupom.GetDesconto(100));
+
+            EspacoFisico espaco = FabricarEspaco.Composto("IFPI").CriarEspaco("B1", 10).CriarEspaco("B2",20).build();
+            Console.WriteLine(espaco.Nome);
+
+            Pessoa pessoa = Pessoa.BuildNome("Maria").CPF(1234123).DataNascimento(DateTime.Now).build();
+            Usuario user = FabricaUsuario.NovoUsuario("blblbl@algo.com", "123456").AdicionaPessoa(pessoa).build();
+            user.Notificacao.AtualizarNotificaveis("Hello");
+            Console.WriteLine(user.Pessoa.Nome);
+
+            Evento evento = FabricarAtividade.Evento();
+            evento.Nome = "BGS";
+            evento.Preco = 100;
+            evento.Lugar = espaco;
+            evento.DataInicio = DateTime.Now;
+
+            Atividade atividade = FabricarAtividade.Simples("Zawarudo");
+            atividade.Preco = 100;
+            evento.Atividades.Adicionar(atividade);
+            NHibernateHelper.SaveOrUpdate(ref atividade);
+            NHibernateHelper.SaveOrUpdate(ref evento);
+            Console.WriteLine(evento.Agenda);
+
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
+            inscricao.User = user;
             inscricao.AdicionarCuponDeDesconto(cupom);
-            Console.WriteLine(inscricao.nota);
+            ListaAtividade listaAtividade = new ListaAtividade();
+            inscricao.Atividades = listaAtividade;
+            inscricao.Atividades.Adicionar(evento);
             inscricao.FinalizarInscricao();
 
-            for (int i = 0; i < meuEvento.ListaDeInscritos.Count; i++) {
-                Console.WriteLine(meuEvento.ListaDeInscritos[i].User.Pessoa.Nome);
-            }
-            Console.WriteLine(user.MinhasInscricoes[0].listaDeAtividades[0].Nome);
+            Console.WriteLine(inscricao.nota);
 
-            atividade3.DataInicio = new DateTime(2016, 9, 13, 20, 30, 0);
-            evento2.DataFim = new DateTime(2016, 9, 13, 20, 30, 0);
+            NHibernateHelper.SaveOrUpdate(ref listaAtividade);
+            NHibernateHelper.SaveOrUpdate(ref inscricao);
 
             Console.ReadKey();
         }
