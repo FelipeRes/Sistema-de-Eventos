@@ -41,8 +41,6 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             }
         }
 
-        public override bool isIsolate { get { return isIsolate; } set { isIsolate = value; } }
-
         protected override void Notificar(string Mensagem) {
             string Complemento = "Prezado incrito, a data e horario desta Atividade foram alteradas.";
             notificador.AtualizarNotificaveis(Complemento + Mensagem);

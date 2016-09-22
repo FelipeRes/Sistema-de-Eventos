@@ -48,7 +48,6 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             }
         }
 
-        public abstract bool isIsolate { get; set; }
         protected abstract void Notificar(string Mensagem);
         public abstract void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade);
         public abstract void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade);

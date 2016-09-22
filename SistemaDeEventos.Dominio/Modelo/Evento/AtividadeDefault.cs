@@ -25,7 +25,6 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
 
         internal AtividadeDefault() {
             notificador = FabricaNotificacao.CriarNotificador();
-            isIsolate = false;
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
@@ -38,6 +37,5 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
         protected override void Notificar(string Mensagem) {
             return;
         }
-        public override bool isIsolate { get { return false; } set { } }
     }
 }

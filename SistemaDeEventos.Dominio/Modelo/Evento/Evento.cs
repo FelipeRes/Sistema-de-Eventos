@@ -44,9 +44,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 //notificador.AdicionarNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        if (!Atividades.lista[i].isIsolate) {
-                            Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
-                        }
+                        Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
                     }
                 }
             }
@@ -58,15 +56,11 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 //notificador.RemoverNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        if (!Atividades.lista[i].isIsolate) {
-                            Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
-                        }
+                        Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
                     }
                 }
             }
         }
-
-        public override bool isIsolate { get { return isIsolate; } set { isIsolate = value; } }
 
         protected override void Notificar(string Mensagem) {
             string Complemento = "Prezado incrito, a data e horario do evento foram alteradas.";

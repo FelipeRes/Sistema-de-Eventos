@@ -212,27 +212,5 @@ namespace SistemaDeEventosTests {
             evento.ChecarCheckIn(inscricao);
             Assert.AreEqual(inscricao.CheckIn, true);
         }
-
-        [TestMethod()]
-        public void checar_inscricao_unica_no_evento() {
-            evento.Nome = "Arduino Day";
-            evento.Preco = 30;
-            evento.isUnique = true;
-            Atividade atividade = FabricarAtividade.Complementar("Café");
-            Atividade palestra = FabricarAtividade.Simples("Palestra1");
-            Atividade palestra2 = FabricarAtividade.Simples("Palestra2");
-            evento.Atividades.Adicionar(atividade);
-            evento.Atividades.Adicionar(palestra);
-            evento.Atividades.Adicionar(palestra2);
-            Inscricao inscricao = FabricaInscricao.NovaInscricao();
-            inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
-            inscricao.AdicionarAtividade(evento);
-            inscricao.FinalizarInscricao();
-            List<Atividade> listaDeAtividade = new List<Atividade>();
-            listaDeAtividade.Add(evento);
-            listaDeAtividade.Add(palestra);
-            //listaDeAtividade.Add(palestra2);
-            Assert.AreEqual(inscricao.Atividades.lista, listaDeAtividade);
-        }
     }
 }
