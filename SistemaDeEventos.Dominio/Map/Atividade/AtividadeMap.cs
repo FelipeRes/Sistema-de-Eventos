@@ -14,6 +14,7 @@ namespace Sistema_de_Eventos.Map.Atividades {
             Map(x => x.Nome);
             References(x => x.Lugar);
             Map(x => x.Preco);
+            Map(x => x.isIsolate);
             Map(x => x.DataInicio).CustomSqlType("datetime2").Not.Nullable();
             Map(x => x.DataFim).CustomSqlType("datetime2").Not.Nullable();
             //Map(x => x.Estado);
