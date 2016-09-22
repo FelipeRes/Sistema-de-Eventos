@@ -11,7 +11,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
     public class Evento : Atividade {
 
         public virtual ListaAtividade Atividades { get; set; }
-
+        public override bool Isolada { get { return isolada; } set { isolada = value; } }
         public virtual bool isUnique { get; set;}
 
         public override string Agenda {
@@ -35,6 +35,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
             isUnique = true;
+            isolada = false;
             //espacoFisico = FabricarEspaco.Vazio();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
@@ -44,7 +45,9 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 //notificador.AdicionarNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                        if (!Atividades.lista[i].Isolada) {
+                            Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                        }
                     }
                 }
             }
@@ -56,7 +59,9 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 //notificador.RemoverNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                        if (!Atividades.lista[i].Isolada) {
+                            Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                        }
                     }
                 }
             }

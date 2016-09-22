@@ -10,7 +10,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
     public class AtividadeDefault :Atividade {
 
         public override double Preco { get { return 0; } set { } }
-
+        public override bool Isolada { get { return false; } set { isolada = value; } }
         public override string Agenda {
             get {
                 string horarios = "\n";

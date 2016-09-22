@@ -10,6 +10,7 @@ namespace Sistema_de_Eventos.Map.Atividades {
     public class EventoMap : SubclassMap<Evento> {
         public EventoMap() {
             References(x => x.Atividades);
+            Map(x => x.isUnique);
             DiscriminatorValue(1);
         }
     }

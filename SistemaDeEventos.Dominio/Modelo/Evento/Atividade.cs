@@ -31,6 +31,9 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
 
         public abstract string Agenda { get; }
 
+        protected bool isolada;
+        public abstract bool Isolada { get; set; }
+
         public virtual EspacoFisico espacoFisico { get; set; }
         public virtual EspacoFisico Lugar {
             get {
