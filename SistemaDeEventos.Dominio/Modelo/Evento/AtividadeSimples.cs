@@ -24,7 +24,6 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
         public AtividadeSimples() {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
-            //espacoFisico = FabricarEspaco.Vazio();
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {

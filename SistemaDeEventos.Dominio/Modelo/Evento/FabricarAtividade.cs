@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public class FabricarAtividade {
         public static Atividade Complementar(string nome) {
-            AtividadeDefault atividade = new AtividadeDefault(nome);
+            AtividadeDefault atividade = new AtividadeDefault();
+            atividade.Nome = nome;
             atividade.Estado = EstadoDaAtividade.Aberto;
             atividade.espacoFisico = FabricarEspaco.Vazio();
+            atividade.inscritos = new List<Inscricao>();
+            NHibernateHelper.SaveOrUpdate(ref atividade);
             return atividade;
         }
         public static Atividade Simples(string nome) {

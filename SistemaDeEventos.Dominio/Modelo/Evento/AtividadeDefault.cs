@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public class AtividadeDefault :Atividade {
 
-        public override double Preco { get { return 0; } set { throw new Exception("Não pode ter valor"); } }
+        public override double Preco { get { return 0; } set { } }
 
         public override string Agenda {
             get {
@@ -23,11 +23,8 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             }
         }
 
-        public AtividadeDefault(string nome) {
-            inscritos = new List<Inscricao>();
+        internal AtividadeDefault() {
             notificador = FabricaNotificacao.CriarNotificador();
-            espacoFisico = FabricarEspaco.Vazio();
-            this.nome = nome;
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {

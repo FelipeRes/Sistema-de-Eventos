@@ -14,3 +14,12 @@ C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\FluentNHibernate.pdb
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\FluentNHibernate.xml
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\Iesi.Collections.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\SistemaDeEventosTests.dll.config
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\EntityFramework.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\System.Data.SQLite.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\EntityFramework.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventosTests\bin\Debug\System.Data.SQLite.xml

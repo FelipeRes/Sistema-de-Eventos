@@ -10,6 +10,7 @@ using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.Modelo;
 using Sistema_de_Eventos.Modelo.Controle;
 using SistemaDeEventos.Modelo.Controle;
+using SistemaDeEventos.Dominio.Modelo.Inscircoes;
 
 namespace Sistema_de_Eventos.Tests {
     [TestClass()]
@@ -19,7 +20,7 @@ namespace Sistema_de_Eventos.Tests {
             Evento evento = FabricarAtividade.Evento();
             Atividade ativiade = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(ativiade);
-            Inscricao inscricao = new Inscricao();
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscricao.AdicionarAtividade(ativiade);
             inscricao.FinalizarInscricao();

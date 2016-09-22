@@ -29,7 +29,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             }
         }
 
-        public Evento() {
+        internal Evento() {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
             //espacoFisico = FabricarEspaco.Vazio();

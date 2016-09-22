@@ -4,6 +4,7 @@ using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Espaco;
 using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.NHibernateHelp;
+using SistemaDeEventos.Dominio.Modelo.Inscircoes;
 using SistemaDeEventos.Modelo.Controle;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Sistema_de_Eventos {
             NHibernateHelper.SaveOrUpdate(ref evento);
             Console.WriteLine(evento.Agenda);
 
-            Inscricao inscricao = new Inscricao();
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = user;
             inscricao.AdicionarCuponDeDesconto(cupom);
             ListaAtividade listaAtividade = new ListaAtividade();

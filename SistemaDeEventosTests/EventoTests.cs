@@ -3,6 +3,7 @@ using Sistema_de_Eventos.Modelo;
 using Sistema_de_Eventos.Modelo.Controle;
 using Sistema_de_Eventos.Modelo.Espaco;
 using Sistema_de_Eventos.Modelo.Eventos;
+using SistemaDeEventos.Dominio.Modelo.Inscircoes;
 using SistemaDeEventos.Modelo.Controle;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Tests {
     [TestClass()]
     public class EventoTests {
-        Evento evento = new Evento();
+        Evento evento = FabricarAtividade.Evento();
         [TestMethod()]
         public void quantidade_de_atividades_no_evento() {
             Atividade atividade1 = FabricarAtividade.Simples("Lugar");
@@ -55,7 +56,7 @@ namespace Sistema_de_Eventos.Tests {
         }
         [TestMethod()]
         public void saber_se_evento_tem_espaco_vazio() {
-            Assert.AreEqual(evento.Lugar.Nome, "vazio");
+            Assert.AreEqual(evento.Lugar.Nome, "");
         }
         [TestMethod()]
         public void modificando_atividade_principal_do_evento() {
@@ -66,7 +67,7 @@ namespace Sistema_de_Eventos.Tests {
         public void inscricao_em_atividade_principal() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao();
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscricao.AdicionarAtividade(evento);
             inscricao.FinalizarInscricao();
@@ -76,9 +77,9 @@ namespace Sistema_de_Eventos.Tests {
         public void confirmacao_de_inscricao() {
             evento.Nome = "Arduiono Day";
             evento.Preco = 30;
-            Inscricao inscricao = new Inscricao();
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
-            Inscricao inscricao2 = new Inscricao();
+            Inscricao inscricao2 = FabricaInscricao.NovaInscricao();
             inscricao2.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscricao.AdicionarAtividade(evento);
             inscricao2.AdicionarAtividade(evento);
@@ -91,7 +92,7 @@ namespace Sistema_de_Eventos.Tests {
             Atividade atividade = FabricarAtividade.Simples("Palestra");
             atividade.Preco = 30;
             evento.Atividades.Adicionar(atividade);
-            Inscricao inscricao = new Inscricao();
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscricao.AdicionarAtividade(evento);
             Assert.AreEqual(60,inscricao.ValorTotal);

@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map\Atividade\AtividadeDefaultMap.cs" />
     <Compile Include="Map\Atividade\AtividadeMap.cs" />
     <Compile Include="Map\Atividade\AtividadeSimplesMap.cs" />
     <Compile Include="Map\Atividade\EventoMap.cs" />
@@ -116,7 +117,8 @@
     <Compile Include="Modelo\Evento\Evento.cs" />
     <Compile Include="Modelo\Evento\FabricarAtividade.cs" />
     <Compile Include="Modelo\Evento\ListaAtividade.cs" />
-    <Compile Include="Modelo\Inscricao.cs" />
+    <Compile Include="Modelo\Inscircoes\FabricaInscricao.cs" />
+    <Compile Include="Modelo\Inscircoes\Inscricao.cs" />
     <Compile Include="Modelo\Notificacao\FabricaNotificacao.cs" />
     <Compile Include="Modelo\Notificacao\Notificacao.cs" />
     <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
