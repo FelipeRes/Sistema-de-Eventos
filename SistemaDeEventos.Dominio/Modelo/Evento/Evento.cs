@@ -36,7 +36,6 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             notificador = FabricaNotificacao.CriarNotificador();
             isUnique = true;
             isolada = false;
-            espacoFisico = FabricarEspaco.Vazio();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {

@@ -17,7 +17,6 @@ namespace Sistema_de_Eventos {
     public class Aplicacao {
         public static void Main() {
             
-
             EspacoFisico espaco = FabricarEspaco.Composto("IFPI").CriarEspaco("B1", 10).CriarEspaco("B2",20).build();
             Console.WriteLine(espaco.Nome);
 

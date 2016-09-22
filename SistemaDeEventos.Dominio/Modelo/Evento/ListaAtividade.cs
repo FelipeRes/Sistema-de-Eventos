@@ -26,7 +26,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             if (lista.Contains(atividade)) {
                 lista.Remove(atividade);
             }else {
-                throw new AtividadeNaoEncontradaException("Essa atividade nao existe nessa lista");
+                //throw new AtividadeNaoEncontradaException("Essa atividade nao existe nessa lista");
             }
         }
         public virtual double ValorDeTodasAtividades {
