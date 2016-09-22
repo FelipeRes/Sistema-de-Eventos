@@ -39,10 +39,10 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             //espacoFisico = FabricarEspaco.Vazio();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
-            if (!inscritos.Contains(inscricao)) {
+            if (!inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
-                //notificador.AdicionarNotificavel(inscricao.User);
+                notificador.AdicionarNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
                         if (!Atividades.lista[i].Isolada) {
@@ -53,10 +53,10 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
-            if (inscritos.Contains(inscricao)) {
+            if (inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
-                //notificador.RemoverNotificavel(inscricao.User);
+                notificador.RemoverNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
                         if (!Atividades.lista[i].Isolada) {

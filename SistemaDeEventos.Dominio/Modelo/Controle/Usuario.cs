@@ -54,21 +54,6 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         private Notificador notificacao;
         public virtual Notificador Notificacao {get{return notificacao;}set { notificacao = value; }}
 
-        /*private IList<Inscricao> minhasInscricoes
-
-        private List<Atividade> atividadeQueParticipei;
-        public IReadOnlyList<Atividade> AtividadeQueParticipei {
-            get {
-                atividadeQueParticipei.Clear();
-                foreach(Inscricao inscricao in MinhasInscricoes) {
-                    foreach(Atividade atividade in inscricao.listaDeAtividades) {
-                        atividadeQueParticipei.Add(atividade);
-                    }
-                }
-                return atividadeQueParticipei;
-            }
-        }*/
-
         internal Usuario() {;
         }
 
@@ -80,13 +65,10 @@ namespace Sistema_de_Eventos.Modelo.Controle {
             }
                 
         }
-        /*public void InserirInscricao(Inscricao inscricao) {
-            if (inscricao.User == this && !minhasInscricoes.Contains(inscricao)) {
-                minhasInscricoes.Add(inscricao);
-            }
-        }*/
         public virtual void Atualizar(string message) {
-            Notificacao.AtualizarNotificaveis(message);
+            if (notificacao != null) {
+                Notificacao.AtualizarNotificaveis(message);
+            }
         }
 
     }

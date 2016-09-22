@@ -26,9 +26,9 @@ namespace SistemaDeEventos.Modelo.Controle {
         }
         public virtual Usuario build() {
             Notificador notificacao = FabricaNotificacao.CriarNotificador();
-            Notificavel notificavel = FabricaNotificacao.CriarNotificavelEmail();
-            NHibernateHelper.SaveOrUpdate(ref notificavel);
-            notificacao.AdicionarNotificavel(notificavel);
+            //Notificavel notificavel = FabricaNotificacao.CriarNotificavelEmail();
+            //NHibernateHelper.SaveOrUpdate(ref notificavel);
+            //notificacao.AdicionarNotificavel(notificavel);
             NHibernateHelper.SaveOrUpdate(ref notificacao);
             user.Notificacao = notificacao;
             NHibernateHelper.SaveOrUpdate(ref user);

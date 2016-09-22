@@ -15,6 +15,7 @@ namespace Sistema_de_Eventos.Map.Atividades {
             References(x => x.Lugar);
             Map(x => x.Preco);
             Map(x => x.Isolada);
+            Map(o => o.Estado).CustomType<EstadoDaAtividade>();
             Map(x => x.DataInicio).CustomSqlType("datetime2").Not.Nullable();
             Map(x => x.DataFim).CustomSqlType("datetime2").Not.Nullable();
             //Map(x => x.Estado);
