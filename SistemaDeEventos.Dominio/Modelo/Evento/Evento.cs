@@ -12,6 +12,8 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
 
         public virtual ListaAtividade Atividades { get; set; }
 
+        public virtual bool isUnique { get; set;}
+
         public override string Agenda {
             get {
                 string horarios = "\n";
@@ -32,6 +34,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
         internal Evento() {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
+            isUnique = true;
             //espacoFisico = FabricarEspaco.Vazio();
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
@@ -39,17 +42,22 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 inscritos.Add(inscricao);
                 addAtividade(this);
                 //notificador.AdicionarNotificavel(inscricao.User);
-                for (int i = 0; i < Atividades.lista.Count; i++) {
-                    Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                if (isUnique) {
+                    for (int i = 0; i < Atividades.lista.Count; i++) {
+                        Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                    }
                 }
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
+                removeAtividade(this);
                 //notificador.RemoverNotificavel(inscricao.User);
-                for (int i = 0; i < Atividades.lista.Count; i++) {
-                    Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                if (isUnique) {
+                    for (int i = 0; i < Atividades.lista.Count; i++) {
+                        Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                    }
                 }
             }
         }
