@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaDeEventos.Dominio.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,14 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             if (!lista.Contains(atividade)) {
                 lista.Add(atividade);
             } else {
-                throw new Exception("Atividade repetida");
+                throw new AtividadeRepetidaException("Esta lista ja contem esta atividade");
             }
         }
         public virtual void Remover(Atividade atividade) {
             if (lista.Contains(atividade)) {
                 lista.Remove(atividade);
+            }else {
+                throw new AtividadeNaoEncontradaException("Essa atividade nao existe nessa lista");
             }
         }
         public virtual double ValorDeTodasAtividades {

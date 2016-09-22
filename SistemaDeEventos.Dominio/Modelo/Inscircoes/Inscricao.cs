@@ -8,6 +8,7 @@ using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Controle;
 using SistemaDeEventos.Dominio.Modelo.Inscircoes;
+using SistemaDeEventos.Dominio.Exceptions;
 
 namespace Sistema_de_Eventos.Modelo {
     public class Inscricao {
@@ -60,7 +61,7 @@ namespace Sistema_de_Eventos.Modelo {
                 AddAtividade a = new AddAtividade(Atividades.Adicionar);
                 atividade.AdicionarInscritos(this, a);
             } else {
-                throw new Exception("Atividade Repetida ou não pertece a esse atividade");
+                throw new AtividadeRepetidaException("Inscricao ja contém essa atividade");
             }
         }
         public virtual void RemoverAtividade(Atividade atividade) {
@@ -68,14 +69,18 @@ namespace Sistema_de_Eventos.Modelo {
                 RemoveAtividade a = new RemoveAtividade(Atividades.Adicionar);
                 atividade.RemoverInscritos(this, a);
             } else {
-                throw new Exception("Atividade nao encontrada");
+                throw new AtividadeNaoEncontradaException("Atividade nao encontrada");
             }
         }
         public virtual void AdicionarCuponDeDesconto(Cupom cupom) {
-            if (!pagamento && !cupom.IsUsado) {
-                listaDeCupons.Add(cupom);
+            if (!pagamento) {
+                if (!cupom.IsUsado) {
+                    listaDeCupons.Add(cupom);
+                }else {
+                    throw new CupomInvalidoException("Cupom Invalido");
+                }
             } else {
-                throw new Exception("Inscricao Ja finalizada ou cupom ja utilizado");
+                throw new PagamentoJaRealizadoExcpetion("Inscricao Ja finalizada ou cupom ja utilizado");
             }
         }
         public virtual void FinalizarInscricao() {
@@ -88,7 +93,7 @@ namespace Sistema_de_Eventos.Modelo {
                 }
                 usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
             } else {
-                throw new Exception("Voce deve se inscrever em ao menos uma atividade");
+                throw new FinalizarInscricaoException("Voce deve se inscrever em ao menos uma atividade");
             }
         }
         public virtual string nota {

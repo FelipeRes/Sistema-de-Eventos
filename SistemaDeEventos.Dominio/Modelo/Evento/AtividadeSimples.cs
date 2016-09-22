@@ -33,14 +33,14 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
-                //notificador.AdicionarNotificavel(inscricao.User);
+                notificador.AdicionarNotificavel(inscricao.User);
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
-                //notificador.RemoverNotificavel(inscricao.User);
+                notificador.RemoverNotificavel(inscricao.User);
             }
         }
 

@@ -75,6 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AtividadeNaoEncontradaException.cs" />
+    <Compile Include="Exceptions\AtividadeRepetidaException.cs" />
+    <Compile Include="Exceptions\CupomInvalidoException.cs" />
+    <Compile Include="Exceptions\FinalizarInscricaoException.cs" />
+    <Compile Include="Exceptions\PagamentoJaRealizadoExcpetion.cs" />
     <Compile Include="Map\Atividade\AtividadeDefaultMap.cs" />
     <Compile Include="Map\Atividade\AtividadeMap.cs" />
     <Compile Include="Map\Atividade\AtividadeSimplesMap.cs" />
