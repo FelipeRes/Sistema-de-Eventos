@@ -7,12 +7,16 @@ using System.Net.Mail;
 using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Controle;
+using SistemaDeEventos.Dominio.Modelo.Inscircoes;
 
 namespace Sistema_de_Eventos.Modelo {
     public class Inscricao {
 
         public delegate void AddAtividade(Atividade atividade);
         public delegate void RemoveAtividade(Atividade atividade);
+
+        private TipoInscricao participacao;
+        public virtual TipoInscricao Participacao { get { return participacao; } set { participacao = value; } } 
 
         public virtual int Id { get; set; }
 
@@ -43,7 +47,7 @@ namespace Sistema_de_Eventos.Modelo {
             get {
                 double valorComDesconto = ValorTotal;
                 for (int i = 0; i < listaDeCupons.Count; i++) {
-                    valorComDesconto -= listaDeCupons[i].GetDesconto(ValorTotal);
+                    valorComDesconto -= listaDeCupons[i].GetDesconto(ValorTotal, this);
                 }
                 return valorComDesconto;
             }
@@ -68,10 +72,10 @@ namespace Sistema_de_Eventos.Modelo {
             }
         }
         public virtual void AdicionarCuponDeDesconto(Cupom cupom) {
-            if (!pagamento) {
+            if (!pagamento && !cupom.IsUsado) {
                 listaDeCupons.Add(cupom);
             } else {
-                throw new Exception("Inscricao Ja finalizada");
+                throw new Exception("Inscricao Ja finalizada ou cupom ja utilizado");
             }
         }
         public virtual void FinalizarInscricao() {
@@ -83,7 +87,6 @@ namespace Sistema_de_Eventos.Modelo {
                     }
                 }
                 usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
-                //User.(this);
             } else {
                 throw new Exception("Voce deve se inscrever em ao menos uma atividade");
             }

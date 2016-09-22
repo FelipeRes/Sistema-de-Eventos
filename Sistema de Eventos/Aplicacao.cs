@@ -15,10 +15,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos {
     public class Aplicacao {
         public static void Main() {
-
-            Cupom cupom = FabricarCupom.DescontoPorcentagem(50);
-            cupom.comboCupom.Add(FabricarCupom.DescontoPorValor(1));
-            Console.WriteLine(cupom.GetDesconto(100));
+            
 
             EspacoFisico espaco = FabricarEspaco.Composto("IFPI").CriarEspaco("B1", 10).CriarEspaco("B2",20).build();
             Console.WriteLine(espaco.Nome);
@@ -43,6 +40,11 @@ namespace Sistema_de_Eventos {
 
             Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = user;
+
+            Cupom cupom = FabricarCupom.DescontoPorcentagem(50);
+            cupom.comboCupom.Add(FabricarCupom.DescontoPorValor(1));
+            Console.WriteLine(cupom.GetDesconto(100, inscricao));
+
             inscricao.AdicionarCuponDeDesconto(cupom);
             ListaAtividade listaAtividade = new ListaAtividade();
             inscricao.Atividades = listaAtividade;

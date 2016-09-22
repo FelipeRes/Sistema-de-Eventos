@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_de_Eventos.Modelo.Eventos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +18,15 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
 
         public virtual IList<Cupom> comboCupom { get; set; }
 
-        public virtual double GetDesconto(double valorRecebido) {
-            //if (!IsUsado) {
+        public virtual double GetDesconto(double valorRecebido, Inscricao inscricao) {
                 double descontoTotal = 0;
-                descontoTotal += desconto.GetDesconto(valorRecebido);
+                descontoTotal += desconto.GetDesconto(valorRecebido, inscricao);
                 if (comboCupom.Count > 0) {
                    for(int i = 0; i < comboCupom.Count; i++) {
-                        descontoTotal +=comboCupom[i].GetDesconto(descontoTotal);
+                        descontoTotal +=comboCupom[i].GetDesconto(descontoTotal, inscricao);
                     }
                 }
                 return descontoTotal;
-            //}else {
-              //  throw new Exception("Cupom ja utilizado");
-            //}
         }
         public virtual void Invalidar() {
             isUsado = true;

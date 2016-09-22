@@ -86,6 +86,7 @@
     <Compile Include="Map\Controle\UsuarioMap.cs" />
     <Compile Include="Map\Cupons\CupomMap.cs" />
     <Compile Include="Map\Cupons\DescontavelMap.cs" />
+    <Compile Include="Map\Cupons\DescontoEstudanteMap.cs" />
     <Compile Include="Map\Cupons\DescontoPorcentagemMap.cs" />
     <Compile Include="Map\Cupons\DescontoValorMap.cs" />
     <Compile Include="Map\Espaco\EspacoCompostoMap.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Modelo\Controle\Usuario.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
     <Compile Include="Modelo\Cupom\Descontavel.cs" />
+    <Compile Include="Modelo\Cupom\DescontoAluno.cs" />
     <Compile Include="Modelo\Cupom\DescontoNulo.cs" />
     <Compile Include="Modelo\Cupom\DescontoPorcentagem.cs" />
     <Compile Include="Modelo\Cupom\DescontoValor.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Modelo\Evento\ListaAtividade.cs" />
     <Compile Include="Modelo\Inscircoes\FabricaInscricao.cs" />
     <Compile Include="Modelo\Inscircoes\Inscricao.cs" />
+    <Compile Include="Modelo\Inscircoes\TipoInscricao.cs" />
     <Compile Include="Modelo\Notificacao\FabricaNotificacao.cs" />
     <Compile Include="Modelo\Notificacao\Notificacao.cs" />
     <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
