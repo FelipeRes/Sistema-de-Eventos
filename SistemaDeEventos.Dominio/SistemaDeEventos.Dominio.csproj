@@ -82,6 +82,8 @@
     <Compile Include="Map\Atividade\InscricaoMap.cs" />
     <Compile Include="Map\Atividade\ListaAtividadeMap.cs" />
     <Compile Include="Map\Controle\OrganizacaoMap.cs" />
+    <Compile Include="Map\Controle\PerfilMap.cs" />
+    <Compile Include="Map\Controle\PerfilParticipanteMap.cs" />
     <Compile Include="Map\Controle\PessoaMap.cs" />
     <Compile Include="Map\Controle\UsuarioMap.cs" />
     <Compile Include="Map\Cupons\CupomMap.cs" />
@@ -96,8 +98,11 @@
     <Compile Include="Map\Notificacao\NotificacaoMap.cs" />
     <Compile Include="Map\Notificacao\NotificadorMap.cs" />
     <Compile Include="Map\Notificacao\NotificavelMap.cs" />
+    <Compile Include="Modelo\Controle\FabricaPerfil.cs" />
     <Compile Include="Modelo\Controle\FabricaUsuario.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
+    <Compile Include="Modelo\Controle\Perfil.cs" />
+    <Compile Include="Modelo\Controle\PerfilParticipante.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
     <Compile Include="Modelo\Controle\Usuario.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
@@ -127,6 +132,7 @@
     <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
     <Compile Include="Modelo\Notificacao\Notificador.cs" />
     <Compile Include="Modelo\Notificacao\Notificavel.cs" />
+    <Compile Include="Modelo\RegexStrings.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

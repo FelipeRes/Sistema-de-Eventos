@@ -58,7 +58,6 @@ namespace Sistema_de_Eventos.NHibernateHelp {
                     transaction.Commit();
                 }
             }
-
         }
     }
 }

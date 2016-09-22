@@ -18,4 +18,3 @@ C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\bin\Debug\Iesi.Collections.xml
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\bin\Debug\NHibernate.xml
 C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\bin\Debug\System.Data.SQLite.xml
-C:\Users\Felipe Resende\Documents\Visual Studio 2015\Projects\Sistema de Eventos\SistemaDeEventos.Dominio\obj\Debug\SistemaDeEventos.Dominio.csprojResolveAssemblyReference.cache

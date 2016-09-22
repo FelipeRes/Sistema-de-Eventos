@@ -40,9 +40,13 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 return espacoFisico;
             }
             set {
-                espacoFisico.Atividades.Remover(this);
-                value.Atividades.Adicionar(this);
-                espacoFisico = value;
+                if (value != null) {
+                    espacoFisico.Atividades.Remover(this);
+                    value.Atividades.Adicionar(this);
+                    espacoFisico = value;
+                } else {
+                    espacoFisico = value;
+                }
             }
         }
         public virtual void ChecarCheckIn(Inscricao inscricao) {

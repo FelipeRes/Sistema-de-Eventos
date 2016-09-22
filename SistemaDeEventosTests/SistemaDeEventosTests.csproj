@@ -90,6 +90,7 @@
     <Compile Include="AtividadeTests.cs" />
     <Compile Include="EventoTests.cs" />
     <Compile Include="CupomTests.cs" />
+    <Compile Include="FabricaPerfilTests.cs" />
     <Compile Include="OrganizacaoTests.cs" />
     <Compile Include="UsuarioTests.cs" />
     <Compile Include="AgendaUtilsTests.cs" />

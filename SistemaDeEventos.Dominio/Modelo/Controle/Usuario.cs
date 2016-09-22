@@ -1,8 +1,11 @@
-﻿using Sistema_de_Eventos.Modelo;
+﻿using NHibernate;
+using Sistema_de_Eventos.Modelo;
 using Sistema_de_Eventos.Modelo.Controle;
 using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.Modelo.Notificacoes;
+using Sistema_de_Eventos.NHibernateHelp;
+using SistemaDeEventos.Dominio.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +18,6 @@ namespace Sistema_de_Eventos.Modelo.Controle {
 
         public virtual int Id { get; set; }
 
-        private Regex regMail = new Regex(@".*@(.*(\.|))*", RegexOptions.IgnoreCase);
-        private Regex regSenha = new Regex(@"[a-zA-z0-9]{6,}", RegexOptions.IgnoreCase);
-
         private Pessoa pessoa;
         public virtual Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
 
@@ -26,7 +26,7 @@ namespace Sistema_de_Eventos.Modelo.Controle {
             get {
                 return email;
             } set {
-                Match match = regMail.Match(value);
+                Match match = RegexStrings.regMail.Match(value);
                 if (match.Success) {
                     email = value;
                 }else {
@@ -42,7 +42,7 @@ namespace Sistema_de_Eventos.Modelo.Controle {
                 return senha;
             }
             set {
-                Match match = regSenha.Match(value);
+                Match match = RegexStrings.regSenha.Match(value);
                 if (match.Success) {
                     senha = value;
                 } else {
@@ -70,6 +70,5 @@ namespace Sistema_de_Eventos.Modelo.Controle {
                 Notificacao.AtualizarNotificaveis(message);
             }
         }
-
     }
 }

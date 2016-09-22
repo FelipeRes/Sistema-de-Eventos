@@ -4,6 +4,7 @@ using Sistema_de_Eventos.Modelo.Cupons;
 using Sistema_de_Eventos.Modelo.Espaco;
 using Sistema_de_Eventos.Modelo.Eventos;
 using Sistema_de_Eventos.NHibernateHelp;
+using SistemaDeEventos.Dominio.Modelo.Controle;
 using SistemaDeEventos.Dominio.Modelo.Inscircoes;
 using SistemaDeEventos.Modelo.Controle;
 using System;
@@ -50,11 +51,14 @@ namespace Sistema_de_Eventos {
             inscricao.Atividades = listaAtividade;
             inscricao.Atividades.Adicionar(evento);
             inscricao.FinalizarInscricao();
-
+            atividade.Estado = EstadoDaAtividade.Encerrado;
             Console.WriteLine(inscricao.nota);
 
             NHibernateHelper.SaveOrUpdate(ref listaAtividade);
             NHibernateHelper.SaveOrUpdate(ref inscricao);
+            atividade.Estado = EstadoDaAtividade.Encerrado;
+            NHibernateHelper.SaveOrUpdate(ref atividade);
+            
 
             Console.ReadKey();
         }
