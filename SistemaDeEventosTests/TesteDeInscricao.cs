@@ -212,5 +212,51 @@ namespace SistemaDeEventosTests {
             evento.ChecarCheckIn(inscricao);
             Assert.AreEqual(inscricao.CheckIn, true);
         }
+        [TestMethod()]
+        public void checar_inscricao_unica_em_evento() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            evento.isUnique = true;
+            Atividade palestra = FabricarAtividade.Simples("Palestra");
+            Atividade palestra2 = FabricarAtividade.Simples("Palestra2");
+            evento.Atividades.Adicionar(palestra);
+            evento.Atividades.Adicionar(palestra2);
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
+            inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
+            inscricao.AdicionarAtividade(evento);
+            inscricao.FinalizarInscricao();
+            Assert.AreEqual(true, inscricao.Atividades.lista.Contains(palestra2));
+        }
+        [TestMethod()]
+        public void checar_se_evento_nao_e_unico() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            evento.isUnique = false;
+            Atividade palestra = FabricarAtividade.Simples("Palestra");
+            Atividade palestra2 = FabricarAtividade.Simples("Palestra2");
+            evento.Atividades.Adicionar(palestra);
+            evento.Atividades.Adicionar(palestra2);
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
+            inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
+            inscricao.AdicionarAtividade(evento);
+            inscricao.FinalizarInscricao();
+            Assert.AreEqual(false, inscricao.Atividades.lista.Contains(palestra2));
+        }
+        [TestMethod()]
+        public void checar_se_atividade_esta_isolada() {
+            evento.Nome = "Arduino Day";
+            evento.Preco = 30;
+            evento.isUnique = true;
+            Atividade palestra = FabricarAtividade.Simples("Palestra");
+            Atividade palestra2 = FabricarAtividade.Simples("Palestra2");
+            palestra2.Isolada = true;
+            evento.Atividades.Adicionar(palestra);
+            evento.Atividades.Adicionar(palestra2);
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
+            inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
+            inscricao.AdicionarAtividade(evento);
+            inscricao.FinalizarInscricao();
+            Assert.AreEqual(false, inscricao.Atividades.lista.Contains(palestra2));
+        }
     }
 }

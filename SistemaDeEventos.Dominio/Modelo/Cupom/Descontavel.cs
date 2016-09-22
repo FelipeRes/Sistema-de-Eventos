@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public interface Descontavel {
         int Id { get; set; }
-        double GetDesconto(double valorRecebido);
+        double GetDesconto(double valorRecebido, Inscricao inscricao);
     }
 }

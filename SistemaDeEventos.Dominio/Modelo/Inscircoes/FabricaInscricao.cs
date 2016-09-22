@@ -15,8 +15,9 @@ namespace SistemaDeEventos.Dominio.Modelo.Inscircoes {
             ListaAtividade listaAtividade = new ListaAtividade();
             inscricao.Atividades = listaAtividade;
             NHibernateHelper.SaveOrUpdate(ref listaAtividade);
-            NHibernateHelper.SaveOrUpdate(ref inscricao);
             inscricao.listaDeCupons = new List<Cupom>();
+            inscricao.Participacao = TipoInscricao.VISITANTE;
+            NHibernateHelper.SaveOrUpdate(ref inscricao);
             return inscricao;
         }
     }

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public class AtividadeSimples : Atividade {
 
+        public override bool Isolada { get { return isolada; } set { isolada = value; } }
+
         public override string Agenda {
             get {
                 string horarios = "\n";
@@ -24,20 +26,21 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
         public AtividadeSimples() {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
+            isolada = false;
         }
 
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao)) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
-                //notificador.AdicionarNotificavel(inscricao.User);
+                notificador.AdicionarNotificavel(inscricao.User);
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao)) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
-                //notificador.RemoverNotificavel(inscricao.User);
+                notificador.RemoverNotificavel(inscricao.User);
             }
         }
 

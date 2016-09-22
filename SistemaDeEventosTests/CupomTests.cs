@@ -44,18 +44,31 @@ namespace Sistema_de_Eventos {
         }
         [TestMethod()]
         public void criando_combos_cupom() {
-            Cupom cupom1 = FabricarCupom.DescontoPorcentagem(50);
-            Cupom cupom2 = FabricarCupom.DescontoPorcentagem(10);
-            cupom1.AdicionarCupom(cupom2);
             Evento evento = FabricarAtividade.Evento();
             Atividade atividade = FabricarAtividade.Simples("Lugar");
             evento.Atividades.Adicionar(atividade);
             atividade.Preco = 100;
+            Cupom cupom1 = FabricarCupom.DescontoPorcentagem(50);
+            Cupom cupom2 = FabricarCupom.DescontoPorcentagem(10);
+            cupom1.AdicionarCupom(cupom2);
             Inscricao inscricao = FabricaInscricao.NovaInscricao();
             inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
             inscricao.AdicionarAtividade(atividade);
             inscricao.AdicionarCuponDeDesconto(cupom1);
             Assert.AreEqual(45, inscricao.ValorComDesconto);
+        }
+        public void checando_se_cupom_para_estudante_funcioa() {
+            Evento evento = FabricarAtividade.Evento();
+            Atividade atividade = FabricarAtividade.Simples("Lugar");
+            evento.Atividades.Adicionar(atividade);
+            atividade.Preco = 100;
+            Cupom cupom1 = FabricarCupom.DescontoAluno(50);
+            Inscricao inscricao = FabricaInscricao.NovaInscricao();
+            inscricao.User = FabricaUsuario.NovoUsuario("bla@gats", "123456").build();
+            inscricao.AdicionarAtividade(atividade);
+            inscricao.Participacao = TipoInscricao.PROFESSOR;
+            inscricao.AdicionarCuponDeDesconto(cupom1);
+            Assert.AreEqual(100, inscricao.ValorComDesconto);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Sistema_de_Eventos.Map.Espaco {
             Id(x => x.Id);
             Map(x => x.capacidade);
             Map(x => x.nome);
+            References(x => x.Atividades);
             DiscriminateSubClassesOnColumn("type");
         }
     }

@@ -75,6 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AtividadeNaoEncontradaException.cs" />
+    <Compile Include="Exceptions\AtividadeRepetidaException.cs" />
+    <Compile Include="Exceptions\CupomInvalidoException.cs" />
+    <Compile Include="Exceptions\FinalizarInscricaoException.cs" />
+    <Compile Include="Exceptions\PagamentoJaRealizadoExcpetion.cs" />
     <Compile Include="Map\Atividade\AtividadeDefaultMap.cs" />
     <Compile Include="Map\Atividade\AtividadeMap.cs" />
     <Compile Include="Map\Atividade\AtividadeSimplesMap.cs" />
@@ -82,10 +87,13 @@
     <Compile Include="Map\Atividade\InscricaoMap.cs" />
     <Compile Include="Map\Atividade\ListaAtividadeMap.cs" />
     <Compile Include="Map\Controle\OrganizacaoMap.cs" />
+    <Compile Include="Map\Controle\PerfilMap.cs" />
+    <Compile Include="Map\Controle\PerfilParticipanteMap.cs" />
     <Compile Include="Map\Controle\PessoaMap.cs" />
     <Compile Include="Map\Controle\UsuarioMap.cs" />
     <Compile Include="Map\Cupons\CupomMap.cs" />
     <Compile Include="Map\Cupons\DescontavelMap.cs" />
+    <Compile Include="Map\Cupons\DescontoEstudanteMap.cs" />
     <Compile Include="Map\Cupons\DescontoPorcentagemMap.cs" />
     <Compile Include="Map\Cupons\DescontoValorMap.cs" />
     <Compile Include="Map\Espaco\EspacoCompostoMap.cs" />
@@ -95,12 +103,16 @@
     <Compile Include="Map\Notificacao\NotificacaoMap.cs" />
     <Compile Include="Map\Notificacao\NotificadorMap.cs" />
     <Compile Include="Map\Notificacao\NotificavelMap.cs" />
+    <Compile Include="Modelo\Controle\FabricaPerfil.cs" />
     <Compile Include="Modelo\Controle\FabricaUsuario.cs" />
     <Compile Include="Modelo\Controle\Organizacao.cs" />
+    <Compile Include="Modelo\Controle\Perfil.cs" />
+    <Compile Include="Modelo\Controle\PerfilParticipante.cs" />
     <Compile Include="Modelo\Controle\Pessoa.cs" />
     <Compile Include="Modelo\Controle\Usuario.cs" />
     <Compile Include="Modelo\Cupom\Cupom.cs" />
     <Compile Include="Modelo\Cupom\Descontavel.cs" />
+    <Compile Include="Modelo\Cupom\DescontoAluno.cs" />
     <Compile Include="Modelo\Cupom\DescontoNulo.cs" />
     <Compile Include="Modelo\Cupom\DescontoPorcentagem.cs" />
     <Compile Include="Modelo\Cupom\DescontoValor.cs" />
@@ -119,11 +131,13 @@
     <Compile Include="Modelo\Evento\ListaAtividade.cs" />
     <Compile Include="Modelo\Inscircoes\FabricaInscricao.cs" />
     <Compile Include="Modelo\Inscircoes\Inscricao.cs" />
+    <Compile Include="Modelo\Inscircoes\TipoInscricao.cs" />
     <Compile Include="Modelo\Notificacao\FabricaNotificacao.cs" />
     <Compile Include="Modelo\Notificacao\Notificacao.cs" />
     <Compile Include="Modelo\Notificacao\NotificacaoEmail.cs" />
     <Compile Include="Modelo\Notificacao\Notificador.cs" />
     <Compile Include="Modelo\Notificacao\Notificavel.cs" />
+    <Compile Include="Modelo\RegexStrings.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

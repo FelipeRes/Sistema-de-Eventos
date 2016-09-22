@@ -11,7 +11,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
     public class Evento : Atividade {
 
         public virtual ListaAtividade Atividades { get; set; }
-
+        public override bool Isolada { get { return isolada; } set { isolada = value; } }
         public virtual bool isUnique { get; set;}
 
         public override string Agenda {
@@ -35,28 +35,32 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             inscritos = new List<Inscricao>();
             notificador = FabricaNotificacao.CriarNotificador();
             isUnique = true;
-            //espacoFisico = FabricarEspaco.Vazio();
+            isolada = false;
         }
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
-            if (!inscritos.Contains(inscricao)) {
+            if (!inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
-                //notificador.AdicionarNotificavel(inscricao.User);
+                notificador.AdicionarNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                        if (!Atividades.lista[i].Isolada) {
+                            Atividades.lista[i].AdicionarInscritos(inscricao, addAtividade);
+                        }
                     }
                 }
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
-            if (inscritos.Contains(inscricao)) {
+            if (inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
-                //notificador.RemoverNotificavel(inscricao.User);
+                notificador.RemoverNotificavel(inscricao.User);
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
-                        Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                        if (!Atividades.lista[i].Isolada) {
+                            Atividades.lista[i].RemoverInscritos(inscricao, removeAtividade);
+                        }
                     }
                 }
             }

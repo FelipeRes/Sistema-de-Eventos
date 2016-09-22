@@ -31,15 +31,22 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
 
         public abstract string Agenda { get; }
 
+        protected bool isolada;
+        public abstract bool Isolada { get; set; }
+
         public virtual EspacoFisico espacoFisico { get; set; }
         public virtual EspacoFisico Lugar {
             get {
                 return espacoFisico;
             }
             set {
-                espacoFisico.Atividades.Remover(this);
-                value.Atividades.Adicionar(this);
-                espacoFisico = value;
+                if (value != null) {
+                    espacoFisico.Atividades.Remover(this);
+                    value.Atividades.Adicionar(this);
+                    espacoFisico = value;
+                } else {
+                    espacoFisico = value;
+                }
             }
         }
         public virtual void ChecarCheckIn(Inscricao inscricao) {
