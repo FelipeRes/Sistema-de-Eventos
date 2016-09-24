@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public class ListaAtividade {
 
+        //Essa classe é apenas uma abstração de lista com várias implementações uteis pare esse sistema
+        //Ela é usada para evitar repetição de código
+
         public virtual int Id { get; set; }
         public virtual IList<Atividade> lista { get; set; }
 

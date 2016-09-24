@@ -11,6 +11,8 @@ namespace Sistema_de_Eventos.Modelo.Controle {
 
         public virtual int Id { get; set; }
 
+        //Referencia ao builder que servirá para construir uma pessoa
+        //ele obrigatoriamente requer um nome
         public static PessoaBuilder BuildNome(string nome) {
             return new PessoaBuilder(nome);
         }
@@ -36,6 +38,9 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         public Pessoa() {
         }
     }
+
+    //Classe aninhada que controi a pessoa de forma dinâmica
+    //Ela que salva a pessoa no banco de dados
     public class PessoaBuilder {
         private Pessoa pessoa;
 

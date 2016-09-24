@@ -18,7 +18,8 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
 
         abstract public string Nome { get; set; }
         abstract public int Capacidade { get; set; }
-
+        
+        //O espaco possui uma lista de atividades cadastradas nele
         public virtual ListaAtividade Atividades { get; set; }
     }
 }

@@ -28,22 +28,22 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             notificador = FabricaNotificacao.CriarNotificador();
             isolada = false;
         }
-
+        //somente inscrebe se tiver aberto
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
-            if (!inscritos.Contains(inscricao)) {
+            if (!inscritos.Contains(inscricao) && estadoDaAtividade == EstadoDaAtividade.Aberto) {
                 inscritos.Add(inscricao);
                 addAtividade(this);
                 notificador.AdicionarNotificavel(inscricao.User);
             }
         }
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
-            if (inscritos.Contains(inscricao)) {
+            if (inscritos.Contains(inscricao) && estadoDaAtividade == EstadoDaAtividade.Aberto) {
                 inscritos.Remove(inscricao);
                 removeAtividade(this);
                 notificador.RemoverNotificavel(inscricao.User);
             }
         }
-
+        //Notificação enviada ao mudar o horario
         protected override void Notificar(string Mensagem) {
             string Complemento = "Prezado incrito, a data e horario desta Atividade foram alteradas.";
             notificador.AtualizarNotificaveis(Complemento + Mensagem);

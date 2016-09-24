@@ -9,15 +9,18 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
     public class Cupom {
 
         public virtual int Id { get; set; }
-
+        
+        //Todo desconto recebe um descontavel, esssa será a implementação de desconto
         private Descontavel desconto;
         public virtual Descontavel Desconto { get { return desconto; } set { desconto = value;} }
 
         private bool isUsado;
         public virtual bool IsUsado { get { return isUsado; } set { isUsado = value; } }
 
+        //Um cupom tem uma lista de outros cupons
         public virtual IList<Cupom> comboCupom { get; set; }
 
+        //Função que verifica que soma o desconto aos descontos que estão na lista
         public virtual double GetDesconto(double valorRecebido, Inscricao inscricao) {
                 double descontoTotal = 0;
                 descontoTotal += desconto.GetDesconto(valorRecebido, inscricao);
@@ -31,10 +34,12 @@ namespace Sistema_de_Eventos.Modelo.Cupons {
         public virtual void Invalidar() {
             isUsado = true;
         }
+        //A marcação internal diz que o cupom não pode ser instanciado pela aplicação
         internal Cupom() {
             comboCupom = new List<Cupom>();
             isUsado = false;
         }
+        //Função para adicionar mais cupons e fazer um combo deles
         public virtual Cupom AdicionarCupom(Cupom cupom) {
             comboCupom.Add(cupom);
             return this;

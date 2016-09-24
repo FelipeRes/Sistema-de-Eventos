@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_Eventos.Modelo.Cupons {
     public class FabricarCupom {
+        //A fabrica cria um desconto, um descontavel e adiciona os dois ao banco
         public static Cupom DescontoPorcentagem(double valor) {
             DescontoPorcentagem desconto = new DescontoPorcentagem();
             desconto.porcentagem = valor;

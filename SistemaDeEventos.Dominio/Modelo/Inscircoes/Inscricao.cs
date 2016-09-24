@@ -13,9 +13,12 @@ using SistemaDeEventos.Dominio.Exceptions;
 namespace Sistema_de_Eventos.Modelo {
     public class Inscricao {
 
+        //Funcoes que são delegadas a atividade para garantir integridade de dados
+        //e repetição de codigo
         public delegate void AddAtividade(Atividade atividade);
         public delegate void RemoveAtividade(Atividade atividade);
 
+        //Tipo de participacao é pra aluno, professor, ou convidado
         private TipoInscricao participacao;
         public virtual TipoInscricao Participacao { get { return participacao; } set { participacao = value; } } 
 
@@ -26,6 +29,7 @@ namespace Sistema_de_Eventos.Modelo {
         private Usuario usuario;
         public virtual Usuario User { get { return usuario; } set { usuario = value; } }
 
+        //checa se foi pago ou nao
         private bool pagamento;
         public virtual bool Pagamento { get { return pagamento; } }
 
@@ -34,7 +38,7 @@ namespace Sistema_de_Eventos.Modelo {
 
         public virtual ListaAtividade Atividades { get; set; }
 
-
+        //O valor total da inscricao é o valor de todas as atividades
         public virtual double ValorTotal {
             get {
                 double PrecoFinal = 0;
@@ -44,6 +48,7 @@ namespace Sistema_de_Eventos.Modelo {
                 return PrecoFinal;
             }
         }
+        //Esse é o valor com desconto em cima do valor total
         public virtual double ValorComDesconto {
             get {
                 double valorComDesconto = ValorTotal;
@@ -55,7 +60,9 @@ namespace Sistema_de_Eventos.Modelo {
         }
         internal Inscricao() {
         }
-
+        //AddAtividade é um delegate que guarda a função de adicionar inscrito
+        // essa funçao delega essa responsabilidade a propria atividade que irá checar
+        // a integridade de dados
         public virtual void AdicionarAtividade(Atividade atividade) {
             if (!pagamento && atividade.Estado == EstadoDaAtividade.Aberto) {
                 AddAtividade a = new AddAtividade(Atividades.Adicionar);
@@ -72,6 +79,7 @@ namespace Sistema_de_Eventos.Modelo {
                 throw new AtividadeNaoEncontradaException("Atividade nao encontrada");
             }
         }
+        //não é possivel adicionar um cupom de desconto que foi invalidado
         public virtual void AdicionarCuponDeDesconto(Cupom cupom) {
             if (!pagamento) {
                 if (!cupom.IsUsado) {
@@ -83,6 +91,8 @@ namespace Sistema_de_Eventos.Modelo {
                 throw new PagamentoJaRealizadoExcpetion("Inscricao Ja finalizada ou cupom ja utilizado");
             }
         }
+        //A finalização da inscrição invalida os cupons
+        //só pode ser feita se tiver mais de uma atividade inscrita
         public virtual void FinalizarInscricao() {
             if (Atividades.Quantidade > 0) {
                 pagamento = true;
@@ -91,11 +101,13 @@ namespace Sistema_de_Eventos.Modelo {
                         cupom.Invalidar();
                     }
                 }
+                //Notificacao de inscricao
                 usuario.Notificacao.AtualizarNotificaveis("Inscição finalizada com sucesso!");
             } else {
                 throw new FinalizarInscricaoException("Voce deve se inscrever em ao menos uma atividade");
             }
         }
+        //A geração de uma nota com todas as informações do inscrito 
         public virtual string nota {
             get {
                 string nota = "\n";

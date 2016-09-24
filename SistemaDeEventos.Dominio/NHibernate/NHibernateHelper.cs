@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.NHibernateHelp {
     public class NHibernateHelper {
 
+        //Configuração dessa classe como singleton
         private static ISessionFactory session;
         public static ISessionFactory sessionFactory {
             get {
@@ -24,6 +25,7 @@ namespace Sistema_de_Eventos.NHibernateHelp {
             }
         }
 
+        //cria uma sessão de conexão com o banco de dados
         public static ISessionFactory CreateSessionFactory() {
             return Fluently.Configure()
               .Database(
@@ -34,6 +36,8 @@ namespace Sistema_de_Eventos.NHibernateHelp {
               //.ExposeConfiguration(BuildSchema)
               .BuildSessionFactory();
         }
+
+        //cria uma sessão de conexão com o banco de dados e cria o  proprio banco de dados com um esquema
         public static ISessionFactory CreateSessionFactoryAndSchema() {
             return Fluently.Configure()
               .Database(
@@ -44,13 +48,13 @@ namespace Sistema_de_Eventos.NHibernateHelp {
               .ExposeConfiguration(BuildSchema)
               .BuildSessionFactory();
         }
-
+        //Deleta o banco e cria um novo
         public static void BuildSchema(Configuration config) {
             if (File.Exists("Banco.db"))
                 File.Delete("Banco.db");
             new SchemaExport(config).Create(false, true);
         }
-
+        //Função que salva os dados no banco
         public static void SaveOrUpdate<T>(ref T i) {
             using (var session = sessionFactory.OpenSession()) {
                 using (var transaction = session.BeginTransaction()) {

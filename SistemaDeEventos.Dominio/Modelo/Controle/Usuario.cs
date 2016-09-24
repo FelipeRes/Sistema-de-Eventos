@@ -21,6 +21,10 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         private Pessoa pessoa;
         public virtual Pessoa Pessoa { get { return pessoa; } set { pessoa = value; } }
 
+        //O set de email e senha passa por um filtro de regex
+        //Não era para ser possivel fazer o get da senha
+        //mas o ORM me obrigou, tendo a necessidade de se buscar outra estratégia
+
         private string email;
         public virtual string Email {
             get {
@@ -57,6 +61,7 @@ namespace Sistema_de_Eventos.Modelo.Controle {
         internal Usuario() {;
         }
 
+        //checa se a senha está correta
         public virtual bool Check(string senha) {
             if(this.senha == senha) {
                 return true;
@@ -65,6 +70,8 @@ namespace Sistema_de_Eventos.Modelo.Controle {
             }
                 
         }
+        //Notificacao de usuario, só irá funcionar se o usuario adicionar um notificador
+        //isso pode ser uma opção na interface grafica 
         public virtual void Atualizar(string message) {
             if (notificacao != null) {
                 Notificacao.AtualizarNotificaveis(message);

@@ -10,8 +10,12 @@ using Sistema_de_Eventos.Modelo.Espaco;
 namespace Sistema_de_Eventos.Modelo.Eventos {
     public class Evento : Atividade {
 
+        //Essa lista é uma abstração que fiz para reduzir a repetição de código
+        //ela é customizada e possui algumas implementações básicas
         public virtual ListaAtividade Atividades { get; set; }
         public override bool Isolada { get { return isolada; } set { isolada = value; } }
+
+        //o evento marcado como unico inscreve automaticamente todos os incritos nas atividades
         public virtual bool isUnique { get; set;}
 
         public override string Agenda {
@@ -37,11 +41,19 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
             isUnique = true;
             isolada = false;
         }
+        //Ao adicionar um inscrito ele, o adiciona na lista do notificador
+        //mas o inscrito só será notificado se ele adicionar algum veiculo de divulgação
         public override void AdicionarInscritos(Inscricao inscricao, Inscricao.AddAtividade addAtividade) {
             if (!inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Add(inscricao);
+                //usando delegate:
+                //A inscricao delega a funcção de adicionar atividades (em inscricao) a propria atividade
+                //a razão disso é para que condições como inscritos repetidos ou atividade encerrada ja são verificadas
+                //nessa função e evita a repetição desse código lá em inscrição
                 addAtividade(this);
                 notificador.AdicionarNotificavel(inscricao.User);
+
+                //quando o evento é unico, ele inscreve todas as atividades que não são isoladas
                 if (isUnique) {
                     for (int i = 0; i < Atividades.lista.Count; i++) {
                         if (!Atividades.lista[i].Isolada) {
@@ -51,6 +63,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 }
             }
         }
+        //aqui funciona como adicionar, só que removendo
         public override void RemoverInscritos(Inscricao inscricao, Inscricao.RemoveAtividade removeAtividade) {
             if (inscritos.Contains(inscricao) && estadoDaAtividade != EstadoDaAtividade.InscricoesEncerradas) {
                 inscritos.Remove(inscricao);
@@ -65,7 +78,7 @@ namespace Sistema_de_Eventos.Modelo.Eventos {
                 }
             }
         }
-
+        //Implementação de notificação
         protected override void Notificar(string Mensagem) {
             string Complemento = "Prezado incrito, a data e horario do evento foram alteradas.";
             notificador.AtualizarNotificaveis(Complemento + Mensagem);

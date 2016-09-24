@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 namespace Sistema_de_Eventos.Modelo.Controle {
     public class Organizacao {
 
+        //Classe que assossia atividade a uma equipe organizadora
+        //Ela tem um usuario principal que é um organizadoe e uma lista de colaboradores
+
         public virtual int Id { get; set; }
 
         private Atividade atividade;
@@ -62,6 +65,8 @@ namespace Sistema_de_Eventos.Modelo.Controle {
                 return false;
             }
         }
+        //verifica se o usuario faz parte da equipe, será utilizada 
+        //pelo perfil para saber se o usuario pode ou não fazer alguma ação
         public virtual void PermissaoDeUsuario(Usuario pessoa) {
             if ((pessoa != null && colaboradores.Contains(pessoa)) || pessoa == organizador) {
                 return;

@@ -32,6 +32,7 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
             return espaco;
         }
 
+        //Classe aninhada que é utilizada pelo builder para criar espaços de forma dinâmica
         public class BuilderEspcacoComposto {
             private EspacoComposto espacoComposto;
             public BuilderEspcacoComposto(string nome) {
@@ -57,6 +58,7 @@ namespace Sistema_de_Eventos.Modelo.Espaco {
                 espacoComposto.AdicionarInterior(espaco);
                 return this;
             }
+            //retorna o espaco composto
             public EspacoComposto build() {
                 NHibernateHelper.SaveOrUpdate(ref espacoComposto);
                 return espacoComposto;
